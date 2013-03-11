@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Settings - XBMC Remote Control</title>
+
+        <link rel="stylesheet" href="css/fonts.css" type="text/css" />
+        <link rel="stylesheet" href="css/remote.css" type="text/css" />
+
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/enum.js"></script>
+        <script src="js/utils.js"></script>
+        <script src="js/xbmc_socket.js"></script>
+        <script src="js/local_data.js"></script>
+        <script src="js/settings.js"></script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="header_title">Settings</div>
+            <div class="hr"></div>
+            <div id="message_success">
+                Connection Success!
+            </div>
+            <div id="message_wait">
+                Connecting.. Please wait..
+            </div>
+            <div id="message_missing_data">
+                Enter Connection Details!
+            </div>
+            <div id="message_fail">
+                Error! Cannot Connect!
+            </div>
+            <div class="info">
+                <div class="details">
+                    <div class="details_name">
+                        Host or IP Address
+                    </div>
+                    <div class="holo_field">
+                        <div class="holo-field-bracket"></div>
+                        <input type="text" id="ipValue" class="info_text" />
+                    </div>
+                </div>
+
+                <div class="details">
+                    <div class="details_name">
+                        TCP Port
+                    </div>
+                    <div class="holo_field">
+                        <div class="holo-field-bracket"></div>
+                        <input type="text" id="portValue" placeholder="9090" class="info_text" />
+                    </div>
+                </div>
+
+                <div class="details">
+                    <div class="tip_info">
+                    Note: You need to enable "Allow program on other system to control XBMC" option. You can find this under, <br/><br/>
+                        System > Settings > Services > Remote Control
+                    </div>
+                </div>
+                <div class="details">
+                    <div class="button_holder">
+                        <div class="action_button">
+                            <button class="holo-button" id="saveButton">Save</button>
+                        </div>
+                        <div class="action_button">
+                            <button class="holo-button" id="backButton">Back</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+</html>

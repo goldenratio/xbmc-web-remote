@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<project name="XBMC-Remote-Chrome" basedir="./">
+
+	<property file="build.properties"/>
+
+
+	<target name="package" depends="clean" description="package .zip for Chrome Webstore">
+        <zip destfile="${target_folder}/${zip_file_name}"
+             basedir="${src_folder}"
+                />
+	</target>
+
+
+	<target name="clean">
+		<delete dir="${target_folder}" />
+	</target>
+
+</project>

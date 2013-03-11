@@ -1,0 +1,21 @@
+{
+	"manifest_version": 2,
+	
+	"name": "XBMC Remote Control",
+	"description": "XBMC Remote Control for Chrome",
+	"version": "0.1",
+	"permissions": [ "storage", "tabs" ],
+  
+	"icons": { 
+		"16": "assets/icon_16.png",		
+		"48": "assets/icon_48.png",
+		"128": "assets/icon_128.png"
+	},
+  	
+  	"browser_action": {
+		"default_icon": "assets/icon_48.png",
+		"default_popup": "remote.html"
+  	},
+
+    "options_page": "settings.html"
+}
