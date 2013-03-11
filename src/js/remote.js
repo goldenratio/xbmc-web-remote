@@ -427,7 +427,7 @@ function loadComplete()
 
     $("#popOut").hide();
 
-    if(SHOW_POPOUT)
+    if(ALLOW_POPOUT)
     {
         var loc = window.location.toString();
         popout = Utils.findPropertyFromString(loc, "popout");

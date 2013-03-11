@@ -3,7 +3,7 @@
  */
 
 var PORT_DEFAULT = 9090;
-var SHOW_POPOUT = true;
+var ALLOW_POPOUT = true;
 
 var Key = new function()
 {
