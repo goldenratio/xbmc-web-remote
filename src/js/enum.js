@@ -4,8 +4,8 @@
 
 var PORT_DEFAULT = 9090;
 
-// used only in chrome extension
-var ALLOW_POPOUT = false;
+// used only in chrome extension, value is set in ant task
+var ALLOW_POPOUT = @allow_popout;
 
 var Key = new function()
 {
