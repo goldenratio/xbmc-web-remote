@@ -44,8 +44,8 @@ var Settings = function()
             }
 
             messages.showWaitMessage();
-            localData.storeData(thisObject.hostname, thisObject.port);
-            //socket.connect(thisObject.hostname, thisObject.port, thisObject);
+            //localData.storeData(thisObject.hostname, thisObject.port);
+            socket.connect(thisObject.hostname, thisObject.port, thisObject);
             event.preventDefault();
         });
 
