@@ -38,7 +38,7 @@
     </target>
 
 
-	<target name="clean" description="remove target folder">
+	<target name="clean" description="clean up, remove target folder">
 		<delete dir="${target.folder}" />
 	</target>
 
