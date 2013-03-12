@@ -16,13 +16,8 @@
 
     </target>
 
-	<target name="package_chrome_extension_zip" depends="clean, package_chrome_extension" description="Package .zip for Chrome Webstore">
-        <zip destfile="${chrome_extension.folder}/${project_name}.zip"
-             basedir="${chrome_extension.folder}/${project_name}/"
-                />
-	</target>
 
-    <target name="package_chrome_extension" depends="clean" description="Package folder for Chrome extension developer mode">
+    <target name="package_chrome_extension" depends="clean" description="Package folder for Chrome extension developer mode and .zip for Web Store">
         <mkdir dir="${chrome_extension.folder}/${project_name}/"/>
 
         <copy todir="${chrome_extension.folder}/${project_name}/">
@@ -34,6 +29,10 @@
         </copy>
 
         <replace file="${chrome_extension.folder}/${project_name}/js/enum.js" token="@allow_popout" value="true"/>
+
+        <zip destfile="${chrome_extension.folder}/${project_name}.zip"
+             basedir="${chrome_extension.folder}/${project_name}/"
+                />
 
     </target>
 
@@ -49,7 +48,7 @@
     </target>
 
 
-    <target name="package" depends="clean, package_web, package_chrome_extension, package_chrome_extension_zip" description="Package all">
+    <target name="package" depends="clean, package_web, package_chrome_extension" description="Package all">
 
     </target>
 
