@@ -12,5 +12,4 @@ Available in Chrome Web Store now, https://chrome.google.com/webstore/detail/xbm
 
 **TODO:**
 ---------
-1. Make it compatible with other browsers.
-2. Create launcher
+1. Create launcher
