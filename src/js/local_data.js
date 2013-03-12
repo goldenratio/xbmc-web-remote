@@ -4,12 +4,11 @@
 
 var LocalData = function(context)
 {
-    //chrome.storage.local.clear();
 
     var thisObject = this;
     this.context = context;
 
-    chrome.storage.onChanged.addListener(function(changes, area)
+    /*chrome.storage.onChanged.addListener(function(changes, area)
     {
         console.log("local data changed! " + area)
         console.log(JSON.stringify(changes));
@@ -28,8 +27,41 @@ var LocalData = function(context)
         });
 
 
-    });
+    });*/
 
+    this.init = function()
+    {
+
+        // todo: listen for change in local storage
+
+        /*window.addEventListener("localStorage", function(e)
+        {
+            console.log("storage changed");
+            alert("storage changed");
+        }, false);*/
+    };
+
+
+    /**
+     * Check if local storage is supported in browser
+     * @return {boolean} true - supported, false - not supported
+     */
+    this.isSupported = function()
+    {
+        try {
+            return 'localStorage' in window && window['localStorage'] !== null;
+        } catch (e) {
+            return false;
+        }
+
+    };
+
+
+    /**
+     * Store the host and port value to local storage
+     * @param host
+     * @param port
+     */
     this.storeData = function(host, port)
     {
         if(!host || !port)
@@ -38,49 +70,63 @@ var LocalData = function(context)
             return;
         }
 
-        chrome.storage.local.set({'host': host, 'port': port}, function()
+        if(thisObject.isSupported())
         {
-            console.log("data saved");
-        });
+            localStorage.setItem("host", host);
+            localStorage.setItem("port", port);
+        }
+        else
+        {
+            alert("local storage not supported in your browser!");
+        }
     };
 
+    /**
+     * Get host or IP address from localStorage
+     * @param callback
+     */
     this.getHostName = function(callback)
     {
 
-        chrome.storage.local.get(function(item)
+        var host;
+        if(thisObject.isSupported())
         {
-            if(item.host)
-            {
-                callback(item.host);
-            }
-            else
-            {
-                callback();
-            }
-
-
-        });
-
+            host = localStorage.getItem("host");
+            callback(host);
+        }
+        else
+        {
+            callback();
+        }
     };
 
+    /**
+     * Get Port value from localStorgae
+     * @param callback
+     */
     this.getPort = function(callback)
     {
-        chrome.storage.local.get(function(item)
+        var port;
+        if(thisObject.isSupported())
         {
-            if(item.port)
-            {
-                callback(item.port);
-            }
-            else
-            {
-                callback();
-            }
-        });
-
+            port = localStorage.getItem("port");
+            callback(port);
+        }
+        else
+        {
+            callback();
+        }
     };
 
-    this.onLocalDataChanged = function(changes, area)
+    /**
+     * Clear local storage data
+     */
+    this.clear = function()
     {
-        console.log("local data changed!")
+        if(this.isSupported())
+        {
+            localStorage.clear();
+        }
     };
+
 };

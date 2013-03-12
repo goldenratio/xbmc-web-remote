@@ -13,7 +13,12 @@ var XBMCSocket = function()
 
 	var thisObject = this;
 
-
+    /**
+     * Create web socket handshake
+     * @param host
+     * @param port
+     * @param context
+     */
 	this.connect = function(host, port, context)
 	{
         thisObject.path = "ws://" + host + ":" + port + "/jsonrpc";
@@ -21,6 +26,12 @@ var XBMCSocket = function()
         if(!thisObject.path)
         {
             alert("host is not configured!")
+            return;
+        }
+
+        if(!window.WebSocket)
+        {
+            alert("Web socket is not supported in your browser!");
             return;
         }
 
@@ -37,6 +48,9 @@ var XBMCSocket = function()
 		
 	};
 
+    /**
+     * Disconnect from web socket
+     */
     this.disconnect = function()
     {
         if(thisObject.socket)
@@ -44,7 +58,10 @@ var XBMCSocket = function()
             thisObject.socket.close();
         }
     };
-	
+
+    /**
+     * Invoked when connection is established
+     */
 	this.onOpen = function()
 	{
 		console.log("socket open");
@@ -55,14 +72,22 @@ var XBMCSocket = function()
         }
 
 	};
-	
+
+    /**
+     * Invoked when there is a error in web socket
+     * @param error
+     */
 	this.onError = function(error)
 	{
 		thisObject.isPending = false;
 		console.log("socket error " + error);
         thisObject.callback = null;
 	};
-	
+
+    /**
+     * Invoked when server sends response message
+     * @param event
+     */
 	this.onMessage = function(event)
 	{
 		thisObject.isPending = false;
@@ -74,7 +99,13 @@ var XBMCSocket = function()
             thisObject.callback = null;
         }
 	};
-	
+
+    /**
+     * Send messages to server
+     * @param method JSONRPC methods
+     * @param params
+     * @param callback
+     */
 	this.send = function(method, params, callback)
 	{
         if(!thisObject.isConnected)
@@ -95,7 +126,11 @@ var XBMCSocket = function()
         console.log(method + " >> " + JSON.stringify(data));
 		thisObject.socket.send(JSON.stringify(data));
 	};
-	
+
+    /**
+     * Invoked when socket is closed
+     * @param event
+     */
 	this.onClose = function(event)
 	{
         console.log("socket closed!");

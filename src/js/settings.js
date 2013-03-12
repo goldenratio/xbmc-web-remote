@@ -14,6 +14,7 @@ var Settings = function()
     this.init = function()
     {
         var loc = window.location.toString();
+        console.log("loc, " + loc);
         popout = Utils.findPropertyFromString(loc, "popout");
         if(popout == undefined)
         {
@@ -22,7 +23,7 @@ var Settings = function()
 
         $("#" + SettingsElementID.BACK_BUTTON).click(function(event)
         {
-            window.location.href = "remote.html?popout=" + popout;
+            window.location.href = "remote.html?popout=" + popout + "&removecheck=1";
             event.preventDefault();
         });
 
@@ -43,8 +44,8 @@ var Settings = function()
             }
 
             messages.showWaitMessage();
-            //localData.storeData(thisObject.hostname, thisObject.port);
-            socket.connect(thisObject.hostname, thisObject.port, thisObject);
+            localData.storeData(thisObject.hostname, thisObject.port);
+            //socket.connect(thisObject.hostname, thisObject.port, thisObject);
             event.preventDefault();
         });
 
@@ -173,6 +174,11 @@ function loadComplete()
     if(settings)
     {
         settings.init();
+    }
+
+    if(localData)
+    {
+        localData.init();
     }
 
 }

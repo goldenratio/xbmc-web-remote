@@ -4,15 +4,27 @@
 	<property file="build.properties"/>
 
 
-	<target name="package" depends="clean" description="package .zip for Chrome Webstore">
+    <target name="package_web" depends="clean" description="Create package for Web">
+        <zip destfile="${target_folder}/${zip_file_name}"
+             basedir="${src_folder}"
+                />
+    </target>
+
+	<target name="package_chrome_zip" depends="clean" description="Package .zip for Chrome Webstore">
         <zip destfile="${target_folder}/${zip_file_name}"
              basedir="${src_folder}"
                 />
 	</target>
 
 
-	<target name="clean">
+	<target name="clean" description="remove target folder">
 		<delete dir="${target_folder}" />
 	</target>
+
+    <target name="run" depends="clean" description="Run remote in a web browser">
+        <zip destfile="${target_folder}/${zip_file_name}"
+             basedir="${src_folder}"
+                />
+    </target>
 
 </project>

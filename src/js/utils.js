@@ -4,17 +4,19 @@
 
 var Utils = new function()
 {
-    this.findPropertyFromString = function(str, property)
+    /**
+     * Find param value from URL string
+     * @param stringValue
+     * @param property
+     * @return {*}
+     */
+    this.findPropertyFromString = function(stringValue, property)
     {
-        //console.log("findPropertyFromString, str = " + str);
-        //console.log("findPropertyFromString, property = " + property);
         property = property + "=";
-        var index = str.indexOf('?');
-        str = str.substring(index + 1);
-        //console.log("index = " + index);
-        //console.log("str = " + str);
+        var index = stringValue.indexOf("?");
+        stringValue = stringValue.substring(index + 1);
 
-        var list = str.split('&');
+        var list = stringValue.split('&');
         //console.log("list.length, " + list.length);
         for(var i = 0; i < list.length; i++)
         {
@@ -24,5 +26,5 @@ var Utils = new function()
             }
         }
         return undefined;
-    }
+    };
 };

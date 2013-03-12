@@ -3,7 +3,9 @@
  */
 
 var PORT_DEFAULT = 9090;
-var ALLOW_POPOUT = true;
+
+// used only in chrome extension
+var ALLOW_POPOUT = false;
 
 var Key = new function()
 {

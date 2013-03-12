@@ -394,9 +394,11 @@ function loadComplete()
 
     if(xbmcSocket)
     {
-        console.log("taaa");
+
         localData.getHostName(function(hostName)
         {
+            var loc = window.location.toString();
+            var removeCheck = Utils.findPropertyFromString(loc, "removecheck");
             console.log("hostname, " + hostName);
             if(hostName)
             {
@@ -410,7 +412,10 @@ function loadComplete()
                     }
                     else
                     {
-                        window.location.href = "settings.html";
+                        if(removeCheck != 1)
+                        {
+                            window.location.href = "settings.html";
+                        }
                     }
 
                 });
@@ -418,7 +423,11 @@ function loadComplete()
             }
             else
             {
-                window.location.href = "settings.html";
+                if(removeCheck != 1)
+                {
+                    window.location.href = "settings.html";
+                }
+
             }
 
         });
@@ -430,6 +439,7 @@ function loadComplete()
     if(ALLOW_POPOUT)
     {
         var loc = window.location.toString();
+        console.log("loc, " + loc);
         popout = Utils.findPropertyFromString(loc, "popout");
 
         if(popout == undefined)
