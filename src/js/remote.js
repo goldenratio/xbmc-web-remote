@@ -74,6 +74,11 @@ var Keyboard = function()
                 xbmcSocket.send("Player.Stop", params);
                 break;
 
+            case Key.MUTE:
+                params = { action: "mute" };
+                xbmcSocket.send("Input.ExecuteAction", params);
+                break;
+
             case Key.MENU:
                 xbmcSocket.send("Input.Home");
                 break;
