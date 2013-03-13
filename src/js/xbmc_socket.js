@@ -41,10 +41,10 @@ var XBMCSocket = function()
         }
         thisObject.context = context;
 		thisObject.socket = new WebSocket(thisObject.path);
-		thisObject.socket.onopen = thisObject.onOpen;
-		thisObject.socket.onerror = thisObject.onError;
-		thisObject.socket.onmessage = thisObject.onMessage;
-		thisObject.socket.onclose = thisObject.onClose;
+		thisObject.socket.onopen = onOpen;
+		thisObject.socket.onerror = onError;
+		thisObject.socket.onmessage = onMessage;
+		thisObject.socket.onclose = onClose;
 		
 	};
 
@@ -62,7 +62,7 @@ var XBMCSocket = function()
     /**
      * Invoked when connection is established
      */
-	this.onOpen = function()
+	var onOpen = function()
 	{
 		console.log("socket open");
 		thisObject.isConnected = true;
@@ -77,7 +77,7 @@ var XBMCSocket = function()
      * Invoked when there is a error in web socket
      * @param error
      */
-	this.onError = function(error)
+	var onError = function(error)
 	{
 		thisObject.isPending = false;
 		console.log("socket error " + error);
@@ -88,7 +88,7 @@ var XBMCSocket = function()
      * Invoked when server sends response message
      * @param event
      */
-	this.onMessage = function(event)
+	var onMessage = function(event)
 	{
 		thisObject.isPending = false;
 		console.log("received data, "  + event.data);
@@ -131,7 +131,7 @@ var XBMCSocket = function()
      * Invoked when socket is closed
      * @param event
      */
-	this.onClose = function(event)
+	var onClose = function(event)
 	{
         console.log("socket closed!");
 		thisObject.isPending = false;

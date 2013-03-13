@@ -1,7 +1,7 @@
 body
 {
     min-width: 320px;
-    min-height: 455px;
+    min-height: 523px;
     overflow-x: hidden;
     overflow-y: hidden;
     background-color: #000000;
@@ -16,7 +16,25 @@ body
 #content
 {
     width: 320px;
+    position: relative;
     margin: auto;
+
+}
+
+#send_text_panel
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    z-index: 9999;
+
+    display: none;
+
 }
 #main
 {
@@ -110,6 +128,15 @@ body
     padding-left: 18px;
 }
 
+.control_1_2
+{
+    margin-top: 10px;
+    margin-bottom: 30px;
+    height: 50px;
+    /*background-color: red;*/
+    padding-left: 18px;
+}
+
 .control_2
 {
     width: 280px;
@@ -117,7 +144,7 @@ body
     margin-top: 10px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-bottom: 20px;
+    /*margin-bottom: 5px;*/
 
 
     border-radius: 10px;
@@ -152,6 +179,14 @@ body
 .gap
 {
     width: 10px;
+    height: 50px;
+    float: left;
+    display: block;
+}
+
+.gap_2
+{
+    width: 15px;
     height: 50px;
     float: left;
     display: block;
@@ -389,12 +424,31 @@ body
     display: block;
 }
 
+.sub_title_2
+{
+    height: 20px;
+    /*background-color: blue;*/
+    text-align: center;
+    text-transform: uppercase;
+    color: #6a6a6a;
+    text-shadow: 1px 1px #000000;
+    font-size: 9px;
+    cursor: default;
+    display: block;
+    line-height: 12px;
+}
+
 .sub_top_gap
 {
     height: 10px;
     /*background-color: blue;*/
     text-align: center;
     display: block;
+}
+
+.float_left
+{
+    float: left;
 }
 
 .sub_circle

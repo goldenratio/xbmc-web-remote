@@ -9,12 +9,12 @@ var Keyboard = function()
 	
 	this.init = function()
 	{
-		document.onkeydown = thisObject.onKeyDown;
-		document.onkeyup = thisObject.onKeyUp;
+		document.onkeydown = onKeyDown;
+		document.onkeyup = onKeyUp;
 		
 	};
 	
-	this.onKeyUp = function(event)
+	var onKeyUp = function(event)
 	{
 		console.log("key up");
 		thisObject.isDown = false;
@@ -29,7 +29,7 @@ var Keyboard = function()
 
 	}
 
-	this.onKeyDown = function(event)
+	var onKeyDown = function(event)
 	{
         if(thisObject.isDown)
 		{
@@ -52,10 +52,38 @@ var Keyboard = function()
 				xbmcSocket.send("Player.PlayPause", params);
                 $("#pause").toggleClass("#pause active");
 				break;
-				
+
+            case Key.PLAY:
+                xbmcSocket.send("Player.GetActivePlayers", null, function(data)
+                {
+                    var obj = JSON.parse(data);
+                    console.log("done");
+                    if(obj.result.length > 0)
+                    {
+                        // in player.. something is playing
+                        var params = { playerid: 1 };
+                        xbmcSocket.send("Player.PlayPause", params);
+
+                    }
+                    else
+                    {
+                        console.log("just select");
+                        xbmcSocket.send("Input.Select");
+                    }
+
+                });
+                break;
 			case Key.INFO:
 				xbmcSocket.send("Input.Info");
 				break;
+
+            case Key.CONTEXT:
+                if(isCtrl)
+                {
+                    xbmcSocket.send("Input.ContextMenu");
+                    event.preventDefault();
+                }
+                break;
 
             case Key.ENTER:
                 // select
@@ -150,6 +178,9 @@ var Keyboard = function()
 		event.preventDefault();
 	};
 
+    /**
+     * remove listeners
+     */
     this.dispose = function()
     {
         document.onkeydown = null;
@@ -162,7 +193,9 @@ var Remote = function()
 {
     var thisObject = this;
 
-
+    /**
+     * Invoked when server is connected, called from <code>xbmcSocket</code>
+     */
     this.onConnect = function()
     {
         console.log("connected");
@@ -297,6 +330,36 @@ var Remote = function()
             event.preventDefault();
         });
 
+        $("#mute").click(function(event)
+        {
+            params = { action: "mute" };
+            xbmcSocket.send("Input.ExecuteAction", params);
+            event.preventDefault();
+        });
+
+        $("#context_menu").click(function(event)
+        {
+            xbmcSocket.send("Input.ContextMenu");
+            event.preventDefault();
+        });
+
+        $("#update_library").click(function(event)
+        {
+            xbmcSocket.send("VideoLibrary.Scan");
+            event.preventDefault();
+        });
+
+        $("#sendTextButton").click(function(event)
+        {
+            $("#main").fadeTo("fast", 0.1, function()
+            {
+                $("#send_text_panel").show();
+                keyboard.dispose();
+            });
+
+            event.preventDefault();
+        });
+
 
 
         $("#power").addClass("power_on");
@@ -317,6 +380,7 @@ var Remote = function()
         {
             console.log("socket do not exist!");
         }
+
     };
 
     this.dispose = function()
@@ -366,6 +430,9 @@ var Remote = function()
         xbmcSocket.disconnect();
     };
 
+    /**
+     * Invoked when web socket is closed, called from <code>xbmcSocket</code>
+     */
     this.onClose = function()
     {
         keyboard.dispose();
@@ -399,7 +466,6 @@ function loadComplete()
 
     if(xbmcSocket)
     {
-
         localData.getHostName(function(hostName)
         {
             var loc = window.location.toString();
@@ -459,7 +525,7 @@ function loadComplete()
             $("#popOut").click(function(event)
             {
                 var width = 340;
-                var height = 470;
+                var height = 540;
                 //var left = (screen.width >> 1)-(width >> 1);
                 //var top = (screen.height >> 1)-(height >> 1);
 

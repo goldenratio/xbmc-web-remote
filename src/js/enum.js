@@ -24,6 +24,8 @@ var Key = new function()
     this.MENU = 72; // h
     this.OSD = 90; // z
     this.MUTE = 77; // m
+    this.PLAY = 80; // p
+    this.CONTEXT = 79; // o
 };
 
 var SettingsElementID = new function()
