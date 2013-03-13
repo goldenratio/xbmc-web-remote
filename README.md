@@ -12,4 +12,4 @@ Available in Chrome Web Store now, https://chrome.google.com/webstore/detail/xbm
 
 **TODO:**
 ---------
-1. Create launcher
+1. Create a executable launcher.
