@@ -98,6 +98,8 @@ var XBMCSocket = function()
             thisObject.callback(event.data);
             thisObject.callback = null;
         }
+
+        thisObject.context.onMessage(JSON.parse(event.data));
 	};
 
     /**

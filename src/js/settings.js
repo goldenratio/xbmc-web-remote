@@ -102,6 +102,11 @@ var Settings = function()
 
     };
 
+    this.onMessage = function(data)
+    {
+        console.log("settings, onMessage " + data);
+    };
+
     this.onClose = function()
     {
         messages.showConnectionFail();

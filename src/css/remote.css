@@ -756,6 +756,46 @@ body
     display: block;
 }
 
+.prompt
+{
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    font-family: RobotoRegular;
+
+    background-color: #252525;
+
+    border-top: 1px solid rgba(255,255,255,0.34);
+    border-right: 1px solid rgba(0,0,0,0.04);
+    border-bottom: 1px solid rgba(0,0,0,0.43);
+    border-left: 1px solid rgba(0,0,0,0.04);
+
+    box-shadow: 0 1px 1px rgba(0,0,0,0.25);
+
+    border-radius: 5px;
+    color: #FFFFFF;
+    text-decoration: none;
+
+}
+
+.prompt textarea
+{
+    background: #000;
+    border-color: #444;
+    color: #FFF;
+    border-width: 0 0 1px;
+    border-style: solid;
+    line-height: 36px;
+    padding: 0 4px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    margin: 0 1px;
+    display: block;
+}
+
 #message_success
 {
     font-family: RobotoBold;
@@ -924,7 +964,6 @@ button::-moz-focus-inner
 .button_holder
 {
     margin-top: 20px;
-
 }
 .action_button
 {

@@ -203,6 +203,19 @@ var Remote = function()
         thisObject.init();
     };
 
+    this.onMessage = function(data)
+    {
+        console.log("remote, onMessage " + data);
+        var method = data.method;
+        console.log("method " + method);
+        switch(method)
+        {
+            case "Input.OnInputRequested":
+                thisObject.showSendPanel();
+                break;
+        }
+    };
+
     this.init = function()
     {
         $("#info").click(function(event)
@@ -351,11 +364,28 @@ var Remote = function()
 
         $("#sendTextButton").click(function(event)
         {
-            $("#main").fadeTo("fast", 0.1, function()
-            {
-                $("#send_text_panel").show();
-                keyboard.dispose();
-            });
+            thisObject.showSendPanel();
+            event.preventDefault();
+        });
+
+        $("#backDataButton").click(function(event)
+        {
+            $("#send_text_panel").hide();
+            $("#main").fadeTo("fast", 1);
+            keyboard.init();
+            event.preventDefault();
+        });
+
+        $("#sendTextDataButton").click(function(event)
+        {
+            $("#send_text_panel").hide();
+            $("#main").fadeTo("fast", 1);
+            keyboard.init();
+
+            var sendText = document.getElementById("sendTeatArea").value;
+
+            params = { text: sendText, done: true };
+            xbmcSocket.send("Input.SendText", params);
 
             event.preventDefault();
         });
@@ -366,6 +396,17 @@ var Remote = function()
         $("#power").removeClass("power_off");
 
         window.onbeforeunload = thisObject.closeSocket;
+    };
+
+    this.showSendPanel = function()
+    {
+        $("#main").fadeTo("fast", 0.1, function()
+        {
+            $("#send_text_panel").show();
+            var sendTextArea = document.getElementById("sendTeatArea");
+            sendTextArea.focus();
+            keyboard.dispose();
+        });
     };
 
     this.localDataChanged = function(host, port)
