@@ -211,7 +211,7 @@ var Remote = function()
         switch(method)
         {
             case "Input.OnInputRequested":
-                thisObject.showSendPanel();
+                thisObject.showSendTextPanel();
                 break;
         }
     };
@@ -364,15 +364,13 @@ var Remote = function()
 
         $("#sendTextButton").click(function(event)
         {
-            thisObject.showSendPanel();
+            thisObject.showSendTextPanel();
             event.preventDefault();
         });
 
         $("#backDataButton").click(function(event)
         {
-            $("#send_text_panel").hide();
-            $("#main").fadeTo("fast", 1);
-            keyboard.init();
+            thisObject.hideSendTextPanel();
             event.preventDefault();
         });
 
@@ -398,15 +396,22 @@ var Remote = function()
         window.onbeforeunload = thisObject.closeSocket;
     };
 
-    this.showSendPanel = function()
+    this.showSendTextPanel = function()
     {
-        $("#main").fadeTo("fast", 0.1, function()
+        $("#main, #footer").fadeTo("fast", 0.1, function()
         {
             $("#send_text_panel").show();
             var sendTextArea = document.getElementById("sendTeatArea");
             sendTextArea.focus();
             keyboard.dispose();
         });
+    };
+
+    this.hideSendTextPanel = function()
+    {
+        $("#send_text_panel").hide();
+        $("#main, #footer").fadeTo("fast", 1);
+        keyboard.init();
     };
 
     this.localDataChanged = function(host, port)
@@ -504,48 +509,6 @@ function loadComplete()
         event.preventDefault();
     });
 
-
-    if(xbmcSocket)
-    {
-        localData.getHostName(function(hostName)
-        {
-            var loc = window.location.toString();
-            var removeCheck = Utils.findPropertyFromString(loc, "removecheck");
-            console.log("hostname, " + hostName);
-            if(hostName)
-            {
-                localData.getPort(function(port)
-                {
-
-                    console.log("port, " + port);
-                    if(port)
-                    {
-                        xbmcSocket.connect(hostName, port, remote);
-                    }
-                    else
-                    {
-                        if(removeCheck != 1)
-                        {
-                            window.location.href = "settings.html";
-                        }
-                    }
-
-                });
-
-            }
-            else
-            {
-                if(removeCheck != 1)
-                {
-                    window.location.href = "settings.html";
-                }
-
-            }
-
-        });
-        //xbmcSocket.connect("192.168.1.74", 9090, remote);
-    }
-
     $("#popOut").hide();
 
     if(ALLOW_POPOUT)
@@ -580,6 +543,48 @@ function loadComplete()
                 event.preventDefault();
             });
         }
+    }
+
+    // connect webscoket
+    if(xbmcSocket)
+    {
+        localData.getHostName(function(hostName)
+        {
+            var loc = window.location.toString();
+            var removeCheck = Utils.findPropertyFromString(loc, "removecheck");
+            console.log("hostname, " + hostName);
+            if(hostName)
+            {
+                localData.getPort(function(port)
+                {
+
+                    console.log("port, " + port);
+                    if(port)
+                    {
+                        xbmcSocket.connect(hostName, port, remote);
+                    }
+                    else
+                    {
+                        if(removeCheck != 1)
+                        {
+                            window.location.href = "settings.html?popout=" + popout;
+                        }
+                    }
+
+                });
+
+            }
+            else
+            {
+                if(removeCheck != 1)
+                {
+                    window.location.href = "settings.html?popout=" + popout;
+                }
+
+            }
+
+        });
+        //xbmcSocket.connect("192.168.1.74", 9090, remote);
     }
 
 }
