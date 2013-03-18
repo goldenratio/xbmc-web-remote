@@ -467,6 +467,18 @@ var Remote = function()
 
         $("#power").off("click");
 
+        $("#mute").off("click");
+
+        $("#context_menu").off("click");
+
+        $("#update_library").off("click");
+
+        $("#sendTextButton").off("click");
+
+        $("#backDataButton").off("click");
+
+        $("#sendTextDataButton").off("click");
+
         //$("#popOut").off("click");
 
     };

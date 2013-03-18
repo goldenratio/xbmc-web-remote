@@ -124,6 +124,12 @@ var XBMCSocket = function()
             data.params = params;
         }
 
+        if(thisObject.isPending == true)
+        {
+            console.warn("a request is still pending!");
+            return;
+        }
+
 		thisObject.isPending = true;
         console.log(method + " >> " + JSON.stringify(data));
 		thisObject.socket.send(JSON.stringify(data));
