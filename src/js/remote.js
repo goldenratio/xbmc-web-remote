@@ -402,6 +402,7 @@ var Remote = function()
         {
             $("#send_text_panel").show();
             var sendTextArea = document.getElementById("sendTeatArea");
+            sendTextArea.value = "";
             sendTextArea.focus();
             keyboard.dispose();
         });

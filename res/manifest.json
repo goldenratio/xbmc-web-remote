@@ -3,7 +3,7 @@
 	
 	"name": "XBMC Remote Control",
 	"description": "XBMC Remote Control for Chrome",
-	"version": "0.5",
+	"version": "0.6",
 	"permissions": [ "storage", "tabs" ],
   
 	"icons": { 
