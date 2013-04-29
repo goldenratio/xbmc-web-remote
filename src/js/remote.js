@@ -2,6 +2,13 @@
  * @author: Karthik VJ
  */
 
+if(ENABLE_CONSOLE == false)
+{
+    var console = console || {};
+    console.log = function() {};
+}
+
+
 var Keyboard = function()
 {
 	this.isDown = false;
@@ -499,6 +506,8 @@ var Remote = function()
 
         $("#power").addClass("power_off");
         $("#power").removeClass("power_on");
+
+        setTimeout(connect, RECONNECT_TIME_DELAY);
     };
 
 };
@@ -559,6 +568,12 @@ function loadComplete()
     }
 
     // connect webscoket
+    connect();
+
+}
+
+function connect()
+{
     if(xbmcSocket)
     {
         localData.getHostName(function(hostName)
@@ -599,5 +614,4 @@ function loadComplete()
         });
         //xbmcSocket.connect("192.168.1.74", 9090, remote);
     }
-
 }
