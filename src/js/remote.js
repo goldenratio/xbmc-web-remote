@@ -213,12 +213,26 @@ var Remote = function()
     this.onMessage = function(data)
     {
         console.log("remote, onMessage " + data);
+
+        var paramsData = { type : "", value: ""};
+        if(data.params)
+        {
+            paramsData = data.params.data;
+        }
+
         var method = data.method;
         console.log("method " + method);
         switch(method)
         {
             case "Input.OnInputRequested":
-                thisObject.showSendTextPanel();
+                if(paramsData.type == "keyboard")
+                {
+                    thisObject.showSendTextPanel(paramsData.value);
+                }
+                else if(paramsData.type == "password")
+                {
+                    thisObject.showSendPasswordPanel(paramsData.value);
+                }
                 break;
         }
     };
@@ -375,21 +389,35 @@ var Remote = function()
             event.preventDefault();
         });
 
-        $("#backDataButton").click(function(event)
+        $("#backDataButton, #backPasswordDataButton").click(function(event)
         {
-            thisObject.hideSendTextPanel();
+            thisObject.hideSendPanel();
+
+            params = { action: "close" };
+            xbmcSocket.send("Input.ExecuteAction", params);
+
             event.preventDefault();
         });
 
         $("#sendTextDataButton").click(function(event)
         {
-            $("#send_text_panel").hide();
-            $("#main").fadeTo("fast", 1);
-            keyboard.init();
+            thisObject.hideSendPanel();
 
             var sendText = document.getElementById("sendTeatArea").value;
 
             params = { text: sendText, done: true };
+            xbmcSocket.send("Input.SendText", params);
+
+            event.preventDefault();
+        });
+
+        $("#sendPasswordDataButton").click(function(event)
+        {
+            thisObject.hideSendPanel();
+
+            var sendPassword = document.getElementById("sendPasswordInput").value;
+
+            params = { text: sendPassword, done: true };
             xbmcSocket.send("Input.SendText", params);
 
             event.preventDefault();
@@ -403,21 +431,44 @@ var Remote = function()
         window.onbeforeunload = thisObject.closeSocket;
     };
 
-    this.showSendTextPanel = function()
+    this.showSendTextPanel = function(value)
     {
-        $("#main, #footer").fadeTo("fast", 0.1, function()
+        $("#main, #footer").fadeTo("fast", 0.1).promise().done(function()
         {
             $("#send_text_panel").show();
             var sendTextArea = document.getElementById("sendTeatArea");
             sendTextArea.value = "";
+            if(value != undefined)
+            {
+                console.log("send text, " + value);
+                sendTextArea.value = value;
+            }
             sendTextArea.focus();
             keyboard.dispose();
         });
     };
 
-    this.hideSendTextPanel = function()
+    this.showSendPasswordPanel = function(value)
+    {
+        $("#main, #footer").fadeTo("fast", 0.1).promise().done(function()
+        {
+            $("#send_pwd_panel").show();
+            var passwordInput = document.getElementById("sendPasswordInput");
+            passwordInput.value = "";
+            if(value != undefined)
+            {
+                console.log("password, " + value);
+                passwordInput.value = value;
+            }
+            passwordInput.focus();
+            keyboard.dispose();
+        });
+    };
+
+    this.hideSendPanel = function()
     {
         $("#send_text_panel").hide();
+        $("#send_pwd_panel").hide();
         $("#main, #footer").fadeTo("fast", 1);
         keyboard.init();
     };

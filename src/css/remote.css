@@ -36,6 +36,21 @@ body
     display: none;
 
 }
+
+#send_pwd_panel
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    z-index: 9999;
+
+    display: none;
+}
 #main
 {
     width: 320px;
@@ -915,6 +930,26 @@ body
     background: #444;
 }
 
+.pwd_text
+{
+    width: 275px;
+}
+
+.pwd_text::-webkit-input-placeholder
+{
+    color: #2e2e2e;
+}
+
+.pwd_text::-moz-placeholder
+{
+    color: #2e2e2e;
+}
+
+.pwd_text:-ms-input-placeholder
+{
+    color: #2e2e2e;
+}
+
 .info_text
 {
     width: 170px;
@@ -1004,7 +1039,7 @@ button::-moz-focus-inner
     cursor: pointer;
 }
 
-.holo-button:hover
+.holo-button:hover, .holo-button:focus
 {
     box-shadow: 0 0 0 4px rgba(50,165,207,0.5);
     outline:0;
