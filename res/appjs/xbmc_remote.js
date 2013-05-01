@@ -4,6 +4,7 @@
  */
 
 var app = module.exports = require('appjs');
+var open = require('open');
 
 app.serveFilesFrom(__dirname + '/content');
 process.title = 'Remote Control - XBMC';
@@ -29,14 +30,6 @@ var menubar = app.createMenu([
                 action: function()
                 {
                     window.location.href = "settings.html";
-                }
-            },
-            {
-                label:'Always on &Top',
-                action: function()
-                {
-                    console.log(window.frame.topmost);
-                    window.frame.topmost = window.frame.topmost == true ? false : true;
                 }
             }
         ]
@@ -67,7 +60,7 @@ var window = app.createWindow({
     height          : 540,
     icons           : __dirname + '/content/icons',
     resizable       : false,
-    topmost         : true,
+    topmost         : false,
     url             : 'http://appjs/remote.html',
     disableSecurity : true
 });
@@ -77,7 +70,7 @@ window.on('create', function(){
     window.frame.show();
     window.frame.center();
     window.frame.setMenuBar(menubar);
-    window.frame.topmost = false;
+    //window.frame.topmost = false;
 });
 
 window.on('ready', function(){
@@ -91,13 +84,19 @@ window.on('ready', function(){
     window.addEventListener('keydown', function(e){
         if (F12(e) || Command_Option_J(e)) {
           window.frame.openDevTools();
+
         }
     });*/
+
 });
 
 window.on('close', function(){
+    aboutWindow.close();
     console.log("Window Closed");
 });
+
+
+
 
 var aboutWindow = new function()
 {
@@ -126,6 +125,23 @@ var aboutWindow = new function()
             //console.log("Window Created");
             aWindow.frame.show();
             aWindow.frame.center();
+            //aWindow.frame.openDevTools();
+        });
+
+        aWindow.on('ready', function(){
+            console.log("About Window Ready");
+            aWindow.process = process;
+            aWindow.module = module;
+
+            aWindow.addEventListener("open-email", function()
+            {
+                open("mailto:karthikeyanvj@gmail.com");
+            });
+
+            aWindow.addEventListener("open-twitter", function()
+            {
+                open("https://twitter.com/karthikvj");
+            });
 
         });
     };
@@ -139,6 +155,15 @@ var aboutWindow = new function()
                 aWindow.close();
             }
         }
+    };
+
+    this.openDevTools = function()
+    {
+        if(aWindow)
+        {
+            aWindow.frame.openDevTools();
+        }
+
     };
 };
 

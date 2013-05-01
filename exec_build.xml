@@ -31,6 +31,7 @@
         <chmod file="${exec.linux_32.target.path}/data/xbmc_remote.js" perm="+x"/>
         <chmod file="${exec.linux_32.target.path}/data/bin/node" perm="+x"/>
         <chmod file="${exec.linux_32.target.path}/data/bin/libffmpegsumo.so" perm="+x"/>
+        <chmod file="${exec.linux_32.target.path}/data/node_modules/open/vendor/xdg-open" perm="+x"/>
 
     </target>
 
