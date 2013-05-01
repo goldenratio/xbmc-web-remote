@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<project name="exec" basedir="./">
+
+    <property file="build.properties"/>
+    <property name="exec.target.path" value="${target.folder}/exec/linux_32"></property>
+
+    <property name="exec.res.path" value="res_executables/linux_32"></property>
+    <property name="content.path" value="res_executables/linux_32/data/content"></property>
+    <property name="data.path" value="res_executables/linux_32/data"></property>
+
+    <property name="exe.path" value="xbmc_remote.sh"></property>
+
+    <property name="target.web.path" value="${target.folder}/${project_name}"></property>
+
+    <target name="package-executable_linux_32" description="Package executable for Linux 32 bits platform">
+
+        <ant inheritall="false" antfile="build.xml" target="clean"></ant>
+        <ant inheritall="false" antfile="build.xml" target="package"></ant>
+
+
+        <copy todir="${exec.target.path}">
+            <fileset dir="${exec.res.path}/"/>
+        </copy>
+
+        <copy todir="${exec.target.path}/data/content">
+            <fileset dir="${target.web.path}/"/>
+        </copy>
+
+        <copy todir="${exec.target.path}/data">
+            <fileset dir="${res.folder}/appjs/">
+                <include name="xbmc_remote.js"></include>
+            </fileset>
+        </copy>
+
+        <chmod file="${exec.target.path}/data/xbmc_remote.js" perm="+x"/>
+        <chmod file="${exec.target.path}/data/bin/node" perm="+x"/>
+        <chmod file="${exec.target.path}/data/bin/libffmpegsumo.so" perm="+x"/>
+
+        <!-- <copy todir="${content.path}/">
+            <fileset dir="${target.web.path}/"/>
+        </copy>
+
+        <copy todir="${data.path}/">
+            <fileset dir="${res.folder}/appjs/">
+                <include name="xbmc_remote.js"></include>
+            </fileset>
+        </copy> //-->
+
+    </target>
+
+    <target name="run-linux_32" description="Launch Linux 32 executable">
+        <exec executable="/bin/sh" dir="${exec.target.path}">
+            <arg value="${exe.path}"/>
+        </exec>
+    </target>
+
+
+</project>
