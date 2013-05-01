@@ -8,7 +8,7 @@ Available in Chrome Web Store now, https://chrome.google.com/webstore/detail/xbm
 **Standalone Executable**
 -------------------------
 
-1. Linux 32 bit - https://www.dropbox.com/s/abmw7eg4u4qh0pu/linux_32.zip?dl=1
+1. Linux 32 bit - https://www.dropbox.com/s/864763xzz1tarhw/linux_32.tgz?dl=1
 2. Windows - https://www.dropbox.com/s/xzotd1j9fjeo3ie/win.zip/dl=1
 
 

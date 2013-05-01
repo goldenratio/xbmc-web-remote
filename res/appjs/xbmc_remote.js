@@ -57,13 +57,13 @@ menubar.on('select',function(item)
 
 var window = app.createWindow({
     width           : 350,
-    height          : 540,
+    height          : 580,
     icons           : __dirname + '/content/icons',
     resizable       : true,
     topmost         : false,
     url             : 'http://appjs/remote.html',
     disableSecurity : true,
-    autoResize      : true
+    autoResize      : false
 });
 
 window.on('create', function(){
