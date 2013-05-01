@@ -2,7 +2,7 @@
  * @author Karthik VJ
  **/
 
-//window.addEventListener("contextmenu", onContextMenu, false);
+window.addEventListener("contextmenu", onContextMenu, false);
 window.addEventListener("app-ready",onLoad, false);
 
 function onLoad()

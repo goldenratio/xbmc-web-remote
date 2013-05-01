@@ -3,19 +3,28 @@
 
     <property file="build.properties"/>
     <property name="target.web.path" value="${target.folder}/${project_name}"></property>
+    <property name="res.node_modules.path" value="res_node_modules"></property>
 
     <property name="exec.linux_32.target.path" value="${target.folder}/exec/linux_32"></property>
     <property name="res.linux_32.path" value="res_executables/linux_32"></property>
     <property name="exe.linux_32.path" value="xbmc_remote.sh"></property>
 
-    <target name="package-executable_linux_32" description="Package executable for Linux 32 bits platform">
+    <property name="exec.win.target.path" value="${target.folder}/exec/win"></property>
+    <property name="res.win.path" value="res_executables/win"></property>
 
-        <ant inheritall="false" antfile="build.xml" target="clean"></ant>
-        <ant inheritall="false" antfile="build.xml" target="package"></ant>
 
+
+    <target name="package-executable-linux_32" description="Package executable for Linux 32 bits platform">
+
+        <delete dir="${target.folder}/exec/linux_32" />
+        <delete file="${target.folder}/exec/linux_32.zip" />
 
         <copy todir="${exec.linux_32.target.path}">
             <fileset dir="${res.linux_32.path}/"/>
+        </copy>
+
+        <copy todir="${exec.linux_32.target.path}/data/node_modules">
+            <fileset dir="${res.node_modules.path}/"/>
         </copy>
 
         <copy todir="${exec.linux_32.target.path}/data/content">
@@ -29,9 +38,15 @@
         </copy>
 
         <chmod file="${exec.linux_32.target.path}/data/xbmc_remote.js" perm="+x"/>
+        <chmod file="${exec.linux_32.target.path}/xbmc_remote.sh" perm="+x"/>
+        <chmod file="${exec.linux_32.target.path}/xbmc_remote" perm="+x"/>
         <chmod file="${exec.linux_32.target.path}/data/bin/node" perm="+x"/>
         <chmod file="${exec.linux_32.target.path}/data/bin/libffmpegsumo.so" perm="+x"/>
         <chmod file="${exec.linux_32.target.path}/data/node_modules/open/vendor/xdg-open" perm="+x"/>
+
+        <zip destfile="${exec.linux_32.target.path}.zip"
+             basedir="${exec.linux_32.target.path}/"
+                />
 
     </target>
 
@@ -41,5 +56,36 @@
         </exec>
     </target>
 
+    <target name="package-executable-windows" description="Package executable for Windows platform">
+
+        <delete dir="${target.folder}/exec/win" />
+        <delete file="${target.folder}/exec/win.zip" />
+
+        <copy todir="${exec.win.target.path}">
+            <fileset dir="${res.win.path}/"/>
+        </copy>
+
+        <copy todir="${exec.win.target.path}/data/node_modules">
+            <fileset dir="${res.node_modules.path}/"/>
+        </copy>
+
+        <copy todir="${exec.win.target.path}/data/content">
+            <fileset dir="${target.web.path}/"/>
+        </copy>
+
+        <copy todir="${exec.win.target.path}/data">
+            <fileset dir="${res.folder}/appjs/">
+                <include name="xbmc_remote.js"></include>
+            </fileset>
+        </copy>
+
+        <zip destfile="${exec.win.target.path}.zip"
+             basedir="${exec.win.target.path}/"
+                />
+    </target>
+
+    <target name="package-executable-all" depends="package-executable-linux_32, package-executable-windows" description="Package executable for All Platform">
+
+    </target>
 
 </project>
