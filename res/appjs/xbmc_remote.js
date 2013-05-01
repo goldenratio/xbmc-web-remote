@@ -59,10 +59,11 @@ var window = app.createWindow({
     width           : 350,
     height          : 540,
     icons           : __dirname + '/content/icons',
-    resizable       : false,
+    resizable       : true,
     topmost         : false,
     url             : 'http://appjs/remote.html',
-    disableSecurity : true
+    disableSecurity : true,
+    autoResize      : true
 });
 
 window.on('create', function(){
@@ -87,6 +88,7 @@ window.on('ready', function(){
 
         }
     });*/
+
 
 });
 
@@ -114,7 +116,7 @@ var aboutWindow = new function()
 
         aWindow = app.createWindow({
             width           : 350,
-            height          : 200,
+            height          : 250,
             icons           : __dirname + '/content/icons',
             resizable       : false,
             topmost         : false,
