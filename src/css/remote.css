@@ -914,6 +914,32 @@ body
     float: left;
 }
 
+.about_name
+{
+    font-family: RobotoLight;
+    /*background-color: red;*/
+    width: 230px;
+    height: 17px;
+    font-size: 16px;
+
+    padding-top: 15px;
+    padding-right: 10px;
+    text-align: left;
+    float: left;
+}
+
+.about_name a
+{
+    font-size: 14px;
+    color: #444;
+    text-decoration: none;
+}
+
+.about_name a:hover
+{
+    color: #33B5E5;
+}
+
 .holo_field
 {
     /*background-color: green;*/

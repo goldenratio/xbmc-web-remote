@@ -179,6 +179,12 @@ var localData = new LocalData(settings);
 ////////////////
 
 window.addEventListener("load", loadComplete, false);
+window.addEventListener("contextmenu", onContextMenu, false);
+
+function onContextMenu(e)
+{
+    e.preventDefault();     // cancel default menu
+}
 
 function loadComplete()
 {
