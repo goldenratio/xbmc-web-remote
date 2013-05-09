@@ -9,6 +9,24 @@ var open = require('open');
 app.serveFilesFrom(__dirname + '/content');
 process.title = 'Remote Control - XBMC';
 
+var Rectangle = function(x, y, width, height)
+{
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+};
+
+var windowSize = {
+    WIN : new Rectangle(0, 0, 350, 600),
+    LINUX: new Rectangle(0, 0, 350, 540),
+    MAC: new Rectangle(0, 0, 350, 540),
+    OTHERS: new Rectangle(0, 0, 350, 580)
+};
+
+console.log(windowSize.WIN.width);
+console.log(windowSize.WIN.height);
+
 var menubar = app.createMenu([
     {
         label:'&File',
@@ -54,10 +72,30 @@ menubar.on('select',function(item)
     console.log("menu item "+item.label+" clicked");
 });
 
+var selectWindowSize = windowSize.OTHERS;
+var platform = process.platform;
+
+if(platform == "win32")
+{
+    selectWindowSize = windowSize.WIN;
+}
+else if(platform == "linux")
+{
+    selectWindowSize = windowSize.LINUX;
+}
+else if(platform == "darwin")
+{
+    selectWindowSize = windowSize.MAC;
+}
+else
+{
+    selectWindowSize = windowSize.OTHERS;
+}
+
 
 var window = app.createWindow({
-    width           : 350,
-    height          : 580,
+    width           : selectWindowSize.width,
+    height          : selectWindowSize.height,
     icons           : __dirname + '/content/icons',
     resizable       : true,
     topmost         : false,
