@@ -9,7 +9,7 @@ Available in Chrome Web Store now, https://chrome.google.com/webstore/detail/xbm
 -------------------------
 
 1. Linux 32 bit - https://www.dropbox.com/s/864763xzz1tarhw/linux_32.tgz?dl=1
-2. Windows - https://www.dropbox.com/s/xzotd1j9fjeo3ie/win.zip/dl=1
+2. Windows - https://www.dropbox.com/s/xzotd1j9fjeo3ie/win.zip?dl=1
 
 
 **Requirements**:
