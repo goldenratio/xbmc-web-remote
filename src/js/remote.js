@@ -604,29 +604,43 @@ function loadComplete()
         if(popout == 0)
         {
             $("#popOut").show();
+            $("#popOut").click(showPopoutWindow);
 
-            $("#popOut").click(function(event)
-            {
-                var width = 340;
-                var height = 540;
-                //var left = (screen.width >> 1)-(width >> 1);
-                //var top = (screen.height >> 1)-(height >> 1);
-
-                var obj = { url: "remote.html?popout=1", focused: true, type: "popup", width: width, height: height };
-                chrome.windows.create(obj, function(response)
-                {
-                    //console.log("response, " + JSON.stringify(response));
-                    window.close();
-                });
-
-                event.preventDefault();
-            });
+            var contentDiv = document.getElementById("content");
+            contentDiv.draggable = true;
+            contentDiv.addEventListener("dragend", onContentDragged, false);
         }
+
     }
 
     // connect webscoket
     connect();
 
+}
+
+function showPopoutWindow(event)
+{
+    var width = 340;
+    var height = 540;
+    //var left = (screen.width >> 1)-(width >> 1);
+    //var top = (screen.height >> 1)-(height >> 1);
+
+    var obj = { url: "remote.html?popout=1", focused: true, type: "popup", width: width, height: height };
+    chrome.windows.create(obj, function(response)
+    {
+        //console.log("response, " + JSON.stringify(response));
+        window.close();
+    });
+
+    if(event)
+    {
+        event.preventDefault();
+    }
+}
+
+function onContentDragged(e)
+{
+    showPopoutWindow(e);
 }
 
 function connect()
