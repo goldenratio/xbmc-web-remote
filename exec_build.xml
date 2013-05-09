@@ -37,12 +37,14 @@
             </fileset>
         </copy>
 
+
         <chmod file="${exec.linux_32.target.path}/data/xbmc_remote.js" perm="+x"/>
         <chmod file="${exec.linux_32.target.path}/xbmc_remote.sh" perm="+x"/>
         <chmod file="${exec.linux_32.target.path}/xbmc_remote" perm="+x"/>
         <chmod file="${exec.linux_32.target.path}/data/bin/node" perm="+x"/>
         <chmod file="${exec.linux_32.target.path}/data/bin/libffmpegsumo.so" perm="+x"/>
         <chmod file="${exec.linux_32.target.path}/data/node_modules/open/vendor/xdg-open" perm="+x"/>
+
 
         <tar compression="gzip" destfile="${exec.linux_32.target.path}.tgz">
             <tarfileset filemode="755" dir="${exec.linux_32.target.path}">
@@ -54,7 +56,7 @@
     </target>
 
     <target name="run-linux_32" description="Launch Linux 32 executable">
-        <exec executable="/bin/sh" dir="${exec.linux_32.target.path}">
+        <exec executable="/bin/sh" dir="${exec.linux_32.target.path}" failOnError="true">
             <arg value="${exe.linux_32.path}"/>
         </exec>
     </target>
