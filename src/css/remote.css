@@ -856,6 +856,14 @@ body
 
 }
 
+#port_msg
+{
+    font-family: RobotoRegular;
+    color: #a5a5a5;
+    font-size: 12px;
+    display: none;
+}
+
 #message_wait
 {
     font-family: RobotoBold;

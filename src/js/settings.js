@@ -141,6 +141,21 @@ var Messages = function()
     {
         thisObject.hideAll();
         var msg = document.getElementById(SettingsElementID.MESSAGE_FAIL);
+        var portMsg = document.getElementById(SettingsElementID.MESSAGE_PORT_ERROR);
+        var portValue = settings.getPortValue();
+
+        portMsg.style.display = "none";
+
+        if(portValue == "80" || portValue == "8080")
+        {
+            var portMessageText = PORT_ERROR_MESSAGE;
+            portMessageText = portMessageText.replace("$port", settings.getPortValue());
+
+            portMsg.innerHTML = portMessageText;
+            portMsg.style.display = "block";
+        }
+
+
         msg.style.display = "block";
     };
 

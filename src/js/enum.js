@@ -5,13 +5,16 @@
 var PORT_DEFAULT = 9090;
 
 // enable / disable console log
-var ENABLE_CONSOLE = false;
+var ENABLE_CONSOLE = true;
 
 // time delay to try reconnection when disconnected
 var RECONNECT_TIME_DELAY = 5000; // milliseconds
 
 // used only in chrome extension, value is set in ant task
 var ALLOW_POPOUT = @allow_popout;
+
+// this message is shown when user tries to connect with typical HTTP port
+var PORT_ERROR_MESSAGE = "Port $port is a typical HTTP Port, but remote uses TCP Port (default 9090) to connect.";
 
 var Key = new function()
 {
@@ -40,6 +43,8 @@ var SettingsElementID = new function()
     this.MESSAGE_SUCCESS = "message_success";
     this.MESSAGE_FAIL = "message_fail";
     this.MESSAGE_WAIT = "message_wait";
+
+    this.MESSAGE_PORT_ERROR = "port_msg";
 
     this.IP_TEXTFIELD = "ipValue";
     this.PORT_TEXTFIELD = "portValue";
