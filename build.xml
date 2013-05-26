@@ -26,7 +26,7 @@
         </copy>
 
         <copy todir="${chrome_extension.folder}/${project_name}/">
-            <fileset file="res/manifest.json"/>
+            <fileset file="res/js/manifest.json"/>
         </copy>
 
         <replace file="${chrome_extension.folder}/${project_name}/js/enum.js" token="@allow_popout" value="true"/>

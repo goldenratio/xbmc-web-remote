@@ -3,14 +3,14 @@
 
     <property file="build.properties"/>
     <property name="target.web.path" value="${target.folder}/${project_name}"></property>
-    <property name="res.node_modules.path" value="res_node_modules"></property>
+    <property name="res.node_modules.path" value="res/node_modules"></property>
 
     <property name="exec.linux_32.target.path" value="${target.folder}/exec/linux_32"></property>
-    <property name="res.linux_32.path" value="res_executables/linux_32"></property>
+    <property name="res.linux_32.path" value="res/executables/linux_32"></property>
     <property name="exe.linux_32.path" value="xbmc_remote.sh"></property>
 
     <property name="exec.win.target.path" value="${target.folder}/exec/win"></property>
-    <property name="res.win.path" value="res_executables/win"></property>
+    <property name="res.win.path" value="res/executables/win"></property>
 
 
 
@@ -32,7 +32,7 @@
         </copy>
 
         <copy todir="${exec.linux_32.target.path}/data">
-            <fileset dir="${res.folder}/appjs/">
+            <fileset dir="res/js/appjs/">
                 <include name="xbmc_remote.js"></include>
             </fileset>
         </copy>
@@ -79,7 +79,7 @@
         </copy>
 
         <copy todir="${exec.win.target.path}/data">
-            <fileset dir="${res.folder}/appjs/">
+            <fileset dir="res/js/appjs/">
                 <include name="xbmc_remote.js"></include>
             </fileset>
         </copy>
