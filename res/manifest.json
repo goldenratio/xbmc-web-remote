@@ -18,5 +18,9 @@
         "default_title": "XBMC Remote Control"
   	},
 
+    "background": {
+        "scripts": ["js/background.js"]
+    },
+
     "options_page": "settings.html"
 }

@@ -568,6 +568,7 @@ var keyboard = new Keyboard();
 var xbmcSocket = new XBMCSocket();
 var localData = new LocalData(remote);
 var popout = 0;
+var background = chrome.extension.getBackgroundPage();
 
 ////////////////
 
@@ -620,20 +621,10 @@ function loadComplete()
 
 function showPopoutWindow(event)
 {
-    var width = 340;
-    var height = 540;
-    //var left = (screen.width >> 1)-(width >> 1);
-    //var top = (screen.height >> 1)-(height >> 1);
+    background.handelPopup();
+    window.close();
 
-    var obj = { url: "remote.html?popout=1", focused: true, type: "popup", width: width, height: height };
-    chrome.windows.create(obj, function(response)
-    {
-        //console.log("response, " + JSON.stringify(response));
-        window.close();
-    });
-
-    if(event)
-    {
+    if(event) {
         event.preventDefault();
     }
 }
