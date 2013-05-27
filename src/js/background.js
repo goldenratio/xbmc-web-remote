@@ -9,10 +9,10 @@ function handelPopup() {
 
     //console.log("popup");
     // linux
-    //var defaultRes = {width: 340, height: 540};
-    //var winRes = {width: 350, height: 600};
+    var defaultRes = {width: 340, height: 540};
+    var winRes = {width: 350, height: 570};
 
-    var selectedRes = {width: 340, height: 540};
+    var selectedRes = defaultRes;
 
     if(navigator.platform === "Win32") {
         selectedRes = winRes;
