@@ -58,9 +58,7 @@ function onWindowClose(id) {
         windowID = -1;
         isPopupOpen = false;
 
-        var data = {};
-        data.popup = "remote.html";
-        chrome.browserAction.setPopup(data);
+        resetPopup();
     }
 }
 
@@ -71,5 +69,18 @@ function onActionIconClicked(tab) {
     }
 }
 
+function loadComplete(event)
+{
+    resetPopup();
+}
+
+function resetPopup()
+{
+    var data = {};
+    data.popup = "remote.html";
+    chrome.browserAction.setPopup(data);
+}
+
 chrome.windows.onRemoved.addListener(onWindowClose);
 chrome.browserAction.onClicked.addListener(onActionIconClicked);
+window.addEventListener("load", loadComplete, false);
