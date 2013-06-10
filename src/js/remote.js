@@ -225,7 +225,7 @@ var Remote = function()
         switch(method)
         {
             case "Input.OnInputRequested":
-                if(paramsData.type == "keyboard")
+                if(paramsData.type == "keyboard" || paramsData.type == "ip")
                 {
                     thisObject.showSendTextPanel(paramsData.value);
                 }
