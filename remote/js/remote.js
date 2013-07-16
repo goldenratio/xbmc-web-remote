@@ -583,8 +583,9 @@ function onContextMenu(e)
 
 function loadComplete()
 {
-    if(chrome.extension)
+    if(window["chrome"] && window["chrome"].extension)
     {
+        console.log("chrome extension");
         background = chrome.extension.getBackgroundPage();
     }
 
