@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+	<head>
+		<title>XBMC - Remote Control</title>
+
+        <link rel="stylesheet" href="css/fonts.css" type="text/css" />
+        <link rel="stylesheet" href="css/remote.css" type="text/css" />
+
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/enum.js"></script>
+        <script src="js/utils.js"></script>
+        <script src="js/local_data.js"></script>
+		<script src="js/xbmc_socket.js"></script>
+		<script src="js/remote.js"></script>
+	    
+	</head>
+	<body>
+        <div id="content">
+            <div id="send_pwd_panel">
+                <div class="prompt">
+                    <div class="header_title">Send Password</div>
+                    <div class="hr"></div>
+                    <div>
+                        <div class="holo_field">
+                            <div class="holo-field-bracket"></div>
+                            <input type="password" id="sendPasswordInput" width="200px" class="pwd_text" />
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div>
+                <div class="button_holder">
+                    <div class="action_button">
+                        <button class="holo-button" id="sendPasswordDataButton">Send</button>
+                    </div>
+                    <div class="action_button">
+                        <button class="holo-button" id="backPasswordDataButton">Back</button>
+                    </div>
+                </div>
+            </div>
+            <div id="send_text_panel">
+                <div class="prompt">
+                    <div class="header_title">Send Text</div>
+                    <div class="hr"></div>
+                    <div>
+                        <textarea cols="30" rows="8" id="sendTeatArea"></textarea>
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div>
+                <div class="button_holder">
+                    <div class="action_button">
+                        <button class="holo-button" id="sendTextDataButton">Send</button>
+                    </div>
+                    <div class="action_button">
+                        <button class="holo-button" id="backDataButton">Back</button>
+                    </div>
+                </div>
+            </div>
+            <div id="main">
+                <div class="control_0">
+                    <div id="power" class="power_off" title="Shutdown System">
+                        <div class="power_icon"></div>
+                    </div>
+
+                    <div class="xbmc_logo">
+
+                    </div>
+                </div>
+                <div class="control_1">
+                    <div id="backward" title="[Ctrl + Left Arrow] keys">
+                        <div class="backward_icon"></div>
+                    </div>
+                    <div class="gap"></div>
+                    <div id="play" title="[P] Key">
+                        <div class="play_icon"></div>
+                    </div>
+                    <div class="gap"></div>
+                    <div id="forward" title="[Ctrl + Right Arrow] keys">
+                        <div class="forward_icon"></div>
+                    </div>
+                </div>
+
+                <div class="control_1_1">
+                    <div id="prevTrack">
+                        <div class="prevTrack_icon"></div>
+                    </div>
+                    <div class="gap"></div>
+                    <div id="stop" title="[S] Key">
+                        <div class="stop_icon"></div>
+                    </div>
+                    <div class="gap"></div>
+                    <div id="pause" title="Spacebar">
+                        <div class="pause_icon"></div>
+                    </div>
+                    <div class="gap"></div>
+                    <div id="nextTrack">
+                        <div class="nextTrack_icon"></div>
+                    </div>
+                </div>
+
+                <div class="control_2">
+                    <div class="sub_control_1">
+                        <div class="sub_whole">
+                            <div class="sub_title">Player</div>
+                            <div id="osd" class="sub_circle" title="[Z] Key"></div>
+
+                        </div>
+                        <div class="gap_sub"></div>
+                        <div id="upArrow" class="up_arrow" title="Up Arrow Key">
+                            <div class="upArrow_icon"></div>
+                        </div>
+                        <div class="gap_sub"></div>
+                        <div class="sub_whole">
+                            <div class="sub_title">Info</div>
+                            <div id="info" class="sub_circle" title="[I] Key"></div>
+                        </div>
+                    </div>
+
+                    <div class="sub_control_2">
+                        <div id="leftArrow" class="left_arrow" title="Left Arrow Key">
+                            <div class="leftArrow_icon"></div>
+                        </div>
+                        <div class="gap_sub_2"></div>
+                        <div id="selectButton" class="select" title="Enter Key">
+                            <div class="select_icon"></div>
+                        </div>
+                        <div class="gap_sub_2"></div>
+                        <div id="rightArrow" class="right_arrow" title="Right Arrow Key">
+                            <div class="rightArrow_icon"></div>
+                        </div>
+                    </div>
+
+                    <div class="sub_control_1">
+                        <div class="sub_whole">
+                            <div class="sub_top_gap"></div>
+                            <div id="menu" class="sub_circle" title="[H] Key"></div>
+                            <div class="sub_top_gap"></div>
+                            <div class="sub_title">Menu</div>
+                        </div>
+                        <div class="gap_sub"></div>
+                        <div id="downArrow" class="down_arrow" title="Down Arrow Key">
+                            <div class="downArrow_icon"></div>
+                        </div>
+                        <div class="gap_sub"></div>
+                        <div class="sub_whole">
+                            <div class="sub_top_gap"></div>
+                            <div id="back" class="sub_circle" title="Backspace"></div>
+                            <div class="sub_top_gap"></div>
+                            <div class="sub_title">Back</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="control_1_2">
+                    <div class="sub_whole">
+                        <div class="sub_top_gap"></div>
+                        <div id="sendTextButton" class="sub_circle"></div>
+                        <div class="sub_top_gap"></div>
+                        <div class="sub_title_2">Send Text</div>
+                    </div>
+
+                    <div class="gap_2"></div>
+
+                    <div class="sub_whole">
+                        <div class="sub_top_gap"></div>
+                        <div id="update_library" class="sub_circle"></div>
+                        <div class="sub_top_gap"></div>
+                        <div class="sub_title_2">Update Library</div>
+                    </div>
+
+                    <div class="gap_2"></div>
+
+                    <div class="sub_whole">
+                        <div class="sub_top_gap"></div>
+                        <div id="mute" class="sub_circle" title="[M] Key"></div>
+                        <div class="sub_top_gap"></div>
+                        <div class="sub_title_2">Mute</div>
+                    </div>
+
+                    <div class="gap_2"></div>
+
+                    <div class="sub_whole">
+                        <div class="sub_top_gap"></div>
+                        <div id="context_menu" class="sub_circle" title="[Ctrl + O] keys"></div>
+                        <div class="sub_top_gap"></div>
+                        <div class="sub_title_2">Context Menu</div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="clear"></div>
+
+            </div>
+
+            <div id="footer">
+                <div class="footer_left">
+                    <a id="popOut">Pop-out</a>
+                </div>
+                <div class="footer_right">
+                    <a id="settings">Settings</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        </div>
+	</body>
+</html>
