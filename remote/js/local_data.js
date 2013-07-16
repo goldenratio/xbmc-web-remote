@@ -8,39 +8,6 @@ var LocalData = function(context)
     var thisObject = this;
     this.context = context;
 
-    /*chrome.storage.onChanged.addListener(function(changes, area)
-    {
-        console.log("local data changed! " + area)
-        console.log(JSON.stringify(changes));
-
-        thisObject.getHostName(function(hostName)
-        {
-            console.log(hostName);
-
-            thisObject.getPort(function(port)
-            {
-
-                console.log(port);
-                thisObject.context.localDataChanged(hostName,port);
-            });
-
-        });
-
-
-    });*/
-
-    this.init = function()
-    {
-
-        // todo: listen for change in local storage
-
-        /*window.addEventListener("localStorage", function(e)
-        {
-            console.log("storage changed");
-            alert("storage changed");
-        }, false);*/
-    };
-
 
     /**
      * Check if local storage is supported in browser

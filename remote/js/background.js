@@ -1,4 +1,6 @@
 /**
+ * Background script. Required only for chrome extension
+ * Responsible to manage window
  * @author: Karthik VJ
  **/
 

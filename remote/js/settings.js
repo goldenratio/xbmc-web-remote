@@ -208,9 +208,4 @@ function loadComplete()
         settings.init();
     }
 
-    if(localData)
-    {
-        localData.init();
-    }
-
 }

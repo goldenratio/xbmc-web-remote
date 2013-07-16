@@ -1,5 +1,11 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
 body
 {
+
     min-width: 320px;
     min-height: 523px;
     overflow-x: hidden;
@@ -15,9 +21,12 @@ body
 
 #content
 {
+    padding: 5px;
     width: 320px;
     position: relative;
     margin: auto;
+
+
 
 }
 
