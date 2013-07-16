@@ -576,6 +576,8 @@ var background;
 window.addEventListener("load", loadComplete, false);
 window.addEventListener("contextmenu", onContextMenu, false);
 
+
+
 function onContextMenu(e)
 {
     e.preventDefault();     // cancel default menu
@@ -583,11 +585,19 @@ function onContextMenu(e)
 
 function loadComplete()
 {
+    /*document.addEventListener("touchmove", function(event) {
+            //return false;
+            event.preventDefault();
+        },
+        false
+    );*/
+
     if(window["chrome"] && window["chrome"].extension)
     {
         console.log("chrome extension");
         background = chrome.extension.getBackgroundPage();
     }
+
 
     $("#settings").click(function(event)
     {
