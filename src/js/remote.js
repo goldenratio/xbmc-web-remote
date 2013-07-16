@@ -589,7 +589,6 @@ function loadComplete()
         background = chrome.extension.getBackgroundPage();
     }
 
-
     $("#settings").click(function(event)
     {
         window.location.href = "settings.html?popout=" + popout;
