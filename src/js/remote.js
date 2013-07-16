@@ -568,7 +568,8 @@ var keyboard = new Keyboard();
 var xbmcSocket = new XBMCSocket();
 var localData = new LocalData(remote);
 var popout = 0;
-var background = chrome.extension.getBackgroundPage();
+var background;
+
 
 ////////////////
 
@@ -582,6 +583,11 @@ function onContextMenu(e)
 
 function loadComplete()
 {
+    if(chrome.extension)
+    {
+        background = chrome.extension.getBackgroundPage();
+    }
+
 
     $("#settings").click(function(event)
     {
@@ -621,7 +627,11 @@ function loadComplete()
 
 function showPopoutWindow(event)
 {
-    background.handelPopup();
+    if(background)
+    {
+        background.handelPopup();
+    }
+
     window.close();
 
     if(event) {
