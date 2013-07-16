@@ -152,6 +152,9 @@ a.button span {
   height: 23px;
 }
 
+#live-demo span {
+
+}
 #download-zip span {
   background: transparent url(../images/zip-icon.png) 12px 50% no-repeat;
 }
@@ -355,7 +358,7 @@ footer a:hover {
   #downloads {
     margin-bottom: 25px;
   }
-  #download-zip, #download-tar-gz {
+  #live-demo, #download-zip, #download-tar-gz {
     display: none;
   }
   .inner {
