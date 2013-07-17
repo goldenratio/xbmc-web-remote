@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html manifest="offline.appcache">
 	<head>
 		<title>XBMC - Remote Control</title>
 
@@ -16,6 +16,14 @@
 
         <link rel="stylesheet" href="css/fonts.css" type="text/css" />
         <link rel="stylesheet" href="css/remote.css" type="text/css" />
+
+        <!-- Smartphones (portrait and landscape) //-->
+        <link rel="stylesheet" media="screen and (min-device-width : 320px) and (max-device-width : 480px)" rel="stylesheet" href="css/nohover.css">
+        <!-- iPhone 4 ----------- //-->
+        <link rel="stylesheet" media="screen and (-webkit-min-device-pixel-ratio : 1.5), screen and (min-device-pixel-ratio : 1.5)" rel="stylesheet" href="css/nohover.css">
+        <!-- iPads (portrait and landscape) //-->
+        <link rel="stylesheet" media="screen and (min-device-width : 768px) and (max-device-width : 1024px)" rel="stylesheet" href="css/nohover.css">
+
 
         <script src="js/jquery-1.9.1.min.js"></script>
         <script src="js/enum.js"></script>

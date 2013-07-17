@@ -5,7 +5,7 @@
 var PORT_DEFAULT = 9090;
 
 // enable / disable console log
-var ENABLE_CONSOLE = true;
+var ENABLE_CONSOLE = false;
 
 // time delay to try reconnection when disconnected
 var RECONNECT_TIME_DELAY = 5000; // milliseconds

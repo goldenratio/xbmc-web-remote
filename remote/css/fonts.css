@@ -1,6 +1,12 @@
 @font-face {
     font-family: 'RobotoRegular';
-    src: url('../assets/fonts/Roboto-Regular-webfont.ttf') format('truetype');
+
+    src: url('../assets/fonts/roboto_regular/roboto-regular-webfont-webfont.eot');
+    src: url('../assets/fonts/roboto_regular/roboto-regular-webfont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../assets/fonts/roboto_regular/roboto-regular-webfont-webfont.woff') format('woff'),
+         url('../assets/fonts/roboto_regular/roboto-regular-webfont.ttf') format('truetype'),
+         url('../assets/fonts/roboto_regular/roboto-regular-webfont-webfont.svg#robotoregular') format('svg');
+
     font-weight: normal;
     font-style: normal;
 
@@ -8,7 +14,13 @@
 
 @font-face {
     font-family: 'RobotoBold';
-    src: url('../assets/fonts/Roboto-Bold-webfont.ttf') format('truetype');
+
+    src: url('../assets/fonts/roboto_bold/roboto-bold-webfont-webfont.eot');
+    src: url('../assets/fonts/roboto_bold/roboto-bold-webfont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../assets/fonts/roboto_bold/roboto-bold-webfont-webfont.woff') format('woff'),
+         url('../assets/fonts/roboto_bold/roboto-bold-webfont.ttf') format('truetype'),
+         url('../assets/fonts/roboto_bold/roboto-bold-webfont-webfont.svg#robotobold') format('svg');
+
     font-weight: normal;
     font-style: normal;
 
@@ -16,7 +28,13 @@
 
 @font-face {
     font-family: 'RobotoLight';
-    src: url('../assets/fonts/Roboto-Light-webfont.ttf') format('truetype');
+
+    src: url('../assets/fonts/roboto_light/roboto-light-webfont-webfont.eot');
+    src: url('../assets/fonts/roboto_light/roboto-light-webfont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../assets/fonts/roboto_light/roboto-light-webfont-webfont.woff') format('woff'),
+         url('../assets/fonts/roboto_light/roboto-light-webfont.ttf') format('truetype'),
+         url('../assets/fonts/roboto_light/roboto-light-webfont-webfont.svg#robotolight') format('svg');
+
     font-weight: normal;
     font-style: normal;
 
