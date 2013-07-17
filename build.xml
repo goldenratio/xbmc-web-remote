@@ -16,6 +16,10 @@
             <fileset file="res/js/offline.appcache"/>
         </copy>
 
+        <copy todir="${target.folder}/${project_name}/">
+            <fileset file="res/js/manifest.webapp"/>
+        </copy>
+
         <script language="javascript">
             <![CDATA[
                 property = project.setProperty("timenow", Math.floor((new Date()).getTime()));
@@ -25,6 +29,7 @@
         <replace file="${target.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${target.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
         <replace file="${target.folder}/${project_name}/offline.appcache" token="@build_time" value="${timenow}"/>
+        <replace file="${target.folder}/${project_name}/manifest.webapp" token="@build_version" value="${build.version}"/>
         <replace file="${target.folder}/${project_name}/remote.html" token="@manifest" value=' manifest="offline.appcache"'/>
         <replace file="${target.folder}/${project_name}/settings.html" token="@manifest" value=' manifest="offline.appcache"'/>
 
@@ -55,6 +60,40 @@
 
     </target>
 
+    <target name="package_firefox_app" depends="clean" description="Package folder for Firefox OS Marketplace">
+
+        <delete dir="${firefox_app.folder}/${project_name}" />
+
+        <mkdir dir="${firefox_app.folder}/${project_name}/"/>
+
+        <copy todir="${firefox_app.folder}/${project_name}/">
+            <fileset dir="${src.folder}/"/>
+        </copy>
+
+        <copy todir="${firefox_app.folder}/${project_name}/">
+            <fileset file="res/js/manifest.webapp"/>
+        </copy>
+
+        <copy todir="${firefox_app.folder}/${project_name}/">
+            <fileset file="res/js/offline.appcache"/>
+        </copy>
+
+        <script language="javascript">
+            <![CDATA[
+                property = project.setProperty("timenow", Math.floor((new Date()).getTime()));
+            ]]>
+        </script>
+
+        <replace file="${firefox_app.folder}/${project_name}/offline.appcache" token="@build_time" value="${timenow}"/>
+        <replace file="${firefox_app.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
+        <replace file="${firefox_app.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${firefox_app.folder}/${project_name}/manifest.webapp" token="@build_version" value="${build.version}"/>
+
+        <replace file="${firefox_app.folder}/${project_name}/remote.html" token="@manifest" value=''/>
+        <replace file="${firefox_app.folder}/${project_name}/settings.html" token="@manifest" value=''/>
+
+    </target>
+
 
 	<target name="clean" description="clean up, remove target folder">
 		<delete dir="${target.folder}" />
@@ -67,7 +106,7 @@
     </target>
 
 
-    <target name="package" depends="clean, package_web, package_chrome_extension" description="Package all">
+    <target name="package" depends="clean, package_web, package_chrome_extension, package_firefox_app" description="Package all">
 
     </target>
 

@@ -1,0 +1,35 @@
+{
+	"name": "XBMC Remote Control",
+	"description": "XBMC Remote Control for Firefox",
+	"launch_path": "remote.html",
+
+	"developer": {
+		"name": "Karthikeyan VJ",
+		"url": "https://github.com/goldenratio"
+	},
+
+	"icons": {
+		"16": "icons/16.png",
+		"32": "icons/32.png",
+        "48": "icons/48.png",
+        "64": "icons/64.png",
+        "128": "icons/128.png"
+	},
+
+    "installs_allowed_from": ["*"],
+    "orientation": ["portrait"],
+    "appcache_path": "offline.appcache",
+
+    "permissions": {
+
+    },
+
+	"default_locale": "en",
+	"fullscreen": "true",
+
+	"version": "@build_version",
+
+	"locales": {
+
+	}
+}
