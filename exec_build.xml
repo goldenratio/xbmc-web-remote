@@ -27,9 +27,19 @@
             <fileset dir="${res.node_modules.path}/"/>
         </copy>
 
-        <copy todir="${exec.linux_32.target.path}/data/content">
+        <!-- <copy todir="${exec.linux_32.target.path}/data/content">
             <fileset dir="${target.web.path}/"/>
+        </copy> //-->
+
+        <copy todir="${exec.linux_32.target.path}/data/content">
+            <fileset dir="${src.folder}/"/>
         </copy>
+
+        <replace file="${exec.linux_32.target.path}/data/content/js/enum.js" token="@allow_popout" value="false"/>
+        <replace file="${exec.linux_32.target.path}/data/content/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${exec.linux_32.target.path}/data/content/remote.html" token="@manifest" value=''/>
+        <replace file="${exec.linux_32.target.path}/data/content/settings.html" token="@manifest" value=''/>
+
 
         <copy todir="${exec.linux_32.target.path}/data">
             <fileset dir="res/js/appjs/">
@@ -74,9 +84,18 @@
             <fileset dir="${res.node_modules.path}/"/>
         </copy>
 
-        <copy todir="${exec.win.target.path}/data/content">
+        <!-- <copy todir="${exec.win.target.path}/data/content">
             <fileset dir="${target.web.path}/"/>
+        </copy> //-->
+
+        <copy todir="${exec.win.target.path}/data/content">
+            <fileset dir="${src.folder}/"/>
         </copy>
+
+        <replace file="${exec.win.target.path}/data/content/js/enum.js" token="@allow_popout" value="false"/>
+        <replace file="${exec.win.target.path}/data/content/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${exec.win.target.path}/data/content/remote.html" token="@manifest" value=''/>
+        <replace file="${exec.win.target.path}/data/content/settings.html" token="@manifest" value=''/>
 
         <copy todir="${exec.win.target.path}/data">
             <fileset dir="res/js/appjs/">
