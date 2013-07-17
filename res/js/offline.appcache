@@ -1,0 +1,46 @@
+CACHE MANIFEST
+# build time: @build_time
+
+about.html
+remote.html
+settings.html
+
+# assets
+assets/buttons_sheet.png
+assets/xbmc_logo_small.png
+
+# fonts
+assets/fonts/roboto_bold/roboto-bold-webfont.ttf
+assets/fonts/roboto_bold/roboto-bold-webfont-webfont.eot
+assets/fonts/roboto_bold/roboto-bold-webfont-webfont.svg
+assets/fonts/roboto_bold/roboto-bold-webfont-webfont.woff
+
+assets/fonts/roboto_light/roboto-light-webfont.ttf
+assets/fonts/roboto_light/roboto-light-webfont-webfont.eot
+assets/fonts/roboto_light/roboto-light-webfont-webfont.svg
+assets/fonts/roboto_light/roboto-light-webfont-webfont.woff
+
+assets/fonts/roboto_regular/roboto-regular-webfont.ttf
+assets/fonts/roboto_regular/roboto-regular-webfont-webfont.eot
+assets/fonts/roboto_regular/roboto-regular-webfont-webfont.svg
+assets/fonts/roboto_regular/roboto-regular-webfont-webfont.woff
+
+# css
+css/fonts.css
+css/nohover.css
+css/remote.css
+
+# js
+js/about.js
+js/background.js
+js/enum.js
+js/jquery-1.9.1.min.js
+js/local_data.js
+js/remote.js
+js/settings.js
+js/utils.js
+js/xbmc_socket.js
+
+
+NETWORK:
+*

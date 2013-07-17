@@ -12,8 +12,19 @@
             <fileset dir="${src.folder}/"/>
         </copy>
 
+        <copy todir="${target.folder}/${project_name}/">
+            <fileset file="res/js/offline.appcache"/>
+        </copy>
+
+        <script language="javascript">
+            <![CDATA[
+                property = project.setProperty("timenow", Math.floor((new Date()).getTime()));
+            ]]>
+        </script>
+
         <replace file="${target.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${target.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${target.folder}/${project_name}/offline.appcache" token="@build_time" value="${timenow}"/>
 
     </target>
 
