@@ -45,8 +45,8 @@ var Keyboard = function()
 		}
 
         thisObject.isDown = true;
-		console.log("key code = " + event.keyCode + ", ctrl = " + event.ctrlKey);
-		var isCtrl = event.ctrlKey;
+		//console.log("key code = " + event.keyCode + ", ctrl = " + event.ctrlKey);
+		var isCtrl = event.ctrlKey || event.metaKey;
 
 		var params;
 		switch(event.keyCode)
@@ -578,6 +578,11 @@ window.addEventListener("contextmenu", onContextMenu, false);
 
 
 
+/*function is_touch_device() {
+    return !!('ontouchstart' in window) // works on most browsers
+        || !!('onmsgesturechange' in window); // works on ie10
+} */
+
 function onContextMenu(e)
 {
     e.preventDefault();     // cancel default menu
@@ -585,12 +590,12 @@ function onContextMenu(e)
 
 function loadComplete()
 {
-    /*document.addEventListener("touchmove", function(event) {
-            //return false;
-            event.preventDefault();
+    document.addEventListener("touchend", function(event) {
+            //console.log("touch end");
+            document.activeElement.blur();
         },
         false
-    );*/
+    );
 
     if(window["chrome"] && window["chrome"].extension)
     {
