@@ -16,9 +16,6 @@
             <fileset file="res/js/offline.appcache"/>
         </copy>
 
-        <copy todir="${target.folder}/${project_name}/">
-            <fileset file="res/js/manifest.webapp"/>
-        </copy>
 
         <script language="javascript">
             <![CDATA[
@@ -29,7 +26,7 @@
         <replace file="${target.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${target.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
         <replace file="${target.folder}/${project_name}/offline.appcache" token="@build_time" value="${timenow}"/>
-        <replace file="${target.folder}/${project_name}/manifest.webapp" token="@build_version" value="${build.version}"/>
+
         <replace file="${target.folder}/${project_name}/remote.html" token="@manifest" value=' manifest="offline.appcache"'/>
         <replace file="${target.folder}/${project_name}/settings.html" token="@manifest" value=' manifest="offline.appcache"'/>
 
@@ -91,6 +88,10 @@
 
         <replace file="${firefox_app.folder}/${project_name}/remote.html" token="@manifest" value=''/>
         <replace file="${firefox_app.folder}/${project_name}/settings.html" token="@manifest" value=''/>
+
+        <zip destfile="${firefox_app.folder}/${project_name}.zip"
+             basedir="${firefox_app.folder}/${project_name}/"
+                />
 
     </target>
 
