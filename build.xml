@@ -71,9 +71,6 @@
             <fileset file="res/js/manifest.webapp"/>
         </copy>
 
-        <copy todir="${firefox_app.folder}/${project_name}/">
-            <fileset file="res/js/offline.appcache"/>
-        </copy>
 
         <script language="javascript">
             <![CDATA[
@@ -81,7 +78,6 @@
             ]]>
         </script>
 
-        <replace file="${firefox_app.folder}/${project_name}/offline.appcache" token="@build_time" value="${timenow}"/>
         <replace file="${firefox_app.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${firefox_app.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
         <replace file="${firefox_app.folder}/${project_name}/manifest.webapp" token="@build_version" value="${build.version}"/>
