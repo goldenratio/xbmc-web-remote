@@ -1,5 +1,5 @@
 {
-	"name": "XBMC Remote Control",
+	"name": "XBMC Remote",
 	"description": "XBMC Remote Control for Firefox",
 	"launch_path": "/remote.html",
 
@@ -12,6 +12,7 @@
 		"16": "/icons/16.png",
 		"32": "/icons/32.png",
         "48": "/icons/48.png",
+        "60": "/icons/60.png",
         "64": "/icons/64.png",
         "128": "/icons/128.png"
 	},
