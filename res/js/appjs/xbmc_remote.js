@@ -18,10 +18,10 @@ var Rectangle = function(x, y, width, height)
 };
 
 var windowSize = {
-    WIN : new Rectangle(0, 0, 350, 600),
-    LINUX: new Rectangle(0, 0, 350, 540),
-    MAC: new Rectangle(0, 0, 350, 540),
-    OTHERS: new Rectangle(0, 0, 350, 580)
+    WIN : new Rectangle(0, 0, 350, 580),
+    LINUX: new Rectangle(0, 0, 350, 520),
+    MAC: new Rectangle(0, 0, 350, 520),
+    OTHERS: new Rectangle(0, 0, 350, 560)
 };
 
 console.log(windowSize.WIN.width);
