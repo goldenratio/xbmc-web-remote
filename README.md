@@ -1,11 +1,15 @@
 XBMC Remote Control
 ===================
 
-XBMC Remote Control using Web Sockets. (Frodo v12)
+XBMC Remote Control using Web Sockets. (Frodo v12 and above)
+
+Live Web Demo: http://goldenratio.github.io/xbmc-web-remote/remote/remote.html
 
 Available in Chrome Web Store now, https://chrome.google.com/webstore/detail/xbmc-remote-control/jgannjdjlpnoibphpbmmfjkejcfhcmjp?hl=en-US
 
-Live Web Demo: http://goldenratio.github.io/xbmc-web-remote/remote/remote.html
+Available in Firefox Marketplace now, https://marketplace.firefox.com/app/xbmc-remote-control
+
+
 
 **Standalone Executable**
 -------------------------
