@@ -27,13 +27,13 @@ var Settings = function()
             popout = 0;
         }
 
-        $("#" + SettingsElementID.BACK_BUTTON).click(function(event)
+        thisObject.bindFastClick($("#" + SettingsElementID.BACK_BUTTON), function(event)
         {
             window.location.href = "remote.html?popout=" + popout + "&removecheck=1";
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#" + SettingsElementID.SAVE_BUTTON).click(function(event)
+        thisObject.bindFastClick($("#" + SettingsElementID.SAVE_BUTTON), function(event)
         {
             thisObject.hostname = thisObject.getIPValue();
             thisObject.port = thisObject.getPortValue();
@@ -52,13 +52,37 @@ var Settings = function()
             messages.showWaitMessage();
             //localData.storeData(thisObject.hostname, thisObject.port);
             socket.connect(thisObject.hostname, thisObject.port, thisObject);
-            event.preventDefault();
+            //event.preventDefault();
         });
 
         localData.getHostName(thisObject.setIPValue);
         localData.getPort(thisObject.setPortValue);
 
 
+    };
+
+    this.bindFastClick = function(element, callback)
+    {
+        $(element).bind("touchend click", function(event)
+        {
+            event.stopPropagation();
+            event.preventDefault();
+
+            if(event.handled !== true) {
+
+                callback();
+
+                event.handled = true;
+            } else {
+                return false;
+            }
+
+        });
+    };
+
+    this.offFastClick = function(element)
+    {
+        $(element).off("touchend click");
     };
 
     this.localDataChanged = function(host, port)

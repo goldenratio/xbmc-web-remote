@@ -237,77 +237,102 @@ var Remote = function()
         }
     };
 
+    this.bindFastClick = function(element, callback)
+    {
+        $(element).bind("touchend click", function(event)
+        {
+            event.stopPropagation();
+            event.preventDefault();
+
+            if(event.handled !== true) {
+
+                callback();
+
+                event.handled = true;
+            } else {
+                return false;
+            }
+
+        });
+    };
+
+    this.offFastClick = function(element)
+    {
+        $(element).off("touchend click");
+    };
+
     this.init = function()
     {
-        $("#info").click(function(event)
+        thisObject.bindFastClick($("#info"), function(event)
         {
             xbmcSocket.send("Input.Info");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#osd").click(function(event)
+        thisObject.bindFastClick($("#osd"), function(event)
         {
             xbmcSocket.send("Input.ShowOSD");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#back").click(function(event)
+        thisObject.bindFastClick($("#back"), function(event)
         {
             xbmcSocket.send("Input.Back");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#menu").click(function(event)
+        thisObject.bindFastClick($("#menu"), function(event)
         {
             xbmcSocket.send("Input.Home");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#selectButton").click(function(event)
+        thisObject.bindFastClick($("#selectButton"), function(event)
         {
             xbmcSocket.send("Input.Select");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#upArrow").click(function(event)
+        thisObject.bindFastClick($("#upArrow"), function(event)
         {
             xbmcSocket.send("Input.Up");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#downArrow").click(function(event)
+        thisObject.bindFastClick($("#downArrow"), function(event)
         {
             xbmcSocket.send("Input.Down");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#leftArrow").click(function(event)
+        thisObject.bindFastClick($("#leftArrow"), function(event)
         {
             xbmcSocket.send("Input.Left");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#rightArrow").click(function(event)
+
+        thisObject.bindFastClick($("#rightArrow"), function(event)
         {
             xbmcSocket.send("Input.Right");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#pause").click(function(event)
+        thisObject.bindFastClick($("#pause"), function(event)
         {
             var params = { playerid: 1 };
             xbmcSocket.send("Player.PlayPause", params);
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#stop").click(function(event)
+        thisObject.bindFastClick($("#stop"), function(event)
         {
             var params = { playerid: 1 };
             xbmcSocket.send("Player.Stop", params);
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#play").click(function(event)
+        thisObject.bindFastClick($("#play"), function(event)
         {
             xbmcSocket.send("Player.GetActivePlayers", null, function(data)
             {
@@ -327,79 +352,90 @@ var Remote = function()
                 }
 
             });
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#backward").click(function(event)
+        thisObject.bindFastClick($("#backward"), function(event)
         {
             var params = { action: "stepback" };
             xbmcSocket.send("Input.ExecuteAction", params);
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#forward").click(function(event)
+        thisObject.bindFastClick($("#forward"), function(event)
         {
             var params = { action: "stepforward" };
             xbmcSocket.send("Input.ExecuteAction", params);
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#prevTrack").click(function(event)
+        thisObject.bindFastClick($("#prevTrack"), function(event)
         {
             var params = { action: "skipprevious" };
             xbmcSocket.send("Input.ExecuteAction", params);
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#nextTrack").click(function(event)
+        thisObject.bindFastClick($("#nextTrack"), function(event)
         {
             var params = { action: "skipnext" };
             xbmcSocket.send("Input.ExecuteAction", params);
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#power").click(function(event)
+        thisObject.bindFastClick($("#power"), function(event)
         {
             xbmcSocket.send("System.Shutdown");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#mute").click(function(event)
+        thisObject.bindFastClick($("#mute"),function(event)
         {
             params = { action: "mute" };
             xbmcSocket.send("Input.ExecuteAction", params);
-            event.preventDefault();
+
+            //event.preventDefault();
         });
 
-        $("#context_menu").click(function(event)
+        thisObject.bindFastClick($("#context_menu"), function(event)
         {
             xbmcSocket.send("Input.ContextMenu");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#update_library").click(function(event)
+        thisObject.bindFastClick($("#update_library"), function(event)
         {
             xbmcSocket.send("VideoLibrary.Scan");
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#sendTextButton").click(function(event)
+        thisObject.bindFastClick($("#sendTextButton"), function(event)
         {
             thisObject.showSendTextPanel();
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#backDataButton, #backPasswordDataButton").click(function(event)
+        thisObject.bindFastClick($("#backDataButton"), function(event)
         {
             thisObject.hideSendPanel();
 
             params = { action: "close" };
             xbmcSocket.send("Input.ExecuteAction", params);
 
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#sendTextDataButton").click(function(event)
+        thisObject.bindFastClick($("#backPasswordDataButton"), function(event)
+        {
+            thisObject.hideSendPanel();
+
+            params = { action: "close" };
+            xbmcSocket.send("Input.ExecuteAction", params);
+
+            //event.preventDefault();
+        });
+
+        thisObject.bindFastClick($("#sendTextDataButton"), function(event)
         {
             thisObject.hideSendPanel();
 
@@ -408,10 +444,10 @@ var Remote = function()
             params = { text: sendText, done: true };
             xbmcSocket.send("Input.SendText", params);
 
-            event.preventDefault();
+            //event.preventDefault();
         });
 
-        $("#sendPasswordDataButton").click(function(event)
+        thisObject.bindFastClick($("#sendPasswordDataButton"), function(event)
         {
             thisObject.hideSendPanel();
 
@@ -420,7 +456,7 @@ var Remote = function()
             params = { text: sendPassword, done: true };
             xbmcSocket.send("Input.SendText", params);
 
-            event.preventDefault();
+            //event.preventDefault();
         });
 
 
@@ -492,51 +528,51 @@ var Remote = function()
     {
         console.log("dispose");
 
-        $("#info").off("click");
+        thisObject.offFastClick($("#info"));
 
-        $("#osd").off("click");
+        thisObject.offFastClick($("#osd"));
 
-        $("#back").off("click");
+        thisObject.offFastClick($("#back"));
 
-        $("#menu").off("click");
+        thisObject.offFastClick($("#menu"));
 
-        $("#selectButton").off("click");
+        thisObject.offFastClick($("#selectButton"));
 
-        $("#upArrow").off("click");
+        thisObject.offFastClick($("#upArrow"));
 
-        $("#downArrow").off("click");
+        thisObject.offFastClick($("#downArrow"));
 
-        $("#leftArrow").off("click");
+        thisObject.offFastClick($("#leftArrow"));
 
-        $("#rightArrow").off("click");
+        thisObject.offFastClick($("#rightArrow"));
 
-        $("#pause").off("click");
+        thisObject.offFastClick($("#pause"));
 
-        $("#stop").off("click");
+        thisObject.offFastClick($("#stop"));
 
-        $("#play").off("click");
+        thisObject.offFastClick($("#play"));
 
-        $("#backward").off("click");
+        thisObject.offFastClick($("#backward"));
 
-        $("#forward").off("click");
+        thisObject.offFastClick($("#forward"));
 
-        $("#prevTrack").off("click");
+        thisObject.offFastClick($("#prevTrack"));
 
-        $("#nextTrack").off("click");
+        thisObject.offFastClick($("#nextTrack"));
 
-        $("#power").off("click");
+        thisObject.offFastClick($("#power"));
 
-        $("#mute").off("click");
+        thisObject.offFastClick($("#mute"));
 
-        $("#context_menu").off("click");
+        thisObject.offFastClick($("#context_menu"));
 
-        $("#update_library").off("click");
+        thisObject.offFastClick($("#update_library"));
 
-        $("#sendTextButton").off("click");
+        thisObject.offFastClick($("#sendTextButton"));
 
-        $("#backDataButton").off("click");
+        thisObject.offFastClick($("#backDataButton"));
 
-        $("#sendTextDataButton").off("click");
+        thisObject.offFastClick($("#sendTextDataButton"));
 
         //$("#popOut").off("click");
 
@@ -590,12 +626,12 @@ function onContextMenu(e)
 
 function loadComplete()
 {
-    document.addEventListener("touchend", function(event) {
+    /*document.addEventListener("touchend", function(event) {
             //console.log("touch end");
             document.activeElement.blur();
         },
         false
-    );
+    );*/
 
     if(window["chrome"] && window["chrome"].extension)
     {
@@ -608,10 +644,19 @@ function loadComplete()
     }
 
 
-    $("#settings, #settings_new").click(function(event)
+    $("#settings, #settings_new").bind("touchend click",function(event)
     {
-        window.location.href = "settings.html?popout=" + popout;
+        event.stopPropagation();
         event.preventDefault();
+
+        if(event.handled !== true) {
+
+            window.location.href = "settings.html?popout=" + popout;
+            event.handled = true;
+
+        } else {
+            return false;
+        }
     });
 
     $("#popOut").hide();
