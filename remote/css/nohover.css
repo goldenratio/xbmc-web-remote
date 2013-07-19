@@ -20,7 +20,7 @@
     background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
 }
 
-#backward:hover, #play:hover, #forward:hover, #prevTrack:hover, #stop:hover, #pause:hover, #nextTrack:hover
+#backward:hover, #play:hover, #forward:hover, #prevTrack:hover, #stop:hover, #pause:hover, #nextTrack:hover, #settings_new:hover
 {
     background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
     background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
