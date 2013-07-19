@@ -3,6 +3,9 @@
 
 	<property file="build.properties"/>
 
+    <taskdef name="jsmin"
+             classname="net.matthaynes.jsmin.JSMin_Task"
+             classpath="ant_tasks/jsmin.0.2.4.jar"/>
 
     <target name="package_web" depends="clean" description="Create package for Web">
 
@@ -89,6 +92,22 @@
 
     </target>
 
+    <target name="_js-minify">
+
+        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
+            <fileset dir="${target.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+        </jsmin>
+
+        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
+            <fileset dir="${firefox_app.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+        </jsmin>
+
+        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
+            <fileset dir="${chrome_extension.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+        </jsmin>
+
+    </target>
+
 
 	<target name="clean" description="clean up, remove target folder">
 		<delete dir="${target.folder}" />
@@ -101,7 +120,7 @@
     </target>
 
 
-    <target name="package" depends="clean, package_web, package_chrome_extension, package_firefox_app" description="Package all">
+    <target name="package" depends="clean, package_web, package_chrome_extension, package_firefox_app, _js-minify" description="Package all">
 
     </target>
 
