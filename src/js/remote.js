@@ -602,9 +602,13 @@ function loadComplete()
         console.log("chrome extension");
         background = chrome.extension.getBackgroundPage();
     }
+    else
+    {
+        $("#settings").hide();
+    }
 
 
-    $("#settings").click(function(event)
+    $("#settings, #settings_new").click(function(event)
     {
         window.location.href = "settings.html?popout=" + popout;
         event.preventDefault();

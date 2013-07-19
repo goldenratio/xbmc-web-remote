@@ -242,7 +242,7 @@ body
     float: left;
 }
 
-#backward:hover, #play:hover, #forward:hover, #prevTrack:hover, #stop:hover, #pause:hover, #nextTrack:hover
+#backward:hover, #play:hover, #forward:hover, #prevTrack:hover, #stop:hover, #pause:hover, #nextTrack:hover, #settings_new:hover
 {
     background: -webkit-linear-gradient(top, #5d6065 0%, #2b2b2b 100%);
     background: -webkit-gradient(top, #5d6065 0%, #2b2b2b 100%);
@@ -251,17 +251,44 @@ body
     background: -ms-linear-gradient(top, #5d6065 0%, #2b2b2b 100%);
 }
 
-#backward:active, #play:active, #forward:active, #prevTrack:active, #stop:active, #pause:active, #nextTrack:active
+#backward:active, #play:active, #forward:active, #prevTrack:active, #stop:active, #pause:active, #nextTrack:active, #settings_new:active
 {
     box-shadow: 0px 0px 2px 1px #4f5459, 0px 0px 10px 5px #111111 inset;
 }
 
+#settings_new
+{
+    width: 30px;
+    height: 25px;
+    margin-right: 20px;
+    display: block;
+    border-radius: 6px 6px 6px 6px;
+
+    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
+    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
+    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
+    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
+    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
+
+    border: 1px solid #000000;
+    box-shadow: 0px 0px 2px 1px #4f5459, 0px 0px 10px 2px #111111 inset;
+    cursor: pointer;
+    float: right;
+}
+
+.settings_new_icon
+{
+    width: 30px;
+    height: 25px;
+    background: url("../assets/buttons_sheet.png") no-repeat -8px -209px;
+    display: block;
+}
 
 .play_icon
 {
     width: 86px;
     height: 50px;
-    background: url("../assets/buttons_sheet.png") no-repeat -13px -92px;
+    background: url("../assets/buttons_sheet.png") no-repeat -15px -92px;
     display: block;
 }
 

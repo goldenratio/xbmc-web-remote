@@ -26,9 +26,9 @@
         <replace file="${target.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${target.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
         <replace file="${target.folder}/${project_name}/offline.appcache" token="@build_time" value="${timenow}"/>
+        <replace file="${target.folder}/${project_name}/offline.appcache" token="@build_version" value="${build.version}"/>
 
         <replace file="${target.folder}/${project_name}/remote.html" token="@manifest" value=' manifest="offline.appcache"'/>
-        <replace file="${target.folder}/${project_name}/settings.html" token="@manifest" value=' manifest="offline.appcache"'/>
 
     </target>
 
@@ -49,7 +49,6 @@
         <replace file="${chrome_extension.folder}/${project_name}/manifest.json" token="@build_version" value="${build.version}"/>
 
         <replace file="${chrome_extension.folder}/${project_name}/remote.html" token="@manifest" value=''/>
-        <replace file="${chrome_extension.folder}/${project_name}/settings.html" token="@manifest" value=''/>
 
         <zip destfile="${chrome_extension.folder}/${project_name}.zip"
              basedir="${chrome_extension.folder}/${project_name}/"
@@ -83,7 +82,6 @@
         <replace file="${firefox_app.folder}/${project_name}/manifest.webapp" token="@build_version" value="${build.version}"/>
 
         <replace file="${firefox_app.folder}/${project_name}/remote.html" token="@manifest" value=''/>
-        <replace file="${firefox_app.folder}/${project_name}/settings.html" token="@manifest" value=''/>
 
         <zip destfile="${firefox_app.folder}/${project_name}.zip"
              basedir="${firefox_app.folder}/${project_name}/"

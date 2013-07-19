@@ -1,5 +1,6 @@
 CACHE MANIFEST
 # build time: @build_time
+# build version: @build_version
 
 about.html
 remote.html
