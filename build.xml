@@ -33,8 +33,27 @@
 
         <replace file="${target.folder}/${project_name}/remote.html" token="@manifest" value=' manifest="offline.appcache"'/>
 
+        <antcall target="_js-min_web"></antcall>
+
     </target>
 
+    <target name="_js-min_web" if="${js.min}">
+        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
+            <fileset dir="${target.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+        </jsmin>
+    </target>
+
+    <target name="_js-min_chrome" if="${js.min}">
+        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
+            <fileset dir="${chrome_extension.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+        </jsmin>
+    </target>
+
+    <target name="_js-min_firefox" if="${js.min}">
+        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
+            <fileset dir="${firefox_app.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+        </jsmin>
+    </target>
 
     <target name="package_chrome_extension" depends="clean" description="Package folder for Chrome extension developer mode and .zip for Web Store">
         <mkdir dir="${chrome_extension.folder}/${project_name}/"/>
@@ -52,6 +71,8 @@
         <replace file="${chrome_extension.folder}/${project_name}/manifest.json" token="@build_version" value="${build.version}"/>
 
         <replace file="${chrome_extension.folder}/${project_name}/remote.html" token="@manifest" value=''/>
+
+        <antcall target="_js-min_chrome"></antcall>
 
         <zip destfile="${chrome_extension.folder}/${project_name}.zip"
              basedir="${chrome_extension.folder}/${project_name}/"
@@ -86,25 +107,11 @@
 
         <replace file="${firefox_app.folder}/${project_name}/remote.html" token="@manifest" value=''/>
 
+        <antcall target="_js-min_firefox"></antcall>
+
         <zip destfile="${firefox_app.folder}/${project_name}.zip"
              basedir="${firefox_app.folder}/${project_name}/"
                 />
-
-    </target>
-
-    <target name="_js-minify">
-
-        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
-            <fileset dir="${target.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
-        </jsmin>
-
-        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
-            <fileset dir="${firefox_app.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
-        </jsmin>
-
-        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
-            <fileset dir="${chrome_extension.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
-        </jsmin>
 
     </target>
 
@@ -120,7 +127,7 @@
     </target>
 
 
-    <target name="package" depends="clean, package_web, package_chrome_extension, package_firefox_app, _js-minify" description="Package all">
+    <target name="package" depends="clean, package_web, package_chrome_extension, package_firefox_app" description="Package all">
 
     </target>
 
