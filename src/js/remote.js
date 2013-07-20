@@ -243,12 +243,13 @@ var Remote = function()
         {
             event.stopPropagation();
             event.preventDefault();
+            document.activeElement.blur();
 
             if(event.handled !== true) {
 
                 callback();
-
                 event.handled = true;
+
             } else {
                 return false;
             }
