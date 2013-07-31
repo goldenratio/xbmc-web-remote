@@ -639,13 +639,10 @@ function loadComplete()
         console.log("chrome extension");
         background = chrome.extension.getBackgroundPage();
     }
-    else
-    {
-        $("#settings").hide();
-    }
 
 
-    $("#settings, #settings_new").bind("touchend click",function(event)
+
+    $("#settings_new").bind("touchend click",function(event)
     {
         event.stopPropagation();
         event.preventDefault();

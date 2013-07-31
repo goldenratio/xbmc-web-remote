@@ -11,8 +11,8 @@ function handelPopup() {
 
     //console.log("popup");
     // linux
-    var defaultRes = {width: 340, height: 540};
-    var winRes = {width: 350, height: 570};
+    var defaultRes = {width: 340, height: 520};
+    var winRes = {width: 350, height: 550};
 
     var selectedRes = defaultRes;
 
