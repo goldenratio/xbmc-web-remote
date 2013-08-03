@@ -49,18 +49,22 @@ var Keyboard = function()
 		var isCtrl = event.ctrlKey || event.metaKey;
 
 		var params;
+        var isValidKey = false;
 		switch(event.keyCode)
 		{
             case Key.CTRL:
+                isValidKey = true;
                 thisObject.isDown = false;
                 break;
 			case Key.SPACE:
+                isValidKey = true;
 				params = { playerid: 1 };
 				xbmcSocket.send("Player.PlayPause", params);
                 $("#pause").toggleClass("#pause active");
 				break;
 
             case Key.PLAY:
+                isValidKey = true;
                 xbmcSocket.send("Player.GetActivePlayers", null, function(data)
                 {
                     var obj = JSON.parse(data);
@@ -81,10 +85,12 @@ var Keyboard = function()
                 });
                 break;
 			case Key.INFO:
+                isValidKey = true;
 				xbmcSocket.send("Input.Info");
 				break;
 
             case Key.CONTEXT:
+                isValidKey = true;
                 if(isCtrl)
                 {
                     xbmcSocket.send("Input.ContextMenu");
@@ -94,6 +100,7 @@ var Keyboard = function()
 
             case Key.ENTER:
                 // select
+                isValidKey = true;
                 $("#selectButton").addClass("select_active");
                 xbmcSocket.send("Input.Select");
                 break;
@@ -101,29 +108,35 @@ var Keyboard = function()
             case Key.BACKSPACE:
             case Key.ESCAPE:
                 // back
+                isValidKey = true;
                 xbmcSocket.send("Input.Back");
                 break;
 
             case Key.STOP:
+                isValidKey = true;
                 params = { playerid: 1 };
                 xbmcSocket.send("Player.Stop", params);
                 break;
 
             case Key.MUTE:
+                isValidKey = true;
                 params = { action: "mute" };
                 xbmcSocket.send("Input.ExecuteAction", params);
                 break;
 
             case Key.MENU:
+                isValidKey = true;
                 xbmcSocket.send("Input.Home");
                 break;
 
             case Key.OSD:
+                isValidKey = true;
                 xbmcSocket.send("Input.ShowOSD");
                 break;
 
 			case Key.LEFT:
 				// left arrow
+                isValidKey = true;
                 thisObject.isDown = false;
 				if(isCtrl)
 				{
@@ -139,6 +152,7 @@ var Keyboard = function()
 				break;
 
             case Key.RIGHT:
+                isValidKey = true;
                 thisObject.isDown = false;
                 if(isCtrl)
                 {
@@ -154,6 +168,7 @@ var Keyboard = function()
                 break;
 
             case Key.UP:
+                isValidKey = true;
                 thisObject.isDown = false;
                 if(isCtrl)
                 {
@@ -168,6 +183,7 @@ var Keyboard = function()
                 break;
 
             case Key.DOWN:
+                isValidKey = true;
                 thisObject.isDown = false;
                 if(isCtrl)
                 {
@@ -182,7 +198,11 @@ var Keyboard = function()
                 break;
 		}
 
-		event.preventDefault();
+        if(isValidKey == true)
+        {
+            event.preventDefault();
+        }
+
 	};
 
     /**
