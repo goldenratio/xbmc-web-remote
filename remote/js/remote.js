@@ -8,31 +8,32 @@ var Keyboard=function()
 var onKeyDown=function(event)
 {if(thisObject.isDown)
 {console.log("key is down!");return;}
-thisObject.isDown=true;var isCtrl=event.ctrlKey||event.metaKey;var params;switch(event.keyCode)
-{case Key.CTRL:thisObject.isDown=false;break;case Key.SPACE:params={playerid:1};xbmcSocket.send("Player.PlayPause",params);$("#pause").toggleClass("#pause active");break;case Key.PLAY:xbmcSocket.send("Player.GetActivePlayers",null,function(data)
+thisObject.isDown=true;var isCtrl=event.ctrlKey||event.metaKey;var params;var isValidKey=false;switch(event.keyCode)
+{case Key.CTRL:isValidKey=true;thisObject.isDown=false;break;case Key.SPACE:isValidKey=true;params={playerid:1};xbmcSocket.send("Player.PlayPause",params);$("#pause").toggleClass("#pause active");break;case Key.PLAY:isValidKey=true;xbmcSocket.send("Player.GetActivePlayers",null,function(data)
 {var obj=JSON.parse(data);console.log("done");if(obj.result.length>0)
 {var params={playerid:1};xbmcSocket.send("Player.PlayPause",params);}
 else
-{console.log("just select");xbmcSocket.send("Input.Select");}});break;case Key.INFO:xbmcSocket.send("Input.Info");break;case Key.CONTEXT:if(isCtrl)
+{console.log("just select");xbmcSocket.send("Input.Select");}});break;case Key.INFO:isValidKey=true;xbmcSocket.send("Input.Info");break;case Key.CONTEXT:isValidKey=true;if(isCtrl)
 {xbmcSocket.send("Input.ContextMenu");event.preventDefault();}
-break;case Key.ENTER:$("#selectButton").addClass("select_active");xbmcSocket.send("Input.Select");break;case Key.BACKSPACE:case Key.ESCAPE:xbmcSocket.send("Input.Back");break;case Key.STOP:params={playerid:1};xbmcSocket.send("Player.Stop",params);break;case Key.MUTE:params={action:"mute"};xbmcSocket.send("Input.ExecuteAction",params);break;case Key.MENU:xbmcSocket.send("Input.Home");break;case Key.OSD:xbmcSocket.send("Input.ShowOSD");break;case Key.LEFT:thisObject.isDown=false;if(isCtrl)
+break;case Key.ENTER:isValidKey=true;$("#selectButton").addClass("select_active");xbmcSocket.send("Input.Select");break;case Key.BACKSPACE:case Key.ESCAPE:isValidKey=true;xbmcSocket.send("Input.Back");break;case Key.STOP:isValidKey=true;params={playerid:1};xbmcSocket.send("Player.Stop",params);break;case Key.MUTE:isValidKey=true;params={action:"mute"};xbmcSocket.send("Input.ExecuteAction",params);break;case Key.MENU:isValidKey=true;xbmcSocket.send("Input.Home");break;case Key.OSD:isValidKey=true;xbmcSocket.send("Input.ShowOSD");break;case Key.LEFT:isValidKey=true;thisObject.isDown=false;if(isCtrl)
 {params={action:"stepback"};xbmcSocket.send("Input.ExecuteAction",params);}
 else
 {$("#leftArrow").addClass("left_arrow_active");xbmcSocket.send("Input.Left");}
-break;case Key.RIGHT:thisObject.isDown=false;if(isCtrl)
+break;case Key.RIGHT:isValidKey=true;thisObject.isDown=false;if(isCtrl)
 {params={action:"stepforward"};xbmcSocket.send("Input.ExecuteAction",params);}
 else
 {$("#rightArrow").addClass("right_arrow_active");xbmcSocket.send("Input.Right");}
-break;case Key.UP:thisObject.isDown=false;if(isCtrl)
+break;case Key.UP:isValidKey=true;thisObject.isDown=false;if(isCtrl)
 {params={action:"volumeup"};xbmcSocket.send("Input.ExecuteAction",params);}
 else
 {$("#upArrow").addClass("up_arrow_active");xbmcSocket.send("Input.Up");}
-break;case Key.DOWN:thisObject.isDown=false;if(isCtrl)
+break;case Key.DOWN:isValidKey=true;thisObject.isDown=false;if(isCtrl)
 {params={action:"volumedown"};xbmcSocket.send("Input.ExecuteAction",params);}
 else
 {$("#downArrow").addClass("down_arrow_active");xbmcSocket.send("Input.Down");}
 break;}
-event.preventDefault();};this.dispose=function()
+if(isValidKey==true)
+{event.preventDefault();}};this.dispose=function()
 {document.onkeydown=null;document.onkeyup=null;};};var Remote=function()
 {var thisObject=this;this.onConnect=function()
 {console.log("connected");keyboard.init();thisObject.init();};this.onMessage=function(data)
@@ -97,9 +98,7 @@ else
 function loadComplete()
 {if(window["chrome"]&&window["chrome"].extension)
 {console.log("chrome extension");background=chrome.extension.getBackgroundPage();}
-else
-{$("#settings").hide();}
-$("#settings, #settings_new").bind("touchend click",function(event)
+$("#settings_new").bind("touchend click",function(event)
 {event.stopPropagation();event.preventDefault();if(event.handled!==true){window.location.href="settings.html?popout="+popout;event.handled=true;}else{return false;}});$("#popOut").hide();if(ALLOW_POPOUT)
 {var loc=window.location.toString();console.log("loc, "+loc);popout=Utils.findPropertyFromString(loc,"popout");if(popout==undefined)
 {popout=0;}
