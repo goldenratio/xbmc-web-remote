@@ -34,7 +34,7 @@ var Keyboard = function()
 
         event.preventDefault();
 
-	}
+	};
 
 	var onKeyDown = function(event)
 	{
@@ -266,6 +266,12 @@ var Remote = function()
             document.activeElement.blur();
 
             if(event.handled !== true) {
+
+                // vibrate for button touch
+                if("vibrate" in navigator && event.type == "touchend")
+                {
+                    navigator["vibrate"](30);
+                }
 
                 callback();
                 event.handled = true;
