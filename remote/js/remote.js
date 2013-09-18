@@ -4,8 +4,7 @@ if(ENABLE_CONSOLE==false)
 var Keyboard=function()
 {this.isDown=false;var thisObject=this;this.init=function()
 {document.onkeydown=onKeyDown;document.onkeyup=onKeyUp;};var onKeyUp=function(event)
-{console.log("key up");thisObject.isDown=false;$("#rightArrow").removeClass("right_arrow_active");$("#selectButton").removeClass("select_active");$("#leftArrow").removeClass("left_arrow_active");$("#upArrow").removeClass("up_arrow_active");$("#downArrow").removeClass("down_arrow_active");event.preventDefault();}
-var onKeyDown=function(event)
+{console.log("key up");thisObject.isDown=false;$("#rightArrow").removeClass("right_arrow_active");$("#selectButton").removeClass("select_active");$("#leftArrow").removeClass("left_arrow_active");$("#upArrow").removeClass("up_arrow_active");$("#downArrow").removeClass("down_arrow_active");event.preventDefault();};var onKeyDown=function(event)
 {if(thisObject.isDown)
 {console.log("key is down!");return;}
 thisObject.isDown=true;var isCtrl=event.ctrlKey||event.metaKey;var params;var isValidKey=false;switch(event.keyCode)
@@ -46,7 +45,9 @@ else if(paramsData.type=="password")
 {thisObject.showSendPasswordPanel(paramsData.value);}
 break;}};this.bindFastClick=function(element,callback)
 {$(element).bind("touchend click",function(event)
-{event.stopPropagation();event.preventDefault();document.activeElement.blur();if(event.handled!==true){callback();event.handled=true;}else{return false;}});};this.offFastClick=function(element)
+{event.stopPropagation();event.preventDefault();document.activeElement.blur();if(event.handled!==true){if("vibrate"in navigator&&event.type=="touchend")
+{navigator["vibrate"](30);}
+callback();event.handled=true;}else{return false;}});};this.offFastClick=function(element)
 {$(element).off("touchend click");};this.init=function()
 {thisObject.bindFastClick($("#info"),function(event)
 {xbmcSocket.send("Input.Info");});thisObject.bindFastClick($("#osd"),function(event)
