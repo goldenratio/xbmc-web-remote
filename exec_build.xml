@@ -3,14 +3,14 @@
 
     <property file="build.properties"/>
     <property name="target.web.path" value="${target.folder}/${project_name}"></property>
-    <property name="res.node_modules.path" value="res/node_modules"></property>
+    <property name="res.node_modules.path" value="res/appjs/node_modules"></property>
 
     <property name="exec.linux_32.target.path" value="${target.folder}/exec/linux_32"></property>
-    <property name="res.linux_32.path" value="res/executables/linux_32"></property>
+    <property name="res.linux_32.path" value="res/appjs/executables/linux_32"></property>
     <property name="exe.linux_32.path" value="xbmc_remote.sh"></property>
 
     <property name="exec.win.target.path" value="${target.folder}/exec/win"></property>
-    <property name="res.win.path" value="res/executables/win"></property>
+    <property name="res.win.path" value="res/appjs/executables/win"></property>
 
 
 
@@ -24,7 +24,7 @@
         </copy>
 
         <copy todir="${exec.linux_32.target.path}/data/node_modules">
-            <fileset dir="${res.node_modules.path}/"/>
+            <fileset dir="res/appjs/node_modules/"/>
         </copy>
 
         <!-- <copy todir="${exec.linux_32.target.path}/data/content">
@@ -42,7 +42,7 @@
 
 
         <copy todir="${exec.linux_32.target.path}/data">
-            <fileset dir="res/js/appjs/">
+            <fileset dir="res/appjs/">
                 <include name="xbmc_remote.js"></include>
             </fileset>
         </copy>
@@ -81,7 +81,7 @@
         </copy>
 
         <copy todir="${exec.win.target.path}/data/node_modules">
-            <fileset dir="${res.node_modules.path}/"/>
+            <fileset dir="res/appjs/node_modules/"/>
         </copy>
 
         <!-- <copy todir="${exec.win.target.path}/data/content">
@@ -98,7 +98,7 @@
         <replace file="${exec.win.target.path}/data/content/settings.html" token="@manifest" value=''/>
 
         <copy todir="${exec.win.target.path}/data">
-            <fileset dir="res/js/appjs/">
+            <fileset dir="res/appjs/">
                 <include name="xbmc_remote.js"></include>
             </fileset>
         </copy>

@@ -16,7 +16,7 @@
         </copy>
 
         <copy todir="${target.folder}/${project_name}/">
-            <fileset file="res/js/offline.appcache"/>
+            <fileset file="res/offline.appcache"/>
         </copy>
 
 
@@ -63,7 +63,7 @@
         </jsmin>
     </target>
 
-    <target name="package_chrome_extension" depends="clean" description="Package folder for Chrome extension developer mode and .zip for Web Store">
+    <target name="package_chrome_extension" depends="clean" description="Package App for Chrome extension developer mode and .zip for Web Store">
         <mkdir dir="${chrome_extension.folder}/${project_name}/"/>
 
         <copy todir="${chrome_extension.folder}/${project_name}/">
@@ -71,7 +71,7 @@
         </copy>
 
         <copy todir="${chrome_extension.folder}/${project_name}/">
-            <fileset file="res/js/manifest.json"/>
+            <fileset file="res/chrome_extension/manifest.json"/>
         </copy>
 
         <replace file="${chrome_extension.folder}/${project_name}/js/enum.js" token="@allow_popout" value="true"/>
@@ -88,7 +88,29 @@
 
     </target>
 
-    <target name="package_firefox_app" depends="clean" description="Package folder for Firefox OS Marketplace">
+    <target name="package_firefox_addon" depends="clean" description="Package App for Firefox Addon">
+        <delete dir="${firefox_addon.folder}/${project_name}" />
+
+        <mkdir dir="${firefox_addon.folder}/${project_name}/"/>
+
+        <copy todir="${firefox_addon.folder}/${project_name}/">
+            <fileset dir="res/firefox_addon/"/>
+        </copy>
+
+
+        <copy todir="${firefox_addon.folder}/${project_name}/data/">
+            <fileset dir="${src.folder}/"/>
+        </copy>
+
+        <replace file="${firefox_addon.folder}/${project_name}/data/js/enum.js" token="@allow_popout" value="false"/>
+        <replace file="${firefox_addon.folder}/${project_name}/data/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${firefox_addon.folder}/${project_name}/package.json" token="@build_version" value="${build.version}"/>
+
+        <replace file="${firefox_addon.folder}/${project_name}/data/remote.html" token="@manifest" value=''/>
+
+    </target>
+
+    <target name="package_firefox_OS_app" depends="clean" description="Package App for Firefox OS Marketplace">
 
         <delete dir="${firefox_app.folder}/${project_name}" />
 
@@ -99,7 +121,7 @@
         </copy>
 
         <copy todir="${firefox_app.folder}/${project_name}/">
-            <fileset file="res/js/manifest.webapp"/>
+            <fileset file="res/firefox_os/manifest.webapp"/>
         </copy>
 
 
@@ -135,7 +157,7 @@
     </target>
 
 
-    <target name="package" depends="clean, package_web, package_chrome_extension, package_firefox_app" description="Package all">
+    <target name="package" depends="clean, package_web, package_chrome_extension, package_firefox_OS_app" description="Package all">
 
     </target>
 
