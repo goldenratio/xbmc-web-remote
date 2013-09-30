@@ -30,14 +30,14 @@ Live Web Demo: http://goldenratio.github.io/xbmc-web-remote/remote/remote.html
 **Building Project:**
 -------------------
 
-**Compile for Chrome Extension**
+**Compile Chrome Extension**
 
 1. Run ant target "package_chrome_extension".
 2. Build files will be generated in target folder.
 3. Zip file in target folder is used for Chrome WebStore.
 4. `target/chrome_extension/xbmc_remote` can loaded directly to Chrome as unpacked extension in Developer mode.
 
-**Compile for Firefox OS**
+**Compile Firefox OS**
 
 1. Run ant target "package_firefox_OS_app".
 2. Build files will be generated in target folder.
@@ -45,7 +45,7 @@ Live Web Demo: http://goldenratio.github.io/xbmc-web-remote/remote/remote.html
 4. `target/fxosapp/xbmc_remote` can loaded directly using Firefox OS simulator add-on.
 
 
-**Compile for Firefox Browser Add-on**
+**Compile Firefox Browser Add-on**
 
 1. Run ant target "package_firefox_addon".
 2. Build files will be generated in target folder.
