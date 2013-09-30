@@ -50,8 +50,8 @@ Live Web Demo: http://goldenratio.github.io/xbmc-web-remote/remote/remote.html
 1. Run ant target "package_firefox_addon".
 2. Build files will be generated in target folder.
 3. CFX command line too is needed, more details [here](https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/getting-started-with-cfx.html)
-..1. Open terminal and enter `source bin/activate`
-..2. Navigate to folder `target/firefox_addon/xbmc_remote/`
-..3. Enter `cfx run` will run an instance of Firefox with add-on installed.
-..4. Enter `cfx xpi` build an installable XPI file to distribute.
+  1. Open terminal and enter `source bin/activate`
+  2. Navigate to folder `target/firefox_addon/xbmc_remote/`
+  3. Enter `cfx run` will run an instance of Firefox with add-on installed.
+  4. Enter `cfx xpi` build an installable XPI file to distribute.
 
