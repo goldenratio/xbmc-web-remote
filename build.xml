@@ -57,11 +57,18 @@
         </jsmin>
     </target>
 
-    <target name="_js-min_firefox" if="${js.min}">
+    <target name="_js-min_firefox_os_app" if="${js.min}">
         <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
             <fileset dir="${firefox_app.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
         </jsmin>
     </target>
+
+    <target name="_js-min_firefox_addon" if="${js.min}">
+        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
+            <fileset dir="${firefox_addon.folder}/${project_name}/data" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+        </jsmin>
+    </target>
+
 
     <target name="package_chrome_extension" depends="clean" description="Package App for Chrome extension developer mode and .zip for Web Store">
         <mkdir dir="${chrome_extension.folder}/${project_name}/"/>
@@ -108,6 +115,7 @@
 
         <replace file="${firefox_addon.folder}/${project_name}/data/remote.html" token="@manifest" value=''/>
 
+        <antcall target="_js-min_firefox_addon"></antcall>
     </target>
 
     <target name="package_firefox_OS_app" depends="clean" description="Package App for Firefox OS Marketplace">
@@ -137,7 +145,7 @@
 
         <replace file="${firefox_app.folder}/${project_name}/remote.html" token="@manifest" value=''/>
 
-        <antcall target="_js-min_firefox"></antcall>
+        <antcall target="_js-min_firefox_os_app"></antcall>
 
         <zip destfile="${firefox_app.folder}/${project_name}.zip"
              basedir="${firefox_app.folder}/${project_name}/"
@@ -157,7 +165,7 @@
     </target>
 
 
-    <target name="package" depends="clean, package_web, package_chrome_extension, package_firefox_OS_app" description="Package all">
+    <target name="package" depends="clean, package_web, package_chrome_extension, package_firefox_OS_app, package_firefox_addon" description="Package all">
 
     </target>
 
