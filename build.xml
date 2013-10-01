@@ -181,6 +181,7 @@
 
         <replace file="${opera_legacy.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${opera_legacy.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${opera_legacy.folder}/${project_name}/config.xml" token="@build_version" value="${build.version}"/>
 
         <replace file="${opera_legacy.folder}/${project_name}/remote.html" token="@manifest" value=''/>
 
