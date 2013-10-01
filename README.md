@@ -37,7 +37,7 @@ Live Web Demo: http://goldenratio.github.io/xbmc-web-remote/remote/remote.html
 3. Zip file in target folder is used for Chrome WebStore.
 4. `target/chrome_extension/xbmc_remote` can loaded directly to Chrome as unpacked extension in Developer mode.
 
-**Compile Firefox OS**
+**Compile Firefox OS App**
 
 1. Run ant target "package_firefox_OS_app".
 2. Build files will be generated in target folder.
@@ -49,9 +49,16 @@ Live Web Demo: http://goldenratio.github.io/xbmc-web-remote/remote/remote.html
 
 1. Run ant target "package_firefox_addon".
 2. Build files will be generated in target folder.
-3. CFX command line too is needed, more details [here](https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/getting-started-with-cfx.html)
+3. xpi file in target folder, is used for distribution.
+3. `target/firefox_addon/xbmc_remote` can be loaded directly to firefox using CFX command line too is needed, more details [here](https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/getting-started-with-cfx.html)
   1. Open terminal and enter `source bin/activate`
   2. Navigate to folder `target/firefox_addon/xbmc_remote/`
   3. Enter `cfx run` will run an instance of Firefox with add-on installed.
-  4. Enter `cfx xpi` build an installable XPI file to distribute.
+
+**Compile Opera 11-12 extension**
+
+1. Run ant target "package_opera_legacy".
+2. Build files will be generated in target folder.
+3. oex file in target folder is used for distribution.
+4. `target/opera_legacy_extension/xbmc_remote` can loaded directly to Opera. Just drag and drop `config.xml` to Opera.
 
