@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XBMC Remote</title>
+
+    <script>
+        window.addEventListener("load", function(){
+            var theButton;
+            var ToolbarUIItemProperties = {
+                title: "XBMC Remote",
+                icon: "icons/64.png",
+                popup: {
+                    href: "remote.html",
+                    width: 340,
+                    height: 520
+                }
+            }
+            theButton = opera.contexts.toolbar.createItem(ToolbarUIItemProperties);
+            opera.contexts.toolbar.addItem(theButton);
+        }, false);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

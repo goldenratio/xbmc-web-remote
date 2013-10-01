@@ -63,6 +63,12 @@
         </jsmin>
     </target>
 
+    <target name="_js-min_opera_legacy" if="${js.min}">
+        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
+            <fileset dir="${opera_legacy.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+        </jsmin>
+    </target>
+
     <target name="_js-min_firefox_addon" if="${js.min}">
         <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
             <fileset dir="${firefox_addon.folder}/${project_name}/data" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
@@ -153,6 +159,39 @@
 
     </target>
 
+    <target name="package_opera_legacy" depends="clean" description="Package App for Opera 11 - 12">
+        <delete dir="${opera_legacy.folder}/${project_name}" />
+
+        <mkdir dir="${opera_legacy.folder}/${project_name}/"/>
+
+        <copy todir="${opera_legacy.folder}/${project_name}/">
+            <fileset dir="${src.folder}/"/>
+        </copy>
+
+        <copy todir="${opera_legacy.folder}/${project_name}/">
+            <fileset file="res/opera_legacy_extension/config.xml"/>
+            <fileset file="res/opera_legacy_extension/index.html"/>
+        </copy>
+
+        <script language="javascript">
+            <![CDATA[
+                property = project.setProperty("timenow", Math.floor((new Date()).getTime()));
+            ]]>
+        </script>
+
+        <replace file="${opera_legacy.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
+        <replace file="${opera_legacy.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+
+        <replace file="${opera_legacy.folder}/${project_name}/remote.html" token="@manifest" value=''/>
+
+        <antcall target="_js-min_opera_legacy"></antcall>
+
+        <zip destfile="${opera_legacy.folder}/${project_name}.oex"
+             basedir="${opera_legacy.folder}/${project_name}/"
+                />
+
+    </target>
+
 
 	<target name="clean" description="clean up, remove target folder">
 		<delete dir="${target.folder}" />
@@ -165,7 +204,7 @@
     </target>
 
 
-    <target name="package" depends="clean, package_web, package_chrome_extension, package_firefox_OS_app, package_firefox_addon" description="Package all">
+    <target name="package-all" depends="clean, package_web, package_chrome_extension, package_firefox_OS_app, package_firefox_addon, package_opera_legacy" description="Package all">
 
     </target>
 

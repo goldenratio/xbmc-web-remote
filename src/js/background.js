@@ -7,7 +7,7 @@
 var windowID = -1;
 var isPopupOpen = false;
 
-function handelPopup() {
+function handlePopup() {
 
     //console.log("popup");
     // linux

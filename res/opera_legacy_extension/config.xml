@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://github.com/goldenratio/xbmc-web-remote">
+    <name>XBMC Remote</name>
+    <description>XBMC Remote Control</description>
+    <author href="http://github.com/goldenratio" email="karthikeyanvj@yahoo.co.in">g0ld3nRati0</author>
+    <icon src="icons/64.png"/>
+</widget>

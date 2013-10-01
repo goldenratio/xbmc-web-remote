@@ -106,12 +106,17 @@ var Keyboard = function()
                 break;
 
             case Key.BACKSPACE:
-            case Key.ESCAPE:
                 // back
                 isValidKey = true;
                 xbmcSocket.send("Input.Back");
                 break;
 
+            /*case Key.ESCAPE:
+                // back
+                isValidKey = false;
+                xbmcSocket.send("Input.Back");
+                break;
+            */
             case Key.STOP:
                 isValidKey = true;
                 params = { playerid: 1 };
@@ -717,7 +722,7 @@ function showPopoutWindow(event)
 {
     if(background)
     {
-        background.handelPopup();
+        background.handlePopup();
     }
 
     window.close();
