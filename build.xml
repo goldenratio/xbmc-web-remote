@@ -122,6 +122,10 @@
         <replace file="${firefox_addon.folder}/${project_name}/data/remote.html" token="@manifest" value=''/>
 
         <antcall target="_js-min_firefox_addon"></antcall>
+
+        <exec dir="${firefox_addon.folder}" executable="${cfx.tool.path}" failonerror="true">
+            <arg line="--pkgdir=${project_name} xpi" />
+        </exec>
     </target>
 
     <target name="package_firefox_OS_app" depends="clean" description="Package App for Firefox OS Marketplace">
