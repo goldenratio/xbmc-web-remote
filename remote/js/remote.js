@@ -8,28 +8,26 @@ var Keyboard=function()
 {if(thisObject.isDown)
 {console.log("key is down!");return;}
 thisObject.isDown=true;var isCtrl=event.ctrlKey||event.metaKey;var params;var isValidKey=false;switch(event.keyCode)
-{case Key.CTRL:isValidKey=true;thisObject.isDown=false;break;case Key.SPACE:isValidKey=true;params={playerid:1};xbmcSocket.send("Player.PlayPause",params);$("#pause").toggleClass("#pause active");break;case Key.PLAY:isValidKey=true;xbmcSocket.send("Player.GetActivePlayers",null,function(data)
-{var obj=JSON.parse(data);console.log("done");if(obj.result.length>0)
-{var params={playerid:1};xbmcSocket.send("Player.PlayPause",params);}
+{case Key.CTRL:isValidKey=true;thisObject.isDown=false;break;case Key.SPACE:isValidKey=true;remote.sendRequest(RequestType.PAUSE);$("#pause").toggleClass("#pause active");break;case Key.PLAY:isValidKey=true;remote.sendRequest(RequestType.PLAY);break;case Key.INFO:isValidKey=true;remote.sendRequest(RequestType.INFO);break;case Key.CONTEXT:isValidKey=true;if(isCtrl)
+{remote.sendRequest(RequestType.CONTEXT_MENU);event.preventDefault();}
+break;case Key.ENTER:isValidKey=true;$("#selectButton").addClass("select_active");remote.sendRequest(RequestType.SELECT);break;case Key.BACKSPACE:isValidKey=true;remote.sendRequest(RequestType.BACK);break;case Key.ESCAPE:if(window["chrome"]&&window["chrome"].extension)
+{remote.sendRequest(RequestType.BACK);}
+break;case Key.STOP:isValidKey=true;remote.sendRequest(RequestType.STOP);break;case Key.MUTE:isValidKey=true;remote.sendRequest(RequestType.MUTE);break;case Key.MENU:isValidKey=true;remote.sendRequest(RequestType.HOME);break;case Key.OSD:isValidKey=true;remote.sendRequest(RequestType.SHOW_OSD);break;case Key.LEFT:isValidKey=true;thisObject.isDown=false;if(isCtrl)
+{remote.sendRequest(RequestType.SEEK_BACK);}
 else
-{console.log("just select");xbmcSocket.send("Input.Select");}});break;case Key.INFO:isValidKey=true;xbmcSocket.send("Input.Info");break;case Key.CONTEXT:isValidKey=true;if(isCtrl)
-{xbmcSocket.send("Input.ContextMenu");event.preventDefault();}
-break;case Key.ENTER:isValidKey=true;$("#selectButton").addClass("select_active");xbmcSocket.send("Input.Select");break;case Key.BACKSPACE:case Key.ESCAPE:isValidKey=true;xbmcSocket.send("Input.Back");break;case Key.STOP:isValidKey=true;params={playerid:1};xbmcSocket.send("Player.Stop",params);break;case Key.MUTE:isValidKey=true;params={action:"mute"};xbmcSocket.send("Input.ExecuteAction",params);break;case Key.MENU:isValidKey=true;xbmcSocket.send("Input.Home");break;case Key.OSD:isValidKey=true;xbmcSocket.send("Input.ShowOSD");break;case Key.LEFT:isValidKey=true;thisObject.isDown=false;if(isCtrl)
-{params={action:"stepback"};xbmcSocket.send("Input.ExecuteAction",params);}
-else
-{$("#leftArrow").addClass("left_arrow_active");xbmcSocket.send("Input.Left");}
+{$("#leftArrow").addClass("left_arrow_active");remote.sendRequest(RequestType.MOVE_LEFT);}
 break;case Key.RIGHT:isValidKey=true;thisObject.isDown=false;if(isCtrl)
-{params={action:"stepforward"};xbmcSocket.send("Input.ExecuteAction",params);}
+{remote.sendRequest(RequestType.SEEK_FRONT);}
 else
-{$("#rightArrow").addClass("right_arrow_active");xbmcSocket.send("Input.Right");}
+{$("#rightArrow").addClass("right_arrow_active");remote.sendRequest(RequestType.MOVE_RIGHT);}
 break;case Key.UP:isValidKey=true;thisObject.isDown=false;if(isCtrl)
-{params={action:"volumeup"};xbmcSocket.send("Input.ExecuteAction",params);}
+{remote.sendRequest(RequestType.VOLUME_UP);}
 else
-{$("#upArrow").addClass("up_arrow_active");xbmcSocket.send("Input.Up");}
+{$("#upArrow").addClass("up_arrow_active");remote.sendRequest(RequestType.MOVE_UP);}
 break;case Key.DOWN:isValidKey=true;thisObject.isDown=false;if(isCtrl)
-{params={action:"volumedown"};xbmcSocket.send("Input.ExecuteAction",params);}
+{remote.sendRequest(RequestType.VOLUME_DOWN);}
 else
-{$("#downArrow").addClass("down_arrow_active");xbmcSocket.send("Input.Down");}
+{$("#downArrow").addClass("down_arrow_active");remote.sendRequest(RequestType.MOVE_DOWN);}
 break;}
 if(isValidKey==true)
 {event.preventDefault();}};this.dispose=function()
@@ -43,42 +41,51 @@ var method=data.method;console.log("method "+method);switch(method)
 {thisObject.showSendTextPanel(paramsData.value);}
 else if(paramsData.type=="password")
 {thisObject.showSendPasswordPanel(paramsData.value);}
-break;}};this.bindFastClick=function(element,callback)
+break;case"Input.OnInputFinished":thisObject.hideSendPanel();break;}};this.bindFastClick=function(element,callback)
 {$(element).bind("touchend click",function(event)
 {event.stopPropagation();event.preventDefault();document.activeElement.blur();if(event.handled!==true){if("vibrate"in navigator&&event.type=="touchend")
 {navigator["vibrate"](30);}
 callback();event.handled=true;}else{return false;}});};this.offFastClick=function(element)
 {$(element).off("touchend click");};this.init=function()
 {thisObject.bindFastClick($("#info"),function(event)
-{xbmcSocket.send("Input.Info");});thisObject.bindFastClick($("#osd"),function(event)
-{xbmcSocket.send("Input.ShowOSD");});thisObject.bindFastClick($("#back"),function(event)
-{xbmcSocket.send("Input.Back");});thisObject.bindFastClick($("#menu"),function(event)
-{xbmcSocket.send("Input.Home");});thisObject.bindFastClick($("#selectButton"),function(event)
-{xbmcSocket.send("Input.Select");});thisObject.bindFastClick($("#upArrow"),function(event)
-{xbmcSocket.send("Input.Up");});thisObject.bindFastClick($("#downArrow"),function(event)
-{xbmcSocket.send("Input.Down");});thisObject.bindFastClick($("#leftArrow"),function(event)
-{xbmcSocket.send("Input.Left");});thisObject.bindFastClick($("#rightArrow"),function(event)
-{xbmcSocket.send("Input.Right");});thisObject.bindFastClick($("#pause"),function(event)
-{var params={playerid:1};xbmcSocket.send("Player.PlayPause",params);});thisObject.bindFastClick($("#stop"),function(event)
-{var params={playerid:1};xbmcSocket.send("Player.Stop",params);});thisObject.bindFastClick($("#play"),function(event)
-{xbmcSocket.send("Player.GetActivePlayers",null,function(data)
-{var obj=JSON.parse(data);console.log("done");if(obj.result.length>0)
-{var params={playerid:1};xbmcSocket.send("Player.PlayPause",params);}
-else
-{console.log("just select");xbmcSocket.send("Input.Select");}});});thisObject.bindFastClick($("#backward"),function(event)
-{var params={action:"stepback"};xbmcSocket.send("Input.ExecuteAction",params);});thisObject.bindFastClick($("#forward"),function(event)
-{var params={action:"stepforward"};xbmcSocket.send("Input.ExecuteAction",params);});thisObject.bindFastClick($("#prevTrack"),function(event)
+{thisObject.sendRequest(RequestType.INFO);});thisObject.bindFastClick($("#osd"),function(event)
+{thisObject.sendRequest(RequestType.SHOW_OSD);});thisObject.bindFastClick($("#back"),function(event)
+{thisObject.sendRequest(RequestType.BACK);});thisObject.bindFastClick($("#menu"),function(event)
+{thisObject.sendRequest(RequestType.HOME);});thisObject.bindFastClick($("#selectButton"),function(event)
+{thisObject.sendRequest(RequestType.SELECT);});thisObject.bindFastClick($("#upArrow"),function(event)
+{thisObject.sendRequest(RequestType.MOVE_UP);});thisObject.bindFastClick($("#downArrow"),function(event)
+{thisObject.sendRequest(RequestType.MOVE_DOWN);});thisObject.bindFastClick($("#leftArrow"),function(event)
+{thisObject.sendRequest(RequestType.MOVE_LEFT);});thisObject.bindFastClick($("#rightArrow"),function(event)
+{thisObject.sendRequest(RequestType.MOVE_RIGHT);});thisObject.bindFastClick($("#pause"),function(event)
+{thisObject.sendRequest(RequestType.PAUSE);});thisObject.bindFastClick($("#stop"),function(event)
+{thisObject.sendRequest(RequestType.STOP);});thisObject.bindFastClick($("#play"),function(event)
+{thisObject.sendRequest(RequestType.PLAY);});thisObject.bindFastClick($("#backward"),function(event)
+{thisObject.sendRequest(RequestType.SEEK_BACK);});thisObject.bindFastClick($("#forward"),function(event)
+{thisObject.sendRequest(RequestType.SEEK_FRONT);});thisObject.bindFastClick($("#prevTrack"),function(event)
 {var params={action:"skipprevious"};xbmcSocket.send("Input.ExecuteAction",params);});thisObject.bindFastClick($("#nextTrack"),function(event)
 {var params={action:"skipnext"};xbmcSocket.send("Input.ExecuteAction",params);});thisObject.bindFastClick($("#power"),function(event)
-{xbmcSocket.send("System.Shutdown");});thisObject.bindFastClick($("#mute"),function(event)
-{params={action:"mute"};xbmcSocket.send("Input.ExecuteAction",params);});thisObject.bindFastClick($("#context_menu"),function(event)
-{xbmcSocket.send("Input.ContextMenu");});thisObject.bindFastClick($("#update_library"),function(event)
-{xbmcSocket.send("VideoLibrary.Scan");});thisObject.bindFastClick($("#sendTextButton"),function(event)
-{thisObject.showSendTextPanel();});thisObject.bindFastClick($("#backDataButton"),function(event)
-{thisObject.hideSendPanel();params={action:"close"};xbmcSocket.send("Input.ExecuteAction",params);});thisObject.bindFastClick($("#backPasswordDataButton"),function(event)
-{thisObject.hideSendPanel();params={action:"close"};xbmcSocket.send("Input.ExecuteAction",params);});thisObject.bindFastClick($("#sendTextDataButton"),function(event)
-{thisObject.hideSendPanel();var sendText=document.getElementById("sendTeatArea").value;params={text:sendText,done:true};xbmcSocket.send("Input.SendText",params);});thisObject.bindFastClick($("#sendPasswordDataButton"),function(event)
-{thisObject.hideSendPanel();var sendPassword=document.getElementById("sendPasswordInput").value;params={text:sendPassword,done:true};xbmcSocket.send("Input.SendText",params);});$("#power").addClass("power_on");$("#power").removeClass("power_off");window.onbeforeunload=thisObject.closeSocket;};this.showSendTextPanel=function(value)
+{thisObject.sendRequest(RequestType.SHUTDOWN);});thisObject.bindFastClick($("#mute"),function(event)
+{thisObject.sendRequest(RequestType.MUTE);});thisObject.bindFastClick($("#context_menu"),function(event)
+{thisObject.sendRequest(RequestType.CONTEXT_MENU);});thisObject.bindFastClick($("#update_library"),function(event)
+{thisObject.sendRequest(RequestType.UPDATE_LIBRARY);});thisObject.bindFastClick($("#sendTextButton"),function(event)
+{thisObject.showSendTextPanel();});thisObject.bindFastClick($("#sendTextDataButton"),function(event)
+{thisObject.hideSendPanel();var sendText=document.getElementById("sendTeatArea").value;var params={text:sendText,done:true};xbmcSocket.send("Input.SendText",params);});thisObject.bindFastClick($("#backDataButton"),function(event)
+{thisObject.hideSendPanel();var sendText=document.getElementById("sendTeatArea").value;var params={text:sendText,done:true};xbmcSocket.send("Input.SendText",params);});thisObject.bindFastClick($("#sendPasswordDataButton"),function(event)
+{thisObject.hideSendPanel();var sendPassword=document.getElementById("sendPasswordInput").value;var params={text:sendPassword,done:true};xbmcSocket.send("Input.SendText",params);});thisObject.bindFastClick($("#backPasswordDataButton"),function(event)
+{thisObject.hideSendPanel();var sendPassword=document.getElementById("sendPasswordInput").value;var params={text:sendPassword,done:true};xbmcSocket.send("Input.SendText",params);});$("#power").addClass("power_on");$("#power").removeClass("power_off");window.onbeforeunload=thisObject.closeSocket;};this.sendRequest=function(type)
+{var params;switch(type)
+{case RequestType.PLAY:xbmcSocket.send("Player.GetActivePlayers",null,function(data)
+{var obj=JSON.parse(data);console.log("done");if(obj.result.length>0)
+{for(var i=0;i<obj.result.length;i++)
+{var params={playerid:obj.result[i].playerid};xbmcSocket.send("Player.PlayPause",params);}}
+else
+{console.log("just select!");params={action:"play"};xbmcSocket.send("Input.ExecuteAction",params);}});break;case RequestType.STOP:xbmcSocket.send("Player.GetActivePlayers",null,function(data)
+{var obj=JSON.parse(data);console.log("done");if(obj.result.length>0)
+{for(var i=0;i<obj.result.length;i++)
+{var params={playerid:obj.result[i].playerid};xbmcSocket.send("Player.Stop",params);}}});break;case RequestType.PAUSE:xbmcSocket.send("Player.GetActivePlayers",null,function(data)
+{var obj=JSON.parse(data);console.log("done");if(obj.result.length>0)
+{for(var i=0;i<obj.result.length;i++)
+{var params={playerid:obj.result[i].playerid};xbmcSocket.send("Player.PlayPause",params);}}});break;case RequestType.INFO:xbmcSocket.send("Input.Info");break;case RequestType.CONTEXT_MENU:xbmcSocket.send("Input.ContextMenu");break;case RequestType.SELECT:xbmcSocket.send("Input.Select");break;case RequestType.BACK:xbmcSocket.send("Input.Back");break;case RequestType.MUTE:params={action:"mute"};xbmcSocket.send("Input.ExecuteAction",params);break;case RequestType.HOME:xbmcSocket.send("Input.Home");break;case RequestType.SHOW_OSD:xbmcSocket.send("Input.ShowOSD");break;case RequestType.MOVE_LEFT:xbmcSocket.send("Input.Left");break;case RequestType.SEEK_BACK:params={action:"stepback"};xbmcSocket.send("Input.ExecuteAction",params);break;case RequestType.MOVE_RIGHT:xbmcSocket.send("Input.Right");break;case RequestType.SEEK_FRONT:params={action:"stepforward"};xbmcSocket.send("Input.ExecuteAction",params);break;case RequestType.MOVE_UP:xbmcSocket.send("Input.Up");break;case RequestType.MOVE_DOWN:xbmcSocket.send("Input.Down");break;case RequestType.VOLUME_UP:params={action:"volumeup"};xbmcSocket.send("Input.ExecuteAction",params);break;case RequestType.VOLUME_DOWN:params={action:"volumedown"};xbmcSocket.send("Input.ExecuteAction",params);break;case RequestType.SHUTDOWN:xbmcSocket.send("System.Shutdown");break;case RequestType.UPDATE_LIBRARY:xbmcSocket.send("VideoLibrary.Scan");break;}};this.showSendTextPanel=function(value)
 {$("#main, #footer").fadeTo("fast",0.1).promise().done(function()
 {$("#send_text_panel").show();var sendTextArea=document.getElementById("sendTeatArea");sendTextArea.value="";if(value!=undefined)
 {console.log("send text, "+value);sendTextArea.value=value;}
@@ -108,7 +115,7 @@ if(popout==0)
 connect();}
 function showPopoutWindow(event)
 {if(background)
-{background.handelPopup();}
+{background.handlePopup();}
 window.close();if(event){event.preventDefault();}}
 function onContentDragged(e)
 {showPopoutWindow(e);}

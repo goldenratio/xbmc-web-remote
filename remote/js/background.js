@@ -1,5 +1,5 @@
 /* (c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote */
-var windowID=-1;var isPopupOpen=false;function handelPopup(){var defaultRes={width:340,height:520};var winRes={width:350,height:550};var selectedRes=defaultRes;if(navigator.platform==="Win32"){selectedRes=winRes;}
+var windowID=-1;var isPopupOpen=false;function handlePopup(){var defaultRes={width:340,height:520};var winRes={width:350,height:550};var selectedRes=defaultRes;if(navigator.platform==="Win32"){selectedRes=winRes;}
 var obj={url:"remote.html?popout=1",focused:true,type:"popup",width:selectedRes.width,height:selectedRes.height};if(windowID===-1){openPopup(obj);}
 else{switchWindow();}}
 function openPopup(obj){chrome.windows.create(obj,function(response){windowID=response.id;isPopupOpen=true;var data={};data.popup="";chrome.browserAction.setPopup(data);});}
