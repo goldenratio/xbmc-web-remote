@@ -35,7 +35,7 @@
 	</head>
 	<body>
         <div id="content">
-            <div id="send_pwd_panel">
+            <div id="send_pwd_panel" class="fixed">
                 <div class="prompt">
                     <div class="header_title">Send Password</div>
                     <div class="hr"></div>
@@ -58,12 +58,13 @@
                     </div>
                 </div>
             </div>
-            <div id="send_text_panel">
+            <div id="send_text_panel" class="fixed">
                 <div class="prompt">
                     <div class="header_title">Send Text</div>
                     <div class="hr"></div>
-                    <div>
-                        <textarea cols="30" rows="8" id="sendTeatArea"></textarea>
+                    <div class="holo_field">
+                        <div class="holo-field-bracket"></div>
+                        <input type="text" id="sendTeatArea" width="200px" class="pwd_text" />
                     </div>
 
                     <div class="clear"></div>

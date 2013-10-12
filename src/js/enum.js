@@ -5,7 +5,7 @@
 var PORT_DEFAULT = 9090;
 
 // enable / disable console log
-var ENABLE_CONSOLE = false;
+var ENABLE_CONSOLE = true;
 
 // time delay to try reconnection when disconnected
 var RECONNECT_TIME_DELAY = 5000; // milliseconds
@@ -51,5 +51,33 @@ var SettingsElementID = new function()
 
     this.SAVE_BUTTON = "saveButton";
     this.BACK_BUTTON = "backButton";
+};
+
+var RequestType = new function()
+{
+    this.PLAY = "play";
+    this.PAUSE = "pause";
+    this.STOP = "stop";
+    this.INFO = "info";
+    this.CONTEXT_MENU = "context_menu";
+    this.SELECT = "select";
+    this.BACK = "back";
+    this.MUTE = "mute";
+    this.HOME = "home";
+    this.SHOW_OSD = "show_osd";
+    this.MOVE_LEFT = "move_left";
+    this.MOVE_RIGHT = "move_right";
+    this.MOVE_UP = "move_up";
+    this.MOVE_DOWN = "move_down";
+
+    this.SEEK_BACK = "seek_back";
+    this.SEEK_FRONT = "seek_front";
+
+    this.VOLUME_UP = "volume_up";
+    this.VOLUME_DOWN = "volume_down";
+
+    this.UPDATE_LIBRARY = "update_library";
+
+    this.SHUTDOWN = "shutdown";
 };
 

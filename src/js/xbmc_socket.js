@@ -11,6 +11,9 @@ var XBMCSocket = function()
 	this.context;
     this.callback;
 
+    /**
+     * @type {XBMCSocket}
+     */
 	var thisObject = this;
 
     /**
@@ -106,7 +109,7 @@ var XBMCSocket = function()
      * Send messages to server
      * @param method JSONRPC methods
      * @param params
-     * @param callback
+     * @param callback {Function} optional
      */
 	this.send = function(method, params, callback)
 	{

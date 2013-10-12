@@ -12,6 +12,10 @@ if(ENABLE_CONSOLE == false)
 var Keyboard = function()
 {
 	this.isDown = false;
+
+    /**
+     * @type {Keyboard}
+     */
 	var thisObject = this;
 	
 	this.init = function()
@@ -58,42 +62,24 @@ var Keyboard = function()
                 break;
 			case Key.SPACE:
                 isValidKey = true;
-				params = { playerid: 1 };
-				xbmcSocket.send("Player.PlayPause", params);
+                remote.sendRequest(RequestType.PAUSE);
                 $("#pause").toggleClass("#pause active");
 				break;
 
             case Key.PLAY:
                 isValidKey = true;
-                xbmcSocket.send("Player.GetActivePlayers", null, function(data)
-                {
-                    var obj = JSON.parse(data);
-                    console.log("done");
-                    if(obj.result.length > 0)
-                    {
-                        // in player.. something is playing
-                        var params = { playerid: 1 };
-                        xbmcSocket.send("Player.PlayPause", params);
-
-                    }
-                    else
-                    {
-                        console.log("just select");
-                        xbmcSocket.send("Input.Select");
-                    }
-
-                });
+                remote.sendRequest(RequestType.PLAY);
                 break;
 			case Key.INFO:
                 isValidKey = true;
-				xbmcSocket.send("Input.Info");
+				remote.sendRequest(RequestType.INFO);
 				break;
 
             case Key.CONTEXT:
                 isValidKey = true;
                 if(isCtrl)
                 {
-                    xbmcSocket.send("Input.ContextMenu");
+                    remote.sendRequest(RequestType.CONTEXT_MENU);
                     event.preventDefault();
                 }
                 break;
@@ -102,41 +88,33 @@ var Keyboard = function()
                 // select
                 isValidKey = true;
                 $("#selectButton").addClass("select_active");
-                xbmcSocket.send("Input.Select");
+                remote.sendRequest(RequestType.SELECT);
                 break;
 
             case Key.BACKSPACE:
                 // back
                 isValidKey = true;
-                xbmcSocket.send("Input.Back");
+                remote.sendRequest(RequestType.BACK);
                 break;
 
-            /*case Key.ESCAPE:
-                // back
-                isValidKey = false;
-                xbmcSocket.send("Input.Back");
-                break;
-            */
             case Key.STOP:
                 isValidKey = true;
-                params = { playerid: 1 };
-                xbmcSocket.send("Player.Stop", params);
+                remote.sendRequest(RequestType.STOP);
                 break;
 
             case Key.MUTE:
                 isValidKey = true;
-                params = { action: "mute" };
-                xbmcSocket.send("Input.ExecuteAction", params);
+                remote.sendRequest(RequestType.MUTE);
                 break;
 
             case Key.MENU:
                 isValidKey = true;
-                xbmcSocket.send("Input.Home");
+                remote.sendRequest(RequestType.HOME);
                 break;
 
             case Key.OSD:
                 isValidKey = true;
-                xbmcSocket.send("Input.ShowOSD");
+                remote.sendRequest(RequestType.SHOW_OSD);
                 break;
 
 			case Key.LEFT:
@@ -146,13 +124,12 @@ var Keyboard = function()
 				if(isCtrl)
 				{
 					// seek backward
-                    params = { action: "stepback" };
-                    xbmcSocket.send("Input.ExecuteAction", params);
+                    remote.sendRequest(RequestType.SEEK_BACK);
 				}
                 else
                 {
                     $("#leftArrow").addClass("left_arrow_active");
-                    xbmcSocket.send("Input.Left");
+                    remote.sendRequest(RequestType.MOVE_LEFT);
                 }
 				break;
 
@@ -162,13 +139,12 @@ var Keyboard = function()
                 if(isCtrl)
                 {
                     // seek forward
-                    params = { action: "stepforward" };
-                    xbmcSocket.send("Input.ExecuteAction", params);
+                    remote.sendRequest(RequestType.SEEK_FRONT);
                 }
                 else
                 {
                     $("#rightArrow").addClass("right_arrow_active");
-                    xbmcSocket.send("Input.Right");
+                    remote.sendRequest(RequestType.MOVE_RIGHT);
                 }
                 break;
 
@@ -177,13 +153,12 @@ var Keyboard = function()
                 thisObject.isDown = false;
                 if(isCtrl)
                 {
-                    params = { action: "volumeup" };
-                    xbmcSocket.send("Input.ExecuteAction", params);
+                    remote.sendRequest(RequestType.VOLUME_UP);
                 }
                 else
                 {
                     $("#upArrow").addClass("up_arrow_active");
-                    xbmcSocket.send("Input.Up");
+                    remote.sendRequest(RequestType.MOVE_UP);
                 }
                 break;
 
@@ -192,13 +167,12 @@ var Keyboard = function()
                 thisObject.isDown = false;
                 if(isCtrl)
                 {
-                    params = { action: "volumedown" };
-                    xbmcSocket.send("Input.ExecuteAction", params);
+                    remote.sendRequest(RequestType.VOLUME_DOWN);
                 }
                 else
                 {
                     $("#downArrow").addClass("down_arrow_active");
-                    xbmcSocket.send("Input.Down");
+                    remote.sendRequest(RequestType.MOVE_DOWN);
                 }
                 break;
 		}
@@ -223,6 +197,9 @@ var Keyboard = function()
 
 var Remote = function()
 {
+    /**
+     * @type {Remote}
+     */
     var thisObject = this;
 
     /**
@@ -258,6 +235,10 @@ var Remote = function()
                 {
                     thisObject.showSendPasswordPanel(paramsData.value);
                 }
+                break;
+
+            case "Input.OnInputFinished":
+                thisObject.hideSendPanel();
                 break;
         }
     };
@@ -297,108 +278,73 @@ var Remote = function()
     {
         thisObject.bindFastClick($("#info"), function(event)
         {
-            xbmcSocket.send("Input.Info");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.INFO);
         });
 
         thisObject.bindFastClick($("#osd"), function(event)
         {
-            xbmcSocket.send("Input.ShowOSD");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.SHOW_OSD);
         });
 
         thisObject.bindFastClick($("#back"), function(event)
         {
-            xbmcSocket.send("Input.Back");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.BACK);
         });
 
         thisObject.bindFastClick($("#menu"), function(event)
         {
-            xbmcSocket.send("Input.Home");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.HOME);
         });
 
         thisObject.bindFastClick($("#selectButton"), function(event)
         {
-            xbmcSocket.send("Input.Select");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.SELECT);
         });
 
         thisObject.bindFastClick($("#upArrow"), function(event)
         {
-            xbmcSocket.send("Input.Up");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.MOVE_UP);
         });
 
         thisObject.bindFastClick($("#downArrow"), function(event)
         {
-            xbmcSocket.send("Input.Down");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.MOVE_DOWN);
         });
 
         thisObject.bindFastClick($("#leftArrow"), function(event)
         {
-            xbmcSocket.send("Input.Left");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.MOVE_LEFT);
         });
 
 
         thisObject.bindFastClick($("#rightArrow"), function(event)
         {
-            xbmcSocket.send("Input.Right");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.MOVE_RIGHT);
         });
 
         thisObject.bindFastClick($("#pause"), function(event)
         {
-            var params = { playerid: 1 };
-            xbmcSocket.send("Player.PlayPause", params);
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.PAUSE);
         });
 
         thisObject.bindFastClick($("#stop"), function(event)
         {
-            var params = { playerid: 1 };
-            xbmcSocket.send("Player.Stop", params);
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.STOP);
         });
 
         thisObject.bindFastClick($("#play"), function(event)
         {
-            xbmcSocket.send("Player.GetActivePlayers", null, function(data)
-            {
-                var obj = JSON.parse(data);
-                console.log("done");
-                if(obj.result.length > 0)
-                {
-                    // in player.. something is playing
-                    var params = { playerid: 1 };
-                    xbmcSocket.send("Player.PlayPause", params);
-
-                }
-                else
-                {
-                    console.log("just select");
-                    xbmcSocket.send("Input.Select");
-                }
-
-            });
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.PLAY);
         });
 
         thisObject.bindFastClick($("#backward"), function(event)
         {
-            var params = { action: "stepback" };
-            xbmcSocket.send("Input.ExecuteAction", params);
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.SEEK_BACK);
         });
 
         thisObject.bindFastClick($("#forward"), function(event)
         {
-            var params = { action: "stepforward" };
-            xbmcSocket.send("Input.ExecuteAction", params);
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.SEEK_FRONT);
         });
 
         thisObject.bindFastClick($("#prevTrack"), function(event)
@@ -417,67 +363,56 @@ var Remote = function()
 
         thisObject.bindFastClick($("#power"), function(event)
         {
-            xbmcSocket.send("System.Shutdown");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.SHUTDOWN);
         });
 
         thisObject.bindFastClick($("#mute"),function(event)
         {
-            params = { action: "mute" };
-            xbmcSocket.send("Input.ExecuteAction", params);
-
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.MUTE);
         });
 
         thisObject.bindFastClick($("#context_menu"), function(event)
         {
-            xbmcSocket.send("Input.ContextMenu");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.CONTEXT_MENU);
         });
 
         thisObject.bindFastClick($("#update_library"), function(event)
         {
-            xbmcSocket.send("VideoLibrary.Scan");
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.UPDATE_LIBRARY);
         });
 
         thisObject.bindFastClick($("#sendTextButton"), function(event)
         {
             thisObject.showSendTextPanel();
-            //event.preventDefault();
         });
 
-        thisObject.bindFastClick($("#backDataButton"), function(event)
-        {
-            thisObject.hideSendPanel();
 
-            params = { action: "close" };
-            xbmcSocket.send("Input.ExecuteAction", params);
-
-            //event.preventDefault();
-        });
-
-        thisObject.bindFastClick($("#backPasswordDataButton"), function(event)
-        {
-            thisObject.hideSendPanel();
-
-            params = { action: "close" };
-            xbmcSocket.send("Input.ExecuteAction", params);
-
-            //event.preventDefault();
-        });
-
+        //////// send text /////////////////
         thisObject.bindFastClick($("#sendTextDataButton"), function(event)
         {
             thisObject.hideSendPanel();
 
             var sendText = document.getElementById("sendTeatArea").value;
 
-            params = { text: sendText, done: true };
+            var params = { text: sendText, done: true };
             xbmcSocket.send("Input.SendText", params);
 
-            //event.preventDefault();
         });
+
+        thisObject.bindFastClick($("#backDataButton"), function(event)
+        {
+            thisObject.hideSendPanel();
+
+            var sendText = document.getElementById("sendTeatArea").value;
+
+            var params = { text: sendText, done: true };
+            xbmcSocket.send("Input.SendText", params);
+            //thisObject.sendRequest(RequestType.EXECUTE_CLOSE);
+
+        });
+
+
+        ///////////// send password /////////////////
 
         thisObject.bindFastClick($("#sendPasswordDataButton"), function(event)
         {
@@ -485,18 +420,186 @@ var Remote = function()
 
             var sendPassword = document.getElementById("sendPasswordInput").value;
 
-            params = { text: sendPassword, done: true };
+            var params = { text: sendPassword, done: true };
             xbmcSocket.send("Input.SendText", params);
 
-            //event.preventDefault();
         });
 
+        thisObject.bindFastClick($("#backPasswordDataButton"), function(event)
+        {
+            thisObject.hideSendPanel();
 
+            var sendPassword = document.getElementById("sendPasswordInput").value;
+
+            var params = { text: sendPassword, done: true };
+            xbmcSocket.send("Input.SendText", params);
+
+            //thisObject.sendRequest(RequestType.EXECUTE_CLOSE);
+
+        });
+
+        ///////////////////////////////////
 
         $("#power").addClass("power_on");
         $("#power").removeClass("power_off");
 
         window.onbeforeunload = thisObject.closeSocket;
+    };
+
+    /**
+     * Send Request to XBMC Socket
+     * @param type {String}
+     */
+    this.sendRequest = function(type)
+    {
+        var params;
+        switch (type)
+        {
+            case RequestType.PLAY:
+                    xbmcSocket.send("Player.GetActivePlayers", null, function(data)
+                    {
+                        var obj = JSON.parse(data);
+                        console.log("done");
+                        if(obj.result.length > 0)
+                        {
+                            // in player.. something is playing
+                            for(var i = 0; i < obj.result.length; i++)
+                            {
+                                var params = { playerid: obj.result[i].playerid };
+                                xbmcSocket.send("Player.PlayPause", params);
+                            }
+
+
+                        }
+                        else
+                        {
+                            console.log("just select!");
+                            params = { action: "play" };
+                            xbmcSocket.send("Input.ExecuteAction", params);
+                            //xbmcSocket.send("Input.Select");
+                        }
+
+                    });
+            break;
+
+            case RequestType.STOP:
+                    xbmcSocket.send("Player.GetActivePlayers", null, function(data)
+                    {
+                        var obj = JSON.parse(data);
+                        console.log("done");
+                        if(obj.result.length > 0)
+                        {
+                            // in player.. something is playing
+                            for(var i = 0; i < obj.result.length; i++)
+                            {
+                                var params = { playerid: obj.result[i].playerid };
+                                xbmcSocket.send("Player.Stop", params);
+                            }
+
+
+                        }
+
+                    });
+
+                break;
+
+            case RequestType.PAUSE:
+                    xbmcSocket.send("Player.GetActivePlayers", null, function(data)
+                    {
+                        var obj = JSON.parse(data);
+                        console.log("done");
+                        if(obj.result.length > 0)
+                        {
+                            // in player.. something is playing
+                            for(var i = 0; i < obj.result.length; i++)
+                            {
+                                var params = { playerid: obj.result[i].playerid };
+                                xbmcSocket.send("Player.PlayPause", params);
+                            }
+
+
+                        }
+
+
+                    });
+
+                break;
+
+            case RequestType.INFO:
+                xbmcSocket.send("Input.Info");
+                break;
+
+            case RequestType.CONTEXT_MENU:
+                xbmcSocket.send("Input.ContextMenu");
+                break;
+
+            case RequestType.SELECT:
+                xbmcSocket.send("Input.Select");
+                break;
+
+            case RequestType.BACK:
+                xbmcSocket.send("Input.Back");
+                break;
+
+            case RequestType.MUTE:
+                params = { action: "mute" };
+                xbmcSocket.send("Input.ExecuteAction", params);
+                break;
+
+            case RequestType.HOME:
+                xbmcSocket.send("Input.Home");
+                break;
+
+            case RequestType.SHOW_OSD:
+                xbmcSocket.send("Input.ShowOSD");
+                break;
+
+            case RequestType.MOVE_LEFT:
+                xbmcSocket.send("Input.Left");
+                break;
+
+            case RequestType.SEEK_BACK:
+                params = { action: "stepback" };
+                xbmcSocket.send("Input.ExecuteAction", params);
+                break;
+
+            case RequestType.MOVE_RIGHT:
+                xbmcSocket.send("Input.Right");
+                break;
+
+            case RequestType.SEEK_FRONT:
+                params = { action: "stepforward" };
+                xbmcSocket.send("Input.ExecuteAction", params);
+                break;
+
+            case RequestType.MOVE_UP:
+                xbmcSocket.send("Input.Up");
+                break;
+
+            case RequestType.MOVE_DOWN:
+                xbmcSocket.send("Input.Down");
+                break;
+
+            case RequestType.VOLUME_UP:
+                params = { action: "volumeup" };
+                xbmcSocket.send("Input.ExecuteAction", params);
+                break;
+
+            case RequestType.VOLUME_DOWN:
+                params = { action: "volumedown" };
+                xbmcSocket.send("Input.ExecuteAction", params);
+                break;
+
+            case RequestType.SHUTDOWN:
+                xbmcSocket.send("System.Shutdown");
+                break;
+
+            case RequestType.UPDATE_LIBRARY:
+                xbmcSocket.send("VideoLibrary.Scan");
+                break;
+
+        }
+
     };
 
     this.showSendTextPanel = function(value)
