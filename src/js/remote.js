@@ -97,6 +97,14 @@ var Keyboard = function()
                 remote.sendRequest(RequestType.BACK);
                 break;
 
+            case Key.ESCAPE:
+                // back
+                if(window["chrome"] && window["chrome"].extension)
+                {
+                    remote.sendRequest(RequestType.BACK);
+                }
+                break;
+
             case Key.STOP:
                 isValidKey = true;
                 remote.sendRequest(RequestType.STOP);
