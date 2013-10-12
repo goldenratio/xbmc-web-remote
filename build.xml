@@ -202,6 +202,14 @@
 		<delete dir="${target.folder}" />
 	</target>
 
+    <target name="run_firefox_addon" description="Run Firefox Addon">
+
+        <exec dir="${firefox_addon.folder}" executable="${cfx.tool.path}" failonerror="true">
+            <arg line="--pkgdir=${project_name} run" />
+        </exec>
+
+    </target>
+
     <target name="run" description="Run remote control in a web browser">
         <exec executable="${browser.path}" spawn="true">
             <arg value="${target.folder}/${project_name}/remote.html"/>
