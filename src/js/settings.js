@@ -15,7 +15,11 @@ var Settings = function()
 
     this.hostName;
     this.port;
+
     var popout = 0;
+    var hostTextfield;
+    var portTextfield;
+    var isFFOS = ("mozApps" in navigator && navigator.userAgent.search("Mobile") != -1);
 
     this.init = function()
     {
@@ -55,10 +59,28 @@ var Settings = function()
             //event.preventDefault();
         });
 
+        if(isFFOS)
+        {
+            hostTextfield = document.getElementById(SettingsElementID.IP_TEXTFIELD);
+            hostTextfield.addEventListener("focus", onTextFieldFocus, false);
+
+            portTextfield = document.getElementById(SettingsElementID.PORT_TEXTFIELD);
+            portTextfield.addEventListener("focus", onTextFieldFocus, false);
+
+            portTextfield.placeholder = "";
+            portTextfield.value = PORT_DEFAULT;
+
+        }
+
         localData.getHostName(thisObject.setIPValue);
         localData.getPort(thisObject.setPortValue);
 
+    };
 
+    var onTextFieldFocus = function(event)
+    {
+        var inputElement = event.target;
+        inputElement.value = "";
     };
 
     this.bindFastClick = function(element, callback)
