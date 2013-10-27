@@ -235,9 +235,16 @@
 
         <antcall target="_js-min_ubuntu_app"></antcall>
 
-        <!--zip destfile="${firefox_app.folder}/${project_name}.zip"
-             basedir="${firefox_app.folder}/${project_name}/"
-                /-->
+        <exec executable="click">
+            <arg value="build"/>
+            <arg value="${ubuntu_app.folder}/${project_name}"/>
+        </exec>
+
+        <move todir="${ubuntu_app.folder}/${project_name}">
+            <fileset dir="${basedir}">
+                <include name="*.click"/>
+            </fileset>
+        </move>
 
     </target>
 
