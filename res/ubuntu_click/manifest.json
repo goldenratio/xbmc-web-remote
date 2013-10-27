@@ -7,7 +7,7 @@
             "desktop": "xbmcwebremote.desktop"
         }
     },
-    "maintainer": "Leo Arias <leo.arias@canonical.com>",
+    "maintainer": "Karthik VJ <to@do.com>",
     "name": "com.ubuntu.developer.goldenratio.xbmcwebremote",
     "title": "xbmcwebremote",
     "version": "@build_version"

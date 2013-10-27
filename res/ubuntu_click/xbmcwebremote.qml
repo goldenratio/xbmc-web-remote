@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import QtWebKit 3.0
+import Ubuntu.Components.Extras.Browser 0.1
 
 /*!
     \brief MainView with a Flickable WebView.
@@ -26,7 +26,7 @@ MainView {
         id: webViewFlickable
         anchors.fill: parent
         
-        WebView {
+        UbuntuWebView {
             id: webView
             anchors.fill: parent
             url: "remote.html"
