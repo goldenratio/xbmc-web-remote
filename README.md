@@ -63,7 +63,7 @@ XBMC Remote Control using Web Sockets. (Frodo v12 and above)
 4. `target/opera_legacy_extension/xbmc_remote` can loaded directly to Opera. Just drag and drop `config.xml` to Opera.
 
 
-**Ubuntu Click App**
+**Compile Ubuntu Click App**
 
 1. Run ant target "package_ubuntu_click_app".
 2. Build files will be generated in target folder.
