@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <project name="XBMC-Remote" basedir="./">
 
 	<property file="build.properties"/>
@@ -238,7 +238,7 @@
 
         <antcall target="_js-min_ubuntu_app"></antcall>
 
-        <exec executable="click">
+        <exec executable="${click.path}">
             <arg value="build"/>
             <arg value="${ubuntu_app.folder}/${project_name}"/>
         </exec>
@@ -270,7 +270,7 @@
     </target>
 
 
-    <target name="package-all" depends="clean, package_web, package_chrome_extension, package_firefox_OS_app, package_firefox_addon, package_opera_legacy" description="Package all">
+    <target name="package-all" depends="clean, package_web, package_chrome_extension, package_firefox_OS_app, package_firefox_addon, package_opera_legacy, package_ubuntu_click_app" description="Package all">
 
     </target>
 
