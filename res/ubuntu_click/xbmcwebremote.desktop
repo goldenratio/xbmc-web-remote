@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=XBMC Web Remote
 Comment=XBMC Remote Control using Web Sockets
-Exec=/usr/bin/qmlscene $@ /usr/share/xbmcwebremote/xbmcwebremote.qml
-Icon=qmlscene
+Exec=/usr/bin/qmlscene $@ xbmcwebremote.qml
+Icon=icons/64.png
 Terminal=false
 Type=Application
 X-Ubuntu-Touch=true
