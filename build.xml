@@ -220,6 +220,9 @@
             <fileset file="res/ubuntu_click/xbmcwebremote.qml"/>
         </copy>
 
+        <copy tofile="${ubuntu_app.folder}/${project_name}/xbmcwebremote.png">
+            <file file="${ubuntu_app.folder}/${project_name}/icons/64.png"/>
+        </copy>
 
         <script language="javascript">
             <![CDATA[
