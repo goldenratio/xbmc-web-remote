@@ -64,6 +64,7 @@ XBMC Remote Control using Web Sockets. (Frodo v12 and above)
 
 
 ** Ubuntu Click App **
+
 1. Run ant target "package_ubuntu_click_app".
 2. Build files will be generated in target folder.
 3. *.click file in "target/ubuntuapp" folder is used for distribution
