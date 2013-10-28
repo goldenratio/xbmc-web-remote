@@ -49,17 +49,19 @@ var Keyboard = function()
 		}
 
         thisObject.isDown = true;
+        var isValidKey = false;
+
 		//console.log("key code = " + event.keyCode + ", ctrl = " + event.ctrlKey);
 		var isCtrl = event.ctrlKey || event.metaKey;
 
-		var params;
-        var isValidKey = false;
+        if(isCtrl == true)
+        {
+            isValidKey = true;
+            thisObject.isDown = false;
+        }
+
 		switch(event.keyCode)
 		{
-            case Key.CTRL:
-                isValidKey = true;
-                thisObject.isDown = false;
-                break;
 			case Key.SPACE:
                 isValidKey = true;
                 remote.sendRequest(RequestType.PAUSE);
