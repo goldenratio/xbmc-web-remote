@@ -11,7 +11,7 @@ MainView {
     objectName: "mainView"
     
     // Note! applicationName needs to match the "name" field of the click manifest
-    applicationName: "com.ubuntu.developer.goldenratio.xbmcwebremote"
+    applicationName: "com.ubuntu.developer.elopio.xbmcwebremote"
     
     /* 
      This property enables the application to change orientation 

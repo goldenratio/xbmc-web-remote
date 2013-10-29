@@ -8,7 +8,7 @@
         }
     },
     "maintainer": "Leo Arias <leo.arias@canonical.com>",
-    "name": "com.ubuntu.developer.goldenratio.xbmcwebremote",
+    "name": "com.ubuntu.developer.elopio.xbmcwebremote",
     "title": "xbmcwebremote",
     "version": "@build_version"
 }
