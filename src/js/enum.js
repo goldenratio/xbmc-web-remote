@@ -35,6 +35,9 @@ var Key = new function()
     this.MUTE = 77; // m
     this.PLAY = 80; // p
     this.CONTEXT = 79; // o
+
+    this.Q = 81; // Volume up, alternative for Ctrl + right arrow
+    this.W = 87; // Volume down, alternative for Ctrl + left arrow
 };
 
 var SettingsElementID = new function()
