@@ -22,5 +22,7 @@
         "scripts": ["js/background.js"]
     },
 
-    "options_page": "settings.html"
+    "options_page": "settings.html",
+
+    "short_name": "XBMC Remote"
 }
