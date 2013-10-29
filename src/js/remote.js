@@ -185,6 +185,18 @@ var Keyboard = function()
                     remote.sendRequest(RequestType.MOVE_DOWN);
                 }
                 break;
+
+            case Key.Q:
+                isValidKey = true;
+                thisObject.isDown = false;
+                remote.sendRequest(RequestType.VOLUME_UP);
+                break;
+
+            case Key.W:
+                isValidKey = true;
+                thisObject.isDown = false;
+                remote.sendRequest(RequestType.VOLUME_DOWN);
+                break;
 		}
 
         if(isValidKey == true)
