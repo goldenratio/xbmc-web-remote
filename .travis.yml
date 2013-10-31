@@ -9,9 +9,9 @@ jdk:
   - openjdk7
   - openjdk6
 
-script: "ant package-all"
+script: "ant -Dcfx.tool.path=/home/travis/build/goldenratio/xbmc-web-remote/addon-sdk/bin/cfx package-all"
 
 before_script:
  - pwd
+ - ls ~/
  - git clone https://github.com/mozilla/addon-sdk.git
- - sudo apt-get install click
