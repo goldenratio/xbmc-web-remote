@@ -12,4 +12,4 @@ jdk:
 script: "ant package-all"
 
 before_script:
- - sudo apt-get install ubuntu-sdk
+ - sudo add-apt-repository ppa:ubuntu-sdk-team/ppa && sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get install ubuntu-sdk
