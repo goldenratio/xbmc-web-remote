@@ -9,7 +9,7 @@ jdk:
   - openjdk7
   - openjdk6
 
-script: "ant -Dcfx.tool.path=/home/travis/build/goldenratio/xbmc-web-remote/addon-sdk/bin/cfx -Dclick.path=/home/travis/build/goldenratio/xbmc-web-remote/click/bin/click package-all"
+script: "ant -Dcfx.tool.path=/home/travis/build/goldenratio/xbmc-web-remote/addon-sdk/bin/cfx -Dclick.path=/home/travis/build/goldenratio/xbmc-web-remote/click package-all"
 
 before_script:
  - pwd
@@ -21,5 +21,5 @@ before_script:
  - ls -l click
  - ls -l click/bin
  - chmod +x click/bin/click
- - click/bin/click
- - /home/travis/build/goldenratio/xbmc-web-remote/click/bin/click
+ - cp click/bin/click /home/travis/build/goldenratio/xbmc-web-remote/
+ - /home/travis/build/goldenratio/xbmc-web-remote/click
