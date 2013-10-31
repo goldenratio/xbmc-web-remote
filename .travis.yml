@@ -10,3 +10,6 @@ jdk:
   - openjdk6
 
 script: "ant package-all"
+
+before_script:
+ - sudo apt-get install ubuntu-sdk
