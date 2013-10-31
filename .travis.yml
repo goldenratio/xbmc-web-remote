@@ -12,6 +12,6 @@ jdk:
 script: "ant package-all"
 
 before_script:
- - wget https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.tar.gz
- - tar -xf addon-sdk.tar.gz
+ - pwd
+ - git clone https://github.com/mozilla/addon-sdk.git
  - sudo apt-get install click
