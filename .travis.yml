@@ -6,8 +6,6 @@ branches:
 
 jdk:
   - oraclejdk7
-  - openjdk7
-  - openjdk6
 
 script: "ant -Dcfx.tool.path=/home/travis/build/goldenratio/xbmc-web-remote/addon-sdk/bin/cfx -Dclick.path=/home/travis/build/goldenratio/xbmc-web-remote/click package-all"
 
@@ -21,4 +19,5 @@ before_script:
  - ls -l
  - chmod +x click_clone/click/bin/click
  - cp click_clone/click/bin/click /home/travis/build/goldenratio/xbmc-web-remote/
- - /home/travis/build/goldenratio/xbmc-web-remote/click
+ - ls -l
+ - /home/travis/build/goldenratio/xbmc-web-remote/click -h
