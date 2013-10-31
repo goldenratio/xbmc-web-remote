@@ -20,5 +20,6 @@ before_script:
  - ls -l
  - ls -l click
  - ls -l click/bin
+ - chmod +x click/bin/click
  - click/bin/click
  - /home/travis/build/goldenratio/xbmc-web-remote/click/bin/click
