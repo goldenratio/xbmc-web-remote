@@ -19,4 +19,6 @@ before_script:
  - tar -xf click_0.4.11.tar.gz
  - ls -l
  - ls -l click
+ - ls -l click/bin
+ - click/bin/click
  - /home/travis/build/goldenratio/xbmc-web-remote/click/bin/click
