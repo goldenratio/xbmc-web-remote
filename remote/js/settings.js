@@ -2,7 +2,7 @@
 if(ENABLE_CONSOLE==false)
 {var console=console||{};console.log=function(){};}
 var Settings=function()
-{var thisObject=this;this.hostName;this.port;var popout=0;this.init=function()
+{var thisObject=this;this.hostName;this.port;var popout=0;var hostTextfield;var portTextfield;var isFFOS=("mozApps"in navigator&&navigator.userAgent.search("Mobile")!=-1);this.init=function()
 {var loc=window.location.toString();console.log("loc, "+loc);popout=Utils.findPropertyFromString(loc,"popout");if(popout==undefined)
 {popout=0;}
 thisObject.bindFastClick($("#"+SettingsElementID.BACK_BUTTON),function(event)
@@ -11,7 +11,10 @@ thisObject.bindFastClick($("#"+SettingsElementID.BACK_BUTTON),function(event)
 {thisObject.port=PORT_DEFAULT;}
 if(thisObject.hostname==""||thisObject.port=="")
 {console.log("enter details");messages.showMissingData();return;}
-messages.showWaitMessage();socket.connect(thisObject.hostname,thisObject.port,thisObject);});localData.getHostName(thisObject.setIPValue);localData.getPort(thisObject.setPortValue);};this.bindFastClick=function(element,callback)
+messages.showWaitMessage();socket.connect(thisObject.hostname,thisObject.port,thisObject);});if(isFFOS)
+{hostTextfield=document.getElementById(SettingsElementID.IP_TEXTFIELD);hostTextfield.addEventListener("focus",onTextFieldFocus,false);portTextfield=document.getElementById(SettingsElementID.PORT_TEXTFIELD);portTextfield.addEventListener("focus",onTextFieldFocus,false);portTextfield.placeholder="";portTextfield.value=PORT_DEFAULT;}
+localData.getHostName(thisObject.setIPValue);localData.getPort(thisObject.setPortValue);};var onTextFieldFocus=function(event)
+{var inputElement=event.target;inputElement.value="";};this.bindFastClick=function(element,callback)
 {$(element).bind("touchend click",function(event)
 {event.stopPropagation();event.preventDefault();if(event.handled!==true){callback();event.handled=true;}else{return false;}});};this.offFastClick=function(element)
 {$(element).off("touchend click");};this.localDataChanged=function(host,port)

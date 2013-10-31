@@ -7,8 +7,10 @@ var Keyboard=function()
 {console.log("key up");thisObject.isDown=false;$("#rightArrow").removeClass("right_arrow_active");$("#selectButton").removeClass("select_active");$("#leftArrow").removeClass("left_arrow_active");$("#upArrow").removeClass("up_arrow_active");$("#downArrow").removeClass("down_arrow_active");event.preventDefault();};var onKeyDown=function(event)
 {if(thisObject.isDown)
 {console.log("key is down!");return;}
-thisObject.isDown=true;var isCtrl=event.ctrlKey||event.metaKey;var params;var isValidKey=false;switch(event.keyCode)
-{case Key.CTRL:isValidKey=true;thisObject.isDown=false;break;case Key.SPACE:isValidKey=true;remote.sendRequest(RequestType.PAUSE);$("#pause").toggleClass("#pause active");break;case Key.PLAY:isValidKey=true;remote.sendRequest(RequestType.PLAY);break;case Key.INFO:isValidKey=true;remote.sendRequest(RequestType.INFO);break;case Key.CONTEXT:isValidKey=true;if(isCtrl)
+thisObject.isDown=true;var isValidKey=false;var isCtrl=event.ctrlKey||event.metaKey;if(isCtrl==true)
+{isValidKey=true;thisObject.isDown=false;}
+switch(event.keyCode)
+{case Key.SPACE:isValidKey=true;remote.sendRequest(RequestType.PAUSE);$("#pause").toggleClass("#pause active");break;case Key.PLAY:isValidKey=true;remote.sendRequest(RequestType.PLAY);break;case Key.INFO:isValidKey=true;remote.sendRequest(RequestType.INFO);break;case Key.CONTEXT:isValidKey=true;if(isCtrl)
 {remote.sendRequest(RequestType.CONTEXT_MENU);event.preventDefault();}
 break;case Key.ENTER:isValidKey=true;$("#selectButton").addClass("select_active");remote.sendRequest(RequestType.SELECT);break;case Key.BACKSPACE:isValidKey=true;remote.sendRequest(RequestType.BACK);break;case Key.ESCAPE:if(window["chrome"]&&window["chrome"].extension)
 {remote.sendRequest(RequestType.BACK);}
@@ -28,7 +30,7 @@ break;case Key.DOWN:isValidKey=true;thisObject.isDown=false;if(isCtrl)
 {remote.sendRequest(RequestType.VOLUME_DOWN);}
 else
 {$("#downArrow").addClass("down_arrow_active");remote.sendRequest(RequestType.MOVE_DOWN);}
-break;}
+break;case Key.Q:isValidKey=true;thisObject.isDown=false;remote.sendRequest(RequestType.VOLUME_UP);break;case Key.W:isValidKey=true;thisObject.isDown=false;remote.sendRequest(RequestType.VOLUME_DOWN);break;}
 if(isValidKey==true)
 {event.preventDefault();}};this.dispose=function()
 {document.onkeydown=null;document.onkeyup=null;};};var Remote=function()
