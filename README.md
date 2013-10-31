@@ -3,6 +3,8 @@ XBMC Remote Control
 
 XBMC Remote Control using Web Sockets. (Frodo v12 and above)
 
+[![Build Status](https://travis-ci.org/goldenratio/xbmc-web-remote.png?branch=master)](https://travis-ci.org/goldenratio/xbmc-web-remote)
+
 **Live Web Demo:** http://goldenratio.github.io/xbmc-web-remote/remote/remote.html
 
 **Chrome Extension:** Install from Chrome WebStore, https://chrome.google.com/webstore/detail/xbmc-remote-control/jgannjdjlpnoibphpbmmfjkejcfhcmjp?hl=en-US

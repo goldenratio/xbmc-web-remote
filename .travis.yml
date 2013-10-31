@@ -7,7 +7,9 @@ branches:
 jdk:
   - oraclejdk7
 
-script: "ant -Dcfx.tool.path=/home/travis/build/goldenratio/xbmc-web-remote/addon-sdk/bin/cfx package-all"
+script:
+ - "ant -Dcfx.tool.path=/home/travis/build/goldenratio/xbmc-web-remote/addon-sdk/bin/cfx package-all"
+ - "ant -f exec_build.xml package-executable-all"
 
 before_script:
  - git clone https://github.com/mozilla/addon-sdk.git
