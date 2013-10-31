@@ -17,4 +17,6 @@ before_script:
  - git clone https://github.com/mozilla/addon-sdk.git
  - wget https://launchpad.net/ubuntu/saucy/+source/click/0.4.11/+files/click_0.4.11.tar.gz
  - tar -xf click_0.4.11.tar.gz
+ - ls -l
  - ls -l click
+ - /home/travis/build/goldenratio/xbmc-web-remote/click/bin/click
