@@ -12,4 +12,6 @@ jdk:
 script: "ant package-all"
 
 before_script:
- - sudo add-apt-repository ppa:ubuntu-sdk-team/ppa && sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get install ubuntu-sdk
+ - wget https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.tar.gz
+ - tar -xf addon-sdk.tar.gz
+ - sudo apt-get install click
