@@ -11,5 +11,3 @@ script: "ant -Dcfx.tool.path=/home/travis/build/goldenratio/xbmc-web-remote/addo
 
 before_script:
  - git clone https://github.com/mozilla/addon-sdk.git
- - wget https://launchpad.net/ubuntu/saucy/+source/click/0.4.11/+files/click_0.4.11.tar.gz
- - echo "yes" | sudo add-apt-repository ppa:ubuntu-sdk-team/ppa && sudo apt-get install ubuntu-sdk

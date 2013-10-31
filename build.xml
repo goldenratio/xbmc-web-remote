@@ -259,7 +259,7 @@
     </target>
 
 
-    <target name="package-all" depends="clean, package_web, package_chrome_extension, package_firefox_OS_app, package_firefox_addon, package_opera_legacy, package_ubuntu_click_app" description="Package all">
+    <target name="package-all" depends="clean, package_web, package_chrome_extension, package_firefox_OS_app, package_firefox_addon, package_opera_legacy" description="Package all">
 
     </target>
 
