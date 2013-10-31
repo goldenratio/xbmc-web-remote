@@ -7,9 +7,9 @@ branches:
 jdk:
   - oraclejdk7
 
-script: "ant -Dcfx.tool.path=/home/travis/build/goldenratio/xbmc-web-remote/addon-sdk/bin/cfx -Dclick.path=/home/travis/build/goldenratio/xbmc-web-remote/click package-all"
+script: "ant -Dcfx.tool.path=/home/travis/build/goldenratio/xbmc-web-remote/addon-sdk/bin/cfx package-all"
 
 before_script:
  - git clone https://github.com/mozilla/addon-sdk.git
  - wget https://launchpad.net/ubuntu/saucy/+source/click/0.4.11/+files/click_0.4.11.tar.gz
- - echo "yes" | sudo add-apt-repository ppa:ubuntu-sdk-team/ppa && sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get install ubuntu-sdk
+ - echo "yes" | sudo add-apt-repository ppa:ubuntu-sdk-team/ppa && sudo apt-get install ubuntu-sdk
