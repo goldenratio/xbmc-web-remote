@@ -10,14 +10,10 @@ jdk:
 script: "ant -Dcfx.tool.path=/home/travis/build/goldenratio/xbmc-web-remote/addon-sdk/bin/cfx -Dclick.path=/home/travis/build/goldenratio/xbmc-web-remote/click package-all"
 
 before_script:
- - pwd
- - ls ~/
  - git clone https://github.com/mozilla/addon-sdk.git
  - wget https://launchpad.net/ubuntu/saucy/+source/click/0.4.11/+files/click_0.4.11.tar.gz
  - mkdir click_clone
  - tar -xf click_0.4.11.tar.gz -C click_clone
- - ls -l
  - chmod +x click_clone/click/bin/click
  - cp click_clone/click/bin/click /home/travis/build/goldenratio/xbmc-web-remote/
  - ls -l
- - /home/travis/build/goldenratio/xbmc-web-remote/click -h
