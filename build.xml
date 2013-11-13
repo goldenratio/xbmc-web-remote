@@ -57,6 +57,13 @@
         </jsmin>
     </target>
 
+    <target name="_js-min_opera-next" if="${js.min}">
+        <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
+            <fileset dir="${opera_next.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+        </jsmin>
+    </target>
+
+
     <target name="_js-min_firefox_os_app" if="${js.min}">
         <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
             <fileset dir="${firefox_app.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
@@ -77,7 +84,7 @@
     </target>
 
 
-    <target name="package_chrome_extension" depends="clean" description="Package App for Chrome extension developer mode and .zip for Web Store">
+    <target name="package_chrome-extension" depends="clean" description="Package App for Chrome extension developer mode and .zip for Web Store">
         <mkdir dir="${chrome_extension.folder}/${project_name}/"/>
 
         <copy todir="${chrome_extension.folder}/${project_name}/">
@@ -128,7 +135,7 @@
         </exec>
     </target>
 
-    <target name="package_firefox_OS_app" depends="clean" description="Package App for Firefox OS Marketplace">
+    <target name="package_firefox-OS_app" depends="clean" description="Package App for Firefox OS Marketplace">
 
         <delete dir="${firefox_app.folder}/${project_name}" />
 
@@ -163,7 +170,32 @@
 
     </target>
 
-    <target name="package_opera_legacy" depends="clean" description="Package App for Opera 11 - 12">
+    <target name="package_opera-next_extension" depends="clean" description="Package App for Opera 15+ (Opera Next)">
+        <mkdir dir="${opera_next.folder}/${project_name}/"/>
+
+        <copy todir="${opera_next.folder}/${project_name}/">
+            <fileset dir="${src.folder}/"/>
+        </copy>
+
+        <copy todir="${opera_next.folder}/${project_name}/">
+            <fileset file="res/opera_next/manifest.json"/>
+        </copy>
+
+        <replace file="${opera_next.folder}/${project_name}/js/enum.js" token="@allow_popout" value="true"/>
+        <replace file="${opera_next.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${opera_next.folder}/${project_name}/manifest.json" token="@build_version" value="${build.version}"/>
+
+        <replace file="${opera_next.folder}/${project_name}/remote.html" token="@manifest" value=''/>
+
+        <antcall target="_js-min_opera-next"></antcall>
+
+        <zip destfile="${opera_next.folder}/${project_name}.zip"
+             basedir="${opera_next.folder}/${project_name}/"
+                />
+
+    </target>
+
+    <target name="package_opera-legacy_extension" depends="clean" description="Package App for Opera 11 - 12">
         <delete dir="${opera_legacy.folder}/${project_name}" />
 
         <mkdir dir="${opera_legacy.folder}/${project_name}/"/>
@@ -197,7 +229,7 @@
 
     </target>
 
-    <target name="package_ubuntu_click_app" depends="clean" description="Click Package App for Ubuntu">
+    <target name="package_ubuntu-click_app" depends="clean" description="Click Package App for Ubuntu">
 
         <delete dir="${ubuntu_app.folder}/${project_name}" />
 
@@ -259,7 +291,7 @@
     </target>
 
 
-    <target name="package-all" depends="clean, package_web, package_chrome_extension, package_firefox_OS_app, package_firefox_addon, package_opera_legacy" description="Package all">
+    <target name="package-all" depends="clean, package_web, package_chrome-extension, package_firefox-OS_app, package_firefox_addon, package_opera-legacy_extension, package_opera-next_extension" description="Package all">
 
     </target>
 

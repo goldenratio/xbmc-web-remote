@@ -13,7 +13,7 @@ XBMC Remote Control using Web Sockets. (Frodo v12 and above)
 
 **Firefox OS:** Install from Marketplace, https://marketplace.firefox.com/app/xbmc-remote-control
 
-**Opera add-on:** https://addons.opera.com/en/extensions/details/xbmc-remote/
+**Opera 11-12 add-on (legacy):** https://addons.opera.com/en/extensions/details/xbmc-remote/
 
 **Standalone Executable**
 -------------------------
