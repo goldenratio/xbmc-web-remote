@@ -11,9 +11,9 @@ XBMC Remote Control using Web Sockets. (Frodo v12 and above)
 
 **Firefox Browser Add-on:** Download xpi file, http://goldenratio.github.io/xbmc-web-remote/firefox_addon/xbmc-remote.xpi
 
-**Firefox OS:** Install from Marketplace, https://marketplace.firefox.com/app/xbmc-remote-control
+**Firefox OS App:** Install from Marketplace, https://marketplace.firefox.com/app/xbmc-remote-control
 
-**Opera 11-12 add-on (legacy):** https://addons.opera.com/en/extensions/details/xbmc-remote/
+**Opera 11-12 Extension (legacy):** https://addons.opera.com/en/extensions/details/xbmc-remote/
 
 **Standalone Executable**
 -------------------------
