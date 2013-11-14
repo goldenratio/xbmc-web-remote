@@ -34,14 +34,14 @@ XBMC Remote Control using Web Sockets. (Frodo v12 and above)
 
 **Compile Chrome Extension**
 
-1. Run ant target "package_chrome_extension".
+1. Run ant target "package_chrome-extension".
 2. Build files will be generated in target folder.
 3. Zip file in target folder is used for Chrome WebStore.
 4. `target/chrome_extension/xbmc_remote` can loaded directly to Chrome as unpacked extension in Developer mode.
 
 **Compile Firefox OS App**
 
-1. Run ant target "package_firefox_OS_app".
+1. Run ant target "package_firefox-OS_app".
 2. Build files will be generated in target folder.
 3. Zip file in target folder is used for Firefox OS Marketplace.
 4. `target/fxosapp/xbmc_remote` can loaded directly using Firefox OS simulator add-on.
@@ -59,15 +59,23 @@ XBMC Remote Control using Web Sockets. (Frodo v12 and above)
 
 **Compile Opera 11-12 extension**
 
-1. Run ant target "package_opera_legacy".
+1. Run ant target "package_opera-legacy_extension".
 2. Build files will be generated in target folder.
 3. oex file in target folder, is used for distribution.
 4. `target/opera_legacy_extension/xbmc_remote` can loaded directly to Opera. Just drag and drop `config.xml` to Opera.
 
 
+**Compile Opera 15+ extension**
+
+1. Run ant target "package_opera-next_extension".
+2. Build files will be generated in target folder.
+3. zip file in target folder, is used for distribution.
+4. `target/opera_next_extension/xbmc_remote` can loaded directly to Opera as unpacked extension in Developer mode.
+
+
 **Compile Ubuntu Click App**
 
-1. Run ant target "package_ubuntu_click_app".
+1. Run ant target "package_ubuntu-click_app".
 2. Build files will be generated in target folder.
 3. *.click file in "target/ubuntuapp" folder is used for distribution
 
