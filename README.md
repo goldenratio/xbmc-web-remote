@@ -15,6 +15,8 @@ XBMC Remote Control using Web Sockets. (Frodo v12 and above)
 
 **Opera 11-12 Extension (legacy):** https://addons.opera.com/en/extensions/details/xbmc-remote/
 
+**Opera 15+ (Next) Extension:** https://addons.opera.com/en/extensions/details/xbmc-remote-control/
+
 **Standalone Executable**
 -------------------------
 
