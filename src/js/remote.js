@@ -769,26 +769,13 @@ var background;
 window.addEventListener("load", loadComplete, false);
 window.addEventListener("contextmenu", onContextMenu, false);
 
-
-
-/*function is_touch_device() {
-    return !!('ontouchstart' in window) // works on most browsers
-        || !!('onmsgesturechange' in window); // works on ie10
-} */
-
-function onContextMenu(e)
+function onContextMenu(event)
 {
-    e.preventDefault();     // cancel default menu
+    event.preventDefault();     // cancel default menu
 }
 
 function loadComplete()
 {
-    /*document.addEventListener("touchend", function(event) {
-            //console.log("touch end");
-            document.activeElement.blur();
-        },
-        false
-    );*/
 
     if(window["chrome"] && window["chrome"].extension)
     {
