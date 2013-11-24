@@ -9,7 +9,7 @@ XBMC Remote Control using Web Sockets. (Frodo v12 and above)
 
 **Chrome Extension:** Install from Chrome WebStore, https://chrome.google.com/webstore/detail/xbmc-remote-control/jgannjdjlpnoibphpbmmfjkejcfhcmjp?hl=en-US
 
-**Firefox Browser Add-on:** Download xpi file, http://goldenratio.github.io/xbmc-web-remote/firefox_addon/xbmc-remote.xpi
+**Firefox Browser Add-on:** https://addons.mozilla.org/en-US/firefox/addon/xbmc-remote-control/
 
 **Firefox OS App:** Install from Marketplace, https://marketplace.firefox.com/app/xbmc-remote-control
 
