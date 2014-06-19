@@ -211,7 +211,6 @@
             <fileset file="res/ubuntu_click/manifest.json"/>
             <fileset file="res/ubuntu_click/xbmcwebremote.desktop"/>
             <fileset file="res/ubuntu_click/xbmcwebremote.json"/>
-            <fileset file="res/ubuntu_click/xbmcwebremote.qml"/>
             <fileset file="res/ubuntu_click/index.html"/>
         </copy>
 
