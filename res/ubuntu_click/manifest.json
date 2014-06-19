@@ -1,6 +1,7 @@
 {
     "description": "XBMC Remote Control using Web Sockets",
-    "framework": "ubuntu-sdk-13.10",
+    "framework": "ubuntu-sdk-14.04-html-dev1",
+    "architecture": "all",
     "hooks": {
         "xbmcwebremote": {
             "apparmor": "xbmcwebremote.json",
