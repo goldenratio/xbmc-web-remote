@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <project name="XBMC-Remote" basedir="./">
 
 	<property file="build.properties"/>
@@ -212,6 +212,7 @@
             <fileset file="res/ubuntu_click/xbmcwebremote.desktop"/>
             <fileset file="res/ubuntu_click/xbmcwebremote.json"/>
             <fileset file="res/ubuntu_click/xbmcwebremote.qml"/>
+            <fileset file="res/ubuntu_click/index.html"/>
         </copy>
 
         <copy tofile="${ubuntu_app.folder}/${project_name}/xbmcwebremote.png">
