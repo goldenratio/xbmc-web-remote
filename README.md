@@ -1,4 +1,4 @@
-XBMC Remote Control
+XBMC Remote Control (Unofficial)
 ===================
 
 XBMC Remote Control using Web Sockets. (Frodo v12 and above)
