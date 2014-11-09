@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
 	
-	"name": "XBMC Remote Control",
-	"description": "XBMC Remote Control for Chrome",
+	"name": "Kassi - Kodi/XBMC Remote Control",
+	"description": "Kassi is a Kodi/XBMC Remote Control for Chrome",
 	"version": "@build_version",
 	"permissions": [ "storage", "tabs" ],
   
@@ -15,7 +15,7 @@
   	"browser_action": {
 		"default_icon": "icons/48.png",
 		"default_popup": "remote.html",
-        "default_title": "XBMC Remote Control"
+        "default_title": "Kassi"
   	},
 
     "background": {
@@ -24,5 +24,5 @@
 
     "options_page": "settings.html",
 
-    "short_name": "XBMC Remote"
+    "short_name": "Kassi"
 }

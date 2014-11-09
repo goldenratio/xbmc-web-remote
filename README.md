@@ -1,4 +1,4 @@
-XBMC Remote Control (Unofficial)
+Kassi - Kodi/XBMC Remote Control (Unofficial)
 ===================
 
 XBMC Remote Control using Web Sockets. (Frodo v12 and above)

@@ -29,15 +29,24 @@ var Key = new function()
     this.CTRL = 17;
 
     this.INFO = 73; // i
-    this.STOP = 83; // s
+    this.STOP = 88; // x
     this.MENU = 72; // h
     this.OSD = 90; // z
     this.MUTE = 77; // m
     this.PLAY = 80; // p
     this.CONTEXT = 79; // o
 
+    this.MINUS = 189; // - (volume down)
+    this.EQUALS = 187; // = (volume up)
+
     this.Q = 81; // Volume up, alternative for Ctrl + right arrow
     this.W = 87; // Volume down, alternative for Ctrl + left arrow
+
+    /**
+     * @deprecated
+     * @type {number}
+     */
+    this.STOP_DEP = 83; // S - stop
 };
 
 var SettingsElementID = new function()

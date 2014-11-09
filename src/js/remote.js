@@ -51,7 +51,7 @@ var Keyboard = function()
         thisObject.isDown = true;
         var isValidKey = false;
 
-		//console.log("key code = " + event.keyCode + ", ctrl = " + event.ctrlKey);
+		console.log("key code = " + event.keyCode + ", ctrl = " + event.ctrlKey);
 		var isCtrl = event.ctrlKey || event.metaKey;
 
         if(isCtrl == true)
@@ -101,13 +101,14 @@ var Keyboard = function()
 
             case Key.ESCAPE:
                 // back
-                if(window["chrome"] && window["chrome"].extension)
+                if(popout == 1 && window["chrome"] && window["chrome"].extension)
                 {
                     remote.sendRequest(RequestType.BACK);
                 }
                 break;
 
             case Key.STOP:
+            case Key.STOP_DEP:
                 isValidKey = true;
                 remote.sendRequest(RequestType.STOP);
                 break;
@@ -187,12 +188,14 @@ var Keyboard = function()
                 break;
 
             case Key.Q:
+            case Key.EQUALS:
                 isValidKey = true;
                 thisObject.isDown = false;
                 remote.sendRequest(RequestType.VOLUME_UP);
                 break;
 
             case Key.W:
+            case Key.MINUS:
                 isValidKey = true;
                 thisObject.isDown = false;
                 remote.sendRequest(RequestType.VOLUME_DOWN);
