@@ -1,6 +1,6 @@
 {
-	"name": "XBMC Remote",
-	"description": "XBMC Remote Control for Firefox",
+	"name": "Kassi - Kodi/XBMC Remote",
+	"description": "Kodi/XBMC Remote Control for Firefox",
 	"launch_path": "/remote.html",
 
 	"developer": {
