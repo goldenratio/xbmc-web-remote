@@ -28,7 +28,7 @@ var XBMCSocket = function()
 
         if(!thisObject.path)
         {
-            alert("host is not configured!")
+            alert("host is not configured!");
             return;
         }
 
@@ -43,11 +43,20 @@ var XBMCSocket = function()
             thisObject.socket.close();
         }
         thisObject.context = context;
-		thisObject.socket = new WebSocket(thisObject.path);
-		thisObject.socket.onopen = onOpen;
-		thisObject.socket.onerror = onError;
-		thisObject.socket.onmessage = onMessage;
-		thisObject.socket.onclose = onClose;
+
+        try
+        {
+            thisObject.socket = new WebSocket(thisObject.path);
+            thisObject.socket.onopen = onOpen;
+            thisObject.socket.onerror = onError;
+            thisObject.socket.onmessage = onMessage;
+            thisObject.socket.onclose = onClose;
+        }
+        catch (error)
+        {
+            alert(error.message);
+        }
+
 		
 	};
 

@@ -24,7 +24,7 @@ var Settings = function()
     this.init = function()
     {
         var loc = window.location.toString();
-        console.log("loc, " + loc);
+        //console.log("loc, " + loc);
         popout = Utils.findPropertyFromString(loc, "popout");
         if(popout == undefined)
         {
@@ -33,7 +33,7 @@ var Settings = function()
 
         thisObject.bindFastClick($("#" + SettingsElementID.BACK_BUTTON), function(event)
         {
-            window.location.href = "remote.html?popout=" + popout + "&removecheck=1";
+            window.location.href = encodeURI("remote.html?popout=" + popout + "&removecheck=1");
             //event.preventDefault();
         });
 
