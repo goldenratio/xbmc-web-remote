@@ -2,13 +2,15 @@
 var XBMCSocket=function()
 {this.socket;this.path;this.isConnected=false;this.isPending=false;this.context;this.callback;var thisObject=this;this.connect=function(host,port,context)
 {thisObject.path="ws://"+host+":"+port+"/jsonrpc";if(!thisObject.path)
-{alert("host is not configured!")
-return;}
+{alert("host is not configured!");return;}
 if(!window.WebSocket)
 {alert("Web socket is not supported in your browser!");return;}
 if(thisObject.socket)
 {thisObject.socket.close();}
-thisObject.context=context;thisObject.socket=new WebSocket(thisObject.path);thisObject.socket.onopen=onOpen;thisObject.socket.onerror=onError;thisObject.socket.onmessage=onMessage;thisObject.socket.onclose=onClose;};this.disconnect=function()
+thisObject.context=context;try
+{thisObject.socket=new WebSocket(thisObject.path);thisObject.socket.onopen=onOpen;thisObject.socket.onerror=onError;thisObject.socket.onmessage=onMessage;thisObject.socket.onclose=onClose;}
+catch(error)
+{alert(error.message);}};this.disconnect=function()
 {if(thisObject.socket)
 {thisObject.socket.close();}};var onOpen=function()
 {console.log("socket open");thisObject.isConnected=true;if(thisObject.context)

@@ -3,10 +3,10 @@ if(ENABLE_CONSOLE==false)
 {var console=console||{};console.log=function(){};}
 var Settings=function()
 {var thisObject=this;this.hostName;this.port;var popout=0;var hostTextfield;var portTextfield;var isFFOS=("mozApps"in navigator&&navigator.userAgent.search("Mobile")!=-1);this.init=function()
-{var loc=window.location.toString();console.log("loc, "+loc);popout=Utils.findPropertyFromString(loc,"popout");if(popout==undefined)
+{var loc=window.location.toString();popout=Utils.findPropertyFromString(loc,"popout");if(popout==undefined)
 {popout=0;}
 thisObject.bindFastClick($("#"+SettingsElementID.BACK_BUTTON),function(event)
-{window.location.href="remote.html?popout="+popout+"&removecheck=1";});thisObject.bindFastClick($("#"+SettingsElementID.SAVE_BUTTON),function(event)
+{window.location.href=encodeURI("remote.html?popout="+popout+"&removecheck=1");});thisObject.bindFastClick($("#"+SettingsElementID.SAVE_BUTTON),function(event)
 {thisObject.hostname=thisObject.getIPValue();thisObject.port=thisObject.getPortValue();if(thisObject.port=="")
 {thisObject.port=PORT_DEFAULT;}
 if(thisObject.hostname==""||thisObject.port=="")
