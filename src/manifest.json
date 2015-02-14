@@ -1,0 +1,18 @@
+{
+  "short_name": "Kassi",
+  "name": "Kassi - Kodi/XBMC Remote Control",
+  "icons": [
+    {
+      "src": "icons/128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "display": "fullscreen",
+  "orientation": "portrait"
+}
