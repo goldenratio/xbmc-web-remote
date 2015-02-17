@@ -22,6 +22,7 @@
 
         <replace file="${web.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${web.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${web.folder}/${project_name}/settings.html" token="@build_version" value="${build.version}"/>
 
         <antcall target="_web_offline_cache" />
         <antcall target="_web_app_manifest" />
@@ -108,13 +109,14 @@
 
         <replace file="${chrome_extension.folder}/${project_name}/js/enum.js" token="@allow_popout" value="true"/>
         <replace file="${chrome_extension.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${chrome_extension.folder}/${project_name}/settings.html" token="@build_version" value="${build.version}"/>
         <replace file="${chrome_extension.folder}/${project_name}/manifest.json" token="@build_version" value="${build.version}"/>
 
         <replace file="${chrome_extension.folder}/${project_name}/remote.html" token="@manifest" value=''/>
         <replace file="${chrome_extension.folder}/${project_name}/settings.html" token="@manifest" value=''/>
 
-        <replace file="${chrome_extension.folder}/${project_name}/remote.html" token="@webapp_manifest" value=''/>
-        <replace file="${chrome_extension.folder}/${project_name}/settings.html" token="@webapp_manifest" value=''/>
+        <replace file="${chrome_extension.folder}/${project_name}/remote.html" token="@webapp_manifest" value='!-- //--'/>
+        <replace file="${chrome_extension.folder}/${project_name}/settings.html" token="@webapp_manifest" value='!-- //--'/>
 
         <antcall target="_js-min_chrome" />
 
@@ -140,13 +142,14 @@
 
         <replace file="${firefox_addon.folder}/${project_name}/data/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${firefox_addon.folder}/${project_name}/data/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${firefox_addon.folder}/${project_name}/data/settings.html" token="@build_version" value="${build.version}"/>
         <replace file="${firefox_addon.folder}/${project_name}/package.json" token="@build_version" value="${build.version}"/>
 
         <replace file="${firefox_addon.folder}/${project_name}/data/remote.html" token="@manifest" value=''/>
         <replace file="${firefox_addon.folder}/${project_name}/data/settings.html" token="@manifest" value=''/>
 
-        <replace file="${firefox_addon.folder}/${project_name}/data/remote.html" token="@webapp_manifest" value=''/>
-        <replace file="${firefox_addon.folder}/${project_name}/data/settings.html" token="@webapp_manifest" value=''/>
+        <replace file="${firefox_addon.folder}/${project_name}/data/remote.html" token="@webapp_manifest" value='!-- //--'/>
+        <replace file="${firefox_addon.folder}/${project_name}/data/settings.html" token="@webapp_manifest" value='!-- //--'/>
 
         <exec dir="${firefox_addon.folder}" executable="${cfx.tool.path}" failonerror="true">
             <arg line="--pkgdir=${project_name} xpi" />
@@ -176,13 +179,14 @@
 
         <replace file="${firefox_app.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${firefox_app.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${firefox_app.folder}/${project_name}/settings.html" token="@build_version" value="${build.version}"/>
         <replace file="${firefox_app.folder}/${project_name}/manifest.webapp" token="@build_version" value="${build.version}"/>
 
         <replace file="${firefox_app.folder}/${project_name}/remote.html" token="@manifest" value=''/>
         <replace file="${firefox_app.folder}/${project_name}/settings.html" token="@manifest" value=''/>
 
-        <replace file="${firefox_app.folder}/${project_name}/remote.html" token="@webapp_manifest" value=''/>
-        <replace file="${firefox_app.folder}/${project_name}/settings.html" token="@webapp_manifest" value=''/>
+        <replace file="${firefox_app.folder}/${project_name}/remote.html" token="@webapp_manifest" value='!-- //--'/>
+        <replace file="${firefox_app.folder}/${project_name}/settings.html" token="@webapp_manifest" value='!-- //--'/>
 
         <antcall target="_js-min_firefox_os_app" />
 
@@ -205,13 +209,14 @@
 
         <replace file="${opera_next.folder}/${project_name}/js/enum.js" token="@allow_popout" value="true"/>
         <replace file="${opera_next.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${opera_next.folder}/${project_name}/settings.html" token="@build_version" value="${build.version}"/>
         <replace file="${opera_next.folder}/${project_name}/manifest.json" token="@build_version" value="${build.version}"/>
 
         <replace file="${opera_next.folder}/${project_name}/remote.html" token="@manifest" value=''/>
         <replace file="${opera_next.folder}/${project_name}/settings.html" token="@manifest" value=''/>
 
-        <replace file="${opera_next.folder}/${project_name}/remote.html" token="@webapp_manifest" value=''/>
-        <replace file="${opera_next.folder}/${project_name}/settings.html" token="@webapp_manifest" value=''/>
+        <replace file="${opera_next.folder}/${project_name}/remote.html" token="@webapp_manifest" value='!-- //--'/>
+        <replace file="${opera_next.folder}/${project_name}/settings.html" token="@webapp_manifest" value='!-- //--'/>
 
         <antcall target="_js-min_opera-next" />
 
@@ -243,13 +248,14 @@
 
         <replace file="${opera_legacy.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${opera_legacy.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${opera_legacy.folder}/${project_name}/settings.html" token="@build_version" value="${build.version}"/>
         <replace file="${opera_legacy.folder}/${project_name}/config.xml" token="@build_version" value="${build.version}"/>
 
         <replace file="${opera_legacy.folder}/${project_name}/remote.html" token="@manifest" value=''/>
         <replace file="${opera_legacy.folder}/${project_name}/settings.html" token="@manifest" value=''/>
 
-        <replace file="${opera_legacy.folder}/${project_name}/remote.html" token="@webapp_manifest" value=''/>
-        <replace file="${opera_legacy.folder}/${project_name}/settings.html" token="@webapp_manifest" value=''/>
+        <replace file="${opera_legacy.folder}/${project_name}/remote.html" token="@webapp_manifest" value='!-- //--'/>
+        <replace file="${opera_legacy.folder}/${project_name}/settings.html" token="@webapp_manifest" value='!-- //--'/>
 
         <antcall target="_js-min_opera_legacy" />
 
@@ -285,13 +291,14 @@
 
         <replace file="${ubuntu_app.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${ubuntu_app.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${ubuntu_app.folder}/${project_name}/settings.html" token="@build_version" value="${build.version}"/>
         <replace file="${ubuntu_app.folder}/${project_name}/manifest.json" token="@build_version" value="${build.version}"/>
 
         <replace file="${ubuntu_app.folder}/${project_name}/remote.html" token="@manifest" value=''/>
         <replace file="${ubuntu_app.folder}/${project_name}/settings.html" token="@manifest" value=''/>
 
-        <replace file="${ubuntu_app.folder}/${project_name}/remote.html" token="@webapp_manifest" value=''/>
-        <replace file="${ubuntu_app.folder}/${project_name}/settings.html" token="@webapp_manifest" value=''/>
+        <replace file="${ubuntu_app.folder}/${project_name}/remote.html" token="@webapp_manifest" value='!-- //--'/>
+        <replace file="${ubuntu_app.folder}/${project_name}/settings.html" token="@webapp_manifest" value='!-- //--'/>
 
         <antcall target="_js-min_ubuntu_app" />
 
