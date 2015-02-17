@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# build time: 1424205702619
+# build time: 1424206178782
 # build version: 2.2.9
 
 about.html
@@ -9,6 +9,10 @@ settings.html
 # assets
 assets/buttons_sheet.png
 assets/xbmc_logo_small.png
+
+# icons
+icons/256.png
+icons/196.png
 
 # fonts
 assets/fonts/roboto_bold/roboto-bold-webfont.ttf
