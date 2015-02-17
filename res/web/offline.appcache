@@ -10,6 +10,10 @@ settings.html
 assets/buttons_sheet.png
 assets/xbmc_logo_small.png
 
+# icons
+icons/256.png
+icons/196.png
+
 # fonts
 assets/fonts/roboto_bold/roboto-bold-webfont.ttf
 assets/fonts/roboto_bold/roboto-bold-webfont-webfont.eot
