@@ -23,10 +23,10 @@ function handlePopup() {
     var obj = { url: "remote.html?popout=1", focused: true, type: "popup", width: selectedRes.width, height: selectedRes.height };
 
     if(windowID === -1) {
-       openPopup(obj);
+        openPopup(obj);
     }
     else {
-       switchWindow();
+        switchWindow();
     }
 
 }

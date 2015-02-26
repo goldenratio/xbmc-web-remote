@@ -11,24 +11,24 @@ if(ENABLE_CONSOLE == false)
 
 var Keyboard = function()
 {
-	this.isDown = false;
+    this.isDown = false;
 
     /**
      * @type {Keyboard}
      */
-	var thisObject = this;
-	
-	this.init = function()
-	{
-		document.onkeydown = onKeyDown;
-		document.onkeyup = onKeyUp;
-		
-	};
-	
-	var onKeyUp = function(event)
-	{
-		console.log("key up");
-		thisObject.isDown = false;
+    var thisObject = this;
+
+    this.init = function()
+    {
+        document.onkeydown = onKeyDown;
+        document.onkeyup = onKeyUp;
+
+    };
+
+    var onKeyUp = function(event)
+    {
+        console.log("key up");
+        thisObject.isDown = false;
         $("#rightArrow").removeClass("right_arrow_active");
         $("#selectButton").removeClass("select_active");
         $("#leftArrow").removeClass("left_arrow_active");
@@ -38,21 +38,21 @@ var Keyboard = function()
 
         event.preventDefault();
 
-	};
+    };
 
-	var onKeyDown = function(event)
-	{
+    var onKeyDown = function(event)
+    {
         if(thisObject.isDown)
-		{
+        {
             console.log("key is down!");
-			return;
-		}
+            return;
+        }
 
         thisObject.isDown = true;
         var isValidKey = false;
 
-		console.log("key code = " + event.keyCode + ", ctrl = " + event.ctrlKey);
-		var isCtrl = event.ctrlKey || event.metaKey;
+        console.log("key code = " + event.keyCode + ", ctrl = " + event.ctrlKey);
+        var isCtrl = event.ctrlKey || event.metaKey;
 
         if(isCtrl == true)
         {
@@ -60,22 +60,22 @@ var Keyboard = function()
             thisObject.isDown = false;
         }
 
-		switch(event.keyCode)
-		{
-			case Key.SPACE:
+        switch(event.keyCode)
+        {
+            case Key.SPACE:
                 isValidKey = true;
                 remote.sendRequest(RequestType.PAUSE);
                 $("#pause").toggleClass("#pause active");
-				break;
+                break;
 
             case Key.PLAY:
                 isValidKey = true;
                 remote.sendRequest(RequestType.PLAY);
                 break;
-			case Key.INFO:
+            case Key.INFO:
                 isValidKey = true;
-				remote.sendRequest(RequestType.INFO);
-				break;
+                remote.sendRequest(RequestType.INFO);
+                break;
 
             case Key.CONTEXT:
                 isValidKey = true;
@@ -128,21 +128,21 @@ var Keyboard = function()
                 remote.sendRequest(RequestType.SHOW_OSD);
                 break;
 
-			case Key.LEFT:
-				// left arrow
+            case Key.LEFT:
+                // left arrow
                 isValidKey = true;
                 thisObject.isDown = false;
-				if(isCtrl)
-				{
-					// seek backward
+                if(isCtrl)
+                {
+                    // seek backward
                     remote.sendRequest(RequestType.SEEK_BACK);
-				}
+                }
                 else
                 {
                     $("#leftArrow").addClass("left_arrow_active");
                     remote.sendRequest(RequestType.MOVE_LEFT);
                 }
-				break;
+                break;
 
             case Key.RIGHT:
                 isValidKey = true;
@@ -200,14 +200,14 @@ var Keyboard = function()
                 thisObject.isDown = false;
                 remote.sendRequest(RequestType.VOLUME_DOWN);
                 break;
-		}
+        }
 
         if(isValidKey == true)
         {
             event.preventDefault();
         }
 
-	};
+    };
 
     /**
      * remove listeners
@@ -217,7 +217,7 @@ var Keyboard = function()
         document.onkeydown = null;
         document.onkeyup = null;
     };
-	
+
 };
 
 var Remote = function()
@@ -481,72 +481,72 @@ var Remote = function()
         switch (type)
         {
             case RequestType.PLAY:
-                    xbmcSocket.send("Player.GetActivePlayers", null, function(data)
+                xbmcSocket.send("Player.GetActivePlayers", null, function(data)
+                {
+                    var obj = JSON.parse(data);
+                    console.log("done");
+                    if(obj.result.length > 0)
                     {
-                        var obj = JSON.parse(data);
-                        console.log("done");
-                        if(obj.result.length > 0)
+                        // in player.. something is playing
+                        for(var i = 0; i < obj.result.length; i++)
                         {
-                            // in player.. something is playing
-                            for(var i = 0; i < obj.result.length; i++)
-                            {
-                                var params = { playerid: obj.result[i].playerid };
-                                xbmcSocket.send("Player.PlayPause", params);
-                            }
-
-
-                        }
-                        else
-                        {
-                            console.log("just select!");
-                            params = { action: "play" };
-                            xbmcSocket.send("Input.ExecuteAction", params);
-                            //xbmcSocket.send("Input.Select");
+                            var params = { playerid: obj.result[i].playerid };
+                            xbmcSocket.send("Player.PlayPause", params);
                         }
 
-                    });
-            break;
+
+                    }
+                    else
+                    {
+                        console.log("just select!");
+                        params = { action: "play" };
+                        xbmcSocket.send("Input.ExecuteAction", params);
+                        //xbmcSocket.send("Input.Select");
+                    }
+
+                });
+                break;
 
             case RequestType.STOP:
-                    xbmcSocket.send("Player.GetActivePlayers", null, function(data)
+                xbmcSocket.send("Player.GetActivePlayers", null, function(data)
+                {
+                    var obj = JSON.parse(data);
+                    console.log("done");
+                    if(obj.result.length > 0)
                     {
-                        var obj = JSON.parse(data);
-                        console.log("done");
-                        if(obj.result.length > 0)
+                        // in player.. something is playing
+                        for(var i = 0; i < obj.result.length; i++)
                         {
-                            // in player.. something is playing
-                            for(var i = 0; i < obj.result.length; i++)
-                            {
-                                var params = { playerid: obj.result[i].playerid };
-                                xbmcSocket.send("Player.Stop", params);
-                            }
-
-
+                            var params = { playerid: obj.result[i].playerid };
+                            xbmcSocket.send("Player.Stop", params);
                         }
 
-                    });
+
+                    }
+
+                });
 
                 break;
 
             case RequestType.PAUSE:
-                    xbmcSocket.send("Player.GetActivePlayers", null, function(data)
+                xbmcSocket.send("Player.GetActivePlayers", null, function(data)
+                {
+                    var obj = JSON.parse(data);
+                    console.log("done");
+                    if(obj.result.length > 0)
                     {
-                        var obj = JSON.parse(data);
-                        console.log("done");
-                        if(obj.result.length > 0)
+                        // in player.. something is playing
+                        for(var i = 0; i < obj.result.length; i++)
                         {
-                            // in player.. something is playing
-                            for(var i = 0; i < obj.result.length; i++)
-                            {
-                                var params = { playerid: obj.result[i].playerid };
-                                xbmcSocket.send("Player.PlayPause", params);
-                            }
-
-
+                            var params = { playerid: obj.result[i].playerid };
+                            xbmcSocket.send("Player.PlayPause", params);
                         }
 
 
-                    });
+                    }
+
+
+                });
 
                 break;
 

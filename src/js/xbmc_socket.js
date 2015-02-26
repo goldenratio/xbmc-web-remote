@@ -4,17 +4,17 @@
 
 var XBMCSocket = function()
 {
-	this.socket;
-	this.path;
-	this.isConnected = false;
-	this.isPending = false;
-	this.context;
+    this.socket;
+    this.path;
+    this.isConnected = false;
+    this.isPending = false;
+    this.context;
     this.callback;
 
     /**
      * @type {XBMCSocket}
      */
-	var thisObject = this;
+    var thisObject = this;
 
     /**
      * Create web socket handshake
@@ -22,8 +22,8 @@ var XBMCSocket = function()
      * @param port
      * @param context
      */
-	this.connect = function(host, port, context)
-	{
+    this.connect = function(host, port, context)
+    {
         thisObject.path = "ws://" + host + ":" + port + "/jsonrpc";
 
         if(!thisObject.path)
@@ -57,8 +57,8 @@ var XBMCSocket = function()
             alert(error.message);
         }
 
-		
-	};
+
+    };
 
     /**
      * Disconnect from web socket
@@ -74,36 +74,36 @@ var XBMCSocket = function()
     /**
      * Invoked when connection is established
      */
-	var onOpen = function()
-	{
-		console.log("socket open");
-		thisObject.isConnected = true;
+    var onOpen = function()
+    {
+        console.log("socket open");
+        thisObject.isConnected = true;
         if(thisObject.context)
         {
             thisObject.context.onConnect();
         }
 
-	};
+    };
 
     /**
      * Invoked when there is a error in web socket
      * @param error
      */
-	var onError = function(error)
-	{
-		thisObject.isPending = false;
-		console.log("socket error " + error);
+    var onError = function(error)
+    {
+        thisObject.isPending = false;
+        console.log("socket error " + error);
         thisObject.callback = null;
-	};
+    };
 
     /**
      * Invoked when server sends response message
      * @param event
      */
-	var onMessage = function(event)
-	{
-		thisObject.isPending = false;
-		console.log("received data, "  + event.data);
+    var onMessage = function(event)
+    {
+        thisObject.isPending = false;
+        console.log("received data, "  + event.data);
         if(thisObject.callback)
         {
             console.log("has callback!");
@@ -112,7 +112,7 @@ var XBMCSocket = function()
         }
 
         thisObject.context.onMessage(JSON.parse(event.data));
-	};
+    };
 
     /**
      * Send messages to server
@@ -120,8 +120,8 @@ var XBMCSocket = function()
      * @param params
      * @param callback {Function} optional
      */
-	this.send = function(method, params, callback)
-	{
+    this.send = function(method, params, callback)
+    {
         if(!thisObject.isConnected)
         {
             alert("connection error! Socket is not connected.");
@@ -130,7 +130,7 @@ var XBMCSocket = function()
 
         thisObject.callback = callback;
 
-		var data = { jsonrpc: "2.0", method: method, id: "1" };
+        var data = { jsonrpc: "2.0", method: method, id: "1" };
         if(params)
         {
             data.params = params;
@@ -142,29 +142,29 @@ var XBMCSocket = function()
             return;
         }
 
-		thisObject.isPending = true;
+        thisObject.isPending = true;
         console.log(method + " >> " + JSON.stringify(data));
-		thisObject.socket.send(JSON.stringify(data));
-	};
+        thisObject.socket.send(JSON.stringify(data));
+    };
 
     /**
      * Invoked when socket is closed
      * @param event
      */
-	var onClose = function(event)
-	{
+    var onClose = function(event)
+    {
         console.log("socket closed!");
-		thisObject.isPending = false;
-		thisObject.isConnected = false;
+        thisObject.isPending = false;
+        thisObject.isConnected = false;
 
         if(thisObject.context)
         {
             thisObject.context.onClose();
         }
 
-	};
-	
-	
-	
+    };
+
+
+
 };
 
