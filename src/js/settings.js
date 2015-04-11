@@ -197,7 +197,7 @@ var Messages = function()
             var portMessageText = PORT_ERROR_MESSAGE;
             portMessageText = portMessageText.replace("$port", settings.getPortValue());
 
-            portMsg.innerHTML = portMessageText;
+            portMsg.textContent = portMessageText;
             portMsg.style.display = "block";
         }
 
