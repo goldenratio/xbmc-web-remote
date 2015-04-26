@@ -5,12 +5,13 @@
 var PORT_DEFAULT = 9090;
 
 // enable / disable console log
-var ENABLE_CONSOLE = true;
+var ENABLE_CONSOLE = false;
 
 // time delay to try reconnection when disconnected
 var RECONNECT_TIME_DELAY = 5000; // milliseconds
 
 // used only in chrome extension, value is set in ant task
+// Nb! disabled this feature now, to really that useful feature. And permission description is a bit creepy!
 var ALLOW_POPOUT = @allow_popout;
 
 // this message is shown when user tries to connect with typical HTTP port
