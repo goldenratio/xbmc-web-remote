@@ -11,7 +11,7 @@ var ENABLE_CONSOLE = false;
 var RECONNECT_TIME_DELAY = 5000; // milliseconds
 
 // used only in chrome extension, value is set in ant task
-// Nb! disabled this feature now, to really that useful feature. And permission description is a bit creepy!
+// Nb! disabled this feature now, not really that useful feature. And permission description is a bit creepy!
 var ALLOW_POPOUT = @allow_popout;
 
 // this message is shown when user tries to connect with typical HTTP port
@@ -92,5 +92,6 @@ var RequestType = new function()
     this.UPDATE_LIBRARY = "update_library";
 
     this.SHUTDOWN = "shutdown";
+    this.RESTART = "restart";
 };
 

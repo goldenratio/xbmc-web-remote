@@ -107,7 +107,7 @@
             <fileset file="res/chrome_extension/manifest.json"/>
         </copy>
 
-        <!-- Nb! disabled this feature now, to really that useful feature. And permission description is a bit creepy! //-->
+        <!-- Nb! disabled this feature now, not really that useful feature. And permission description is a bit creepy! //-->
         <replace file="${chrome_extension.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
         <replace file="${chrome_extension.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
         <replace file="${chrome_extension.folder}/${project_name}/settings.html" token="@build_version" value="${build.version}"/>

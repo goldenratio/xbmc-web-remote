@@ -33,7 +33,8 @@ body
 
 }
 
-#send_text_panel
+#send_text_panel,
+#shutdown_panel
 {
     width: 100%;
     height: 100%;

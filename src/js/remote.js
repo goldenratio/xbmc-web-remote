@@ -386,10 +386,6 @@ var Remote = function()
             //event.preventDefault();
         });
 
-        thisObject.bindFastClick($("#power"), function(event)
-        {
-            thisObject.sendRequest(RequestType.SHUTDOWN);
-        });
 
         thisObject.bindFastClick($("#mute"),function(event)
         {
@@ -409,6 +405,29 @@ var Remote = function()
         thisObject.bindFastClick($("#sendTextButton"), function(event)
         {
             thisObject.showSendTextPanel();
+        });
+
+        thisObject.bindFastClick($("#power"), function(event)
+        {
+            thisObject.showShutDownPanel();
+        });
+
+        ///// shutdown panel ////
+        thisObject.bindFastClick($("#cancelButton-shutDownPanel"), function(event)
+        {
+            thisObject.hideShutDownPanel();
+        });
+
+        thisObject.bindFastClick($("#restartButton-shutDownPanel"), function(event)
+        {
+            thisObject.hideShutDownPanel();
+            thisObject.sendRequest(RequestType.RESTART);
+        });
+
+        thisObject.bindFastClick($("#shutDownButton-shutDownPanel"), function(event)
+        {
+            thisObject.hideShutDownPanel();
+            thisObject.sendRequest(RequestType.SHUTDOWN);
         });
 
 
@@ -432,8 +451,6 @@ var Remote = function()
 
             var params = { text: sendText, done: true };
             xbmcSocket.send("Input.SendText", params);
-            //thisObject.sendRequest(RequestType.EXECUTE_CLOSE);
-
         });
 
 
@@ -458,9 +475,6 @@ var Remote = function()
 
             var params = { text: sendPassword, done: true };
             xbmcSocket.send("Input.SendText", params);
-
-            //thisObject.sendRequest(RequestType.EXECUTE_CLOSE);
-
         });
 
         ///////////////////////////////////
@@ -619,6 +633,10 @@ var Remote = function()
                 xbmcSocket.send("System.Shutdown");
                 break;
 
+            case RequestType.RESTART:
+                xbmcSocket.send("System.Reboot");
+                break;
+
             case RequestType.UPDATE_LIBRARY:
                 xbmcSocket.send("VideoLibrary.Scan");
                 break;
@@ -626,6 +644,22 @@ var Remote = function()
         }
 
     };
+
+    this.showShutDownPanel = function()
+    {
+        $("#main, #footer").fadeTo("fast", 0.1).promise().done(function()
+        {
+            $("#shutdown_panel").show();
+
+        });
+    };
+
+    this.hideShutDownPanel = function()
+    {
+        $("#shutdown_panel").hide();
+        $("#main, #footer").fadeTo("fast", 1);
+    };
+
 
     this.showSendTextPanel = function(value)
     {
@@ -643,6 +677,7 @@ var Remote = function()
             keyboard.dispose();
         });
     };
+
 
     this.showSendPasswordPanel = function(value)
     {
