@@ -430,6 +430,24 @@ var Remote = function()
             thisObject.sendRequest(RequestType.SHUTDOWN);
         });
 
+        thisObject.bindFastClick($("#quitButton-shutDownPanel"), function(event)
+        {
+            thisObject.hideShutDownPanel();
+            thisObject.sendRequest(RequestType.QUIT);
+        });
+
+        thisObject.bindFastClick($("#suspendButton-shutDownPanel"), function(event)
+        {
+            thisObject.hideShutDownPanel();
+            thisObject.sendRequest(RequestType.SUSPEND);
+        });
+
+        thisObject.bindFastClick($("#hibernateButton-shutDownPanel"), function(event)
+        {
+            thisObject.hideShutDownPanel();
+            thisObject.sendRequest(RequestType.HIBERNATE);
+        });
+
 
         //////// send text /////////////////
         thisObject.bindFastClick($("#sendTextDataButton"), function(event)
@@ -635,6 +653,18 @@ var Remote = function()
 
             case RequestType.RESTART:
                 xbmcSocket.send("System.Reboot");
+                break;
+
+            case RequestType.HIBERNATE:
+                xbmcSocket.send("System.Hibernate");
+                break;
+
+            case RequestType.SUSPEND:
+                xbmcSocket.send("System.Suspend");
+                break;
+
+            case RequestType.QUIT:
+                xbmcSocket.send("Application.Quit");
                 break;
 
             case RequestType.UPDATE_LIBRARY:

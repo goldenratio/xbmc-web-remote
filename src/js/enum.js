@@ -93,5 +93,8 @@ var RequestType = new function()
 
     this.SHUTDOWN = "shutdown";
     this.RESTART = "restart";
+    this.HIBERNATE = "hibernate";
+    this.SUSPEND = "suspend";
+    this.QUIT = "quit";
 };
 
