@@ -3,7 +3,7 @@
  * @author: Karthik VJ
  **/
 
-if(ENABLE_CONSOLE == false)
+if (ENABLE_CONSOLE == false)
 {
     var console = console || {};
     console.log = function() {};
@@ -26,7 +26,7 @@ var Settings = function()
         var loc = window.location.toString();
         //console.log("loc, " + loc);
         popout = Utils.findPropertyFromString(loc, "popout");
-        if(popout == undefined)
+        if (popout == undefined)
         {
             popout = 0;
         }
@@ -41,12 +41,12 @@ var Settings = function()
         {
             thisObject.hostname = thisObject.getIPValue();
             thisObject.port = thisObject.getPortValue();
-            if(thisObject.port == "")
+            if (thisObject.port == "")
             {
                 thisObject.port = PORT_DEFAULT;
             }
 
-            if(thisObject.hostname == "" || thisObject.port == "")
+            if (thisObject.hostname == "" || thisObject.port == "")
             {
                 console.log("enter details");
                 messages.showMissingData();
@@ -59,7 +59,7 @@ var Settings = function()
             //event.preventDefault();
         });
 
-        if(isFFOS)
+        if (isFFOS)
         {
             hostTextfield = document.getElementById(SettingsElementID.IP_TEXTFIELD);
             hostTextfield.addEventListener("focus", onTextFieldFocus, false);
@@ -90,7 +90,7 @@ var Settings = function()
             event.stopPropagation();
             event.preventDefault();
 
-            if(event.handled !== true) {
+            if (event.handled !== true) {
 
                 callback();
 
@@ -123,7 +123,7 @@ var Settings = function()
 
     this.setIPValue = function(value)
     {
-        if(value == undefined)
+        if (value == undefined)
             return;
 
         var host = document.getElementById(SettingsElementID.IP_TEXTFIELD);
@@ -138,7 +138,7 @@ var Settings = function()
 
     this.setPortValue = function(value)
     {
-        if(value == undefined || value == "")
+        if (value == undefined || value == "")
             return;
 
         var port = document.getElementById(SettingsElementID.PORT_TEXTFIELD);
@@ -192,7 +192,7 @@ var Messages = function()
 
         portMsg.style.display = "none";
 
-        if(portValue == "80" || portValue == "8080")
+        if (portValue == "80" || portValue == "8080")
         {
             var portMessageText = PORT_ERROR_MESSAGE;
             portMessageText = portMessageText.replace("$port", settings.getPortValue());
@@ -249,7 +249,7 @@ function onContextMenu(e)
 
 function loadComplete()
 {
-    if(settings)
+    if (settings)
     {
         settings.init();
     }
