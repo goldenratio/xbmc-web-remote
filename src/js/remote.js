@@ -2,7 +2,7 @@
  * @author: Karthik VJ
  */
 
-if(ENABLE_CONSOLE == false)
+if (ENABLE_CONSOLE == false)
 {
     var console = console || {};
     console.log = function() {};
@@ -42,7 +42,7 @@ var Keyboard = function()
 
     var onKeyDown = function(event)
     {
-        if(thisObject.isDown)
+        if (thisObject.isDown)
         {
             console.log("key is down!");
             return;
@@ -54,7 +54,7 @@ var Keyboard = function()
         console.log("key code = " + event.keyCode + ", ctrl = " + event.ctrlKey);
         var isCtrl = event.ctrlKey || event.metaKey;
 
-        if(isCtrl == true)
+        if (isCtrl == true)
         {
             isValidKey = true;
             thisObject.isDown = false;
@@ -101,7 +101,7 @@ var Keyboard = function()
 
             case Key.ESCAPE:
                 // back
-                if(popout == 1 && window["chrome"] && window["chrome"].extension)
+                if (popout == 1 && window["chrome"] && window["chrome"].extension)
                 {
                     remote.sendRequest(RequestType.BACK);
                 }
@@ -147,7 +147,7 @@ var Keyboard = function()
             case Key.RIGHT:
                 isValidKey = true;
                 thisObject.isDown = false;
-                if(isCtrl)
+                if (isCtrl)
                 {
                     // seek forward
                     remote.sendRequest(RequestType.SEEK_FRONT);
@@ -162,7 +162,7 @@ var Keyboard = function()
             case Key.UP:
                 isValidKey = true;
                 thisObject.isDown = false;
-                if(isCtrl)
+                if (isCtrl)
                 {
                     remote.sendRequest(RequestType.VOLUME_UP);
                 }
@@ -176,7 +176,7 @@ var Keyboard = function()
             case Key.DOWN:
                 isValidKey = true;
                 thisObject.isDown = false;
-                if(isCtrl)
+                if (isCtrl)
                 {
                     remote.sendRequest(RequestType.VOLUME_DOWN);
                 }
@@ -202,7 +202,7 @@ var Keyboard = function()
                 break;
         }
 
-        if(isValidKey == true)
+        if (isValidKey == true)
         {
             event.preventDefault();
         }
@@ -242,7 +242,7 @@ var Remote = function()
         console.log("remote, onMessage " + data);
 
         var paramsData = { type : "", value: ""};
-        if(data.params)
+        if (data.params)
         {
             paramsData = data.params.data;
         }
@@ -276,7 +276,7 @@ var Remote = function()
             event.preventDefault();
             document.activeElement.blur();
 
-            if(event.handled !== true) {
+            if (event.handled !== true) {
 
                 // vibrate for button touch
                 if("vibrate" in navigator && event.type == "touchend")
@@ -517,10 +517,10 @@ var Remote = function()
                 {
                     var obj = JSON.parse(data);
                     console.log("done");
-                    if(obj.result.length > 0)
+                    if (obj.result.length > 0)
                     {
                         // in player.. something is playing
-                        for(var i = 0; i < obj.result.length; i++)
+                        for (var i = 0; i < obj.result.length; i++)
                         {
                             var params = { playerid: obj.result[i].playerid };
                             xbmcSocket.send("Player.PlayPause", params);
@@ -544,10 +544,10 @@ var Remote = function()
                 {
                     var obj = JSON.parse(data);
                     console.log("done");
-                    if(obj.result.length > 0)
+                    if (obj.result.length > 0)
                     {
                         // in player.. something is playing
-                        for(var i = 0; i < obj.result.length; i++)
+                        for (var i = 0; i < obj.result.length; i++)
                         {
                             var params = { playerid: obj.result[i].playerid };
                             xbmcSocket.send("Player.Stop", params);
@@ -565,10 +565,10 @@ var Remote = function()
                 {
                     var obj = JSON.parse(data);
                     console.log("done");
-                    if(obj.result.length > 0)
+                    if (obj.result.length > 0)
                     {
                         // in player.. something is playing
-                        for(var i = 0; i < obj.result.length; i++)
+                        for (var i = 0; i < obj.result.length; i++)
                         {
                             var params = { playerid: obj.result[i].playerid };
                             xbmcSocket.send("Player.PlayPause", params);
@@ -698,7 +698,7 @@ var Remote = function()
             $("#send_text_panel").show();
             var sendTextArea = document.getElementById("sendTeatArea");
             sendTextArea.value = "";
-            if(value != undefined)
+            if (value != undefined)
             {
                 console.log("send text, " + value);
                 sendTextArea.value = value;
@@ -716,7 +716,7 @@ var Remote = function()
             $("#send_pwd_panel").show();
             var passwordInput = document.getElementById("sendPasswordInput");
             passwordInput.value = "";
-            if(value != undefined)
+            if (value != undefined)
             {
                 console.log("password, " + value);
                 passwordInput.value = value;
@@ -737,7 +737,7 @@ var Remote = function()
     this.localDataChanged = function(host, port)
     {
         console.log("local data changed, " + host + ", " + port);
-        if(xbmcSocket)
+        if (xbmcSocket)
         {
             xbmcSocket.disconnect();
             xbmcSocket.connect(host, port, remote);
@@ -845,7 +845,7 @@ function onContextMenu(event)
 function loadComplete()
 {
 
-    if(window["chrome"] && window["chrome"].extension)
+    if (window["chrome"] && window["chrome"].extension)
     {
         console.log("chrome extension");
         background = chrome.extension.getBackgroundPage();
@@ -858,7 +858,7 @@ function loadComplete()
         event.stopPropagation();
         event.preventDefault();
 
-        if(event.handled !== true) {
+        if (event.handled !== true) {
 
             window.location.href = "settings.html?popout=" + popout;
             event.handled = true;
@@ -870,18 +870,18 @@ function loadComplete()
 
     $("#popOut").hide();
 
-    if(ALLOW_POPOUT)
+    if (ALLOW_POPOUT)
     {
         var loc = window.location.toString();
         console.log("loc, " + loc);
         popout = Utils.findPropertyFromString(loc, "popout");
 
-        if(popout == undefined)
+        if (popout == undefined)
         {
             popout = 0;
         }
 
-        if(popout == 0)
+        if (popout == 0)
         {
             $("#popOut").show();
             $("#popOut").click(showPopoutWindow);
@@ -900,14 +900,14 @@ function loadComplete()
 
 function showPopoutWindow(event)
 {
-    if(background)
+    if (background)
     {
         background.handlePopup();
     }
 
     window.close();
 
-    if(event) {
+    if (event) {
         event.preventDefault();
     }
 }
@@ -919,26 +919,26 @@ function onContentDragged(e)
 
 function connect()
 {
-    if(xbmcSocket)
+    if (xbmcSocket)
     {
         localData.getHostName(function(hostName)
         {
             var loc = window.location.toString();
             var removeCheck = Utils.findPropertyFromString(loc, "removecheck");
             console.log("hostname, " + hostName);
-            if(hostName)
+            if (hostName)
             {
                 localData.getPort(function(port)
                 {
 
                     console.log("port, " + port);
-                    if(port)
+                    if (port)
                     {
                         xbmcSocket.connect(hostName, port, remote);
                     }
                     else
                     {
-                        if(removeCheck != 1)
+                        if (removeCheck != 1)
                         {
                             window.location.href = "settings.html?popout=" + popout;
                         }
@@ -949,7 +949,7 @@ function connect()
             }
             else
             {
-                if(removeCheck != 1)
+                if (removeCheck != 1)
                 {
                     window.location.href = "settings.html?popout=" + popout;
                 }
