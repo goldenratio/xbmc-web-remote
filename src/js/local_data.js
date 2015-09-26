@@ -31,13 +31,13 @@ var LocalData = function(context)
      */
     this.storeData = function(host, port)
     {
-        if(!host || !port)
+        if (!host || !port)
         {
             console.write("host or port is undefined!");
             return;
         }
 
-        if(thisObject.isSupported())
+        if (thisObject.isSupported())
         {
             localStorage.setItem("host", host);
             localStorage.setItem("port", port);
@@ -56,7 +56,7 @@ var LocalData = function(context)
     {
 
         var host;
-        if(thisObject.isSupported())
+        if (thisObject.isSupported())
         {
             host = localStorage.getItem("host");
             callback(host);
@@ -74,7 +74,7 @@ var LocalData = function(context)
     this.getPort = function(callback)
     {
         var port;
-        if(thisObject.isSupported())
+        if (thisObject.isSupported())
         {
             port = localStorage.getItem("port");
             callback(port);
@@ -90,7 +90,7 @@ var LocalData = function(context)
      */
     this.clear = function()
     {
-        if(this.isSupported())
+        if (this.isSupported())
         {
             localStorage.clear();
         }
