@@ -16,13 +16,13 @@ function handlePopup() {
 
     var selectedRes = defaultRes;
 
-    if(navigator.platform === "Win32") {
+    if (navigator.platform === "Win32") {
         selectedRes = winRes;
     }
 
     var obj = { url: "remote.html?popout=1", focused: true, type: "popup", width: selectedRes.width, height: selectedRes.height };
 
-    if(windowID === -1) {
+    if (windowID === -1) {
         openPopup(obj);
     }
     else {
@@ -56,7 +56,7 @@ function switchWindow() {
 
 function onWindowClose(id) {
 
-    if(id === windowID) {
+    if (id === windowID) {
         windowID = -1;
         isPopupOpen = false;
 
@@ -66,7 +66,7 @@ function onWindowClose(id) {
 
 function onActionIconClicked(tab) {
 
-    if(isPopupOpen === true) {
+    if (isPopupOpen === true) {
         switchWindow();
     }
 }
