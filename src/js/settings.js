@@ -11,15 +11,20 @@ if (ENABLE_CONSOLE == false)
 
 var Settings = function()
 {
+    var DEFAULT_DISPLAY_NAME = "Living Room TV";
+    var DEFAULT_PORT = "9090";
+
     var thisObject = this;
 
-    this.hostName;
-    this.port;
-
     var popout = 0;
+
+    var displayNameTextField;
     var hostTextfield;
     var portTextfield;
-    var isFFOS = ("mozApps" in navigator && navigator.userAgent.search("Mobile") != -1);
+
+    var mediaListJSON = {};
+
+    var connectionDetails = {"host" : null, "port": DEFAULT_PORT};
 
     this.init = function()
     {
@@ -37,16 +42,46 @@ var Settings = function()
             //event.preventDefault();
         });
 
-        thisObject.bindFastClick($("#" + SettingsElementID.SAVE_BUTTON), function(event)
+        thisObject.bindFastClick($("#" + SettingsElementID.DELTE_BUTTON), function(event)
         {
-            thisObject.hostname = thisObject.getIPValue();
-            thisObject.port = thisObject.getPortValue();
-            if (thisObject.port == "")
+            console.log("delete this media center data!");
+            messages.hideAll();
+            var mediaData = thisObject.getMediaDataFromDisplayName(displayNameTextField.value);
+            if(mediaData)
             {
-                thisObject.port = PORT_DEFAULT;
+                localData.deleteDataFromMediaList(mediaData);
+                if(connectionDetails.host == mediaData.host && connectionDetails.port == mediaData.port)
+                {
+                    localData.deleteHostAndPort();
+                }
+
+                // clear settings TF
+                displayNameTextField.value = "";
+                hostTextfield.value = "";
+                portTextfield.value = "";
+
+                thisObject.updateInitialTextFields();
+
+            }
+            else
+            {
+                console.log("no media selected, cannot delete!");
             }
 
-            if (thisObject.hostname == "" || thisObject.port == "")
+        });
+
+        thisObject.bindFastClick($("#" + SettingsElementID.SAVE_BUTTON), function(event)
+        {
+            var hostname = thisObject.getIPValue();
+            var port = thisObject.getPortValue();
+            var displayName = thisObject.getDisplayNameValue();
+
+            if (port == "")
+            {
+                port = DEFAULT_PORT;
+            }
+
+            if (hostname == "" || port == "")
             {
                 console.log("enter details");
                 messages.showMissingData();
@@ -54,27 +89,57 @@ var Settings = function()
             }
 
             messages.showWaitMessage();
-            //localData.storeData(thisObject.hostname, thisObject.port);
-            socket.connect(thisObject.hostname, thisObject.port, thisObject);
-            //event.preventDefault();
+            socket.connect(hostname, port, thisObject);
+
+
         });
 
-        if (isFFOS)
+        displayNameTextField = document.getElementById(SettingsElementID.DISPLAY_NAME_TEXTFIELD);
+        hostTextfield = document.getElementById(SettingsElementID.IP_TEXTFIELD);
+        portTextfield = document.getElementById(SettingsElementID.PORT_TEXTFIELD);
+
+        $(displayNameTextField).bind("input", function (e) {
+
+            //console.log(displayNameTextField.value);
+            var mediaData = thisObject.getMediaDataFromDisplayName(displayNameTextField.value);
+            if(mediaData)
+            {
+                messages.hideAll();
+                console.log(mediaData);
+                hostTextfield.value = mediaData.host;
+                portTextfield.value = mediaData.port;
+            }
+
+        });
+
+
+        thisObject.updateInitialTextFields();
+    };
+
+    this.getMediaDataFromDisplayName = function(displayName)
+    {
+        if(!mediaListJSON["mediaList"])
         {
-            hostTextfield = document.getElementById(SettingsElementID.IP_TEXTFIELD);
-            hostTextfield.addEventListener("focus", onTextFieldFocus, false);
-
-            portTextfield = document.getElementById(SettingsElementID.PORT_TEXTFIELD);
-            portTextfield.addEventListener("focus", onTextFieldFocus, false);
-
-            portTextfield.placeholder = "";
-            portTextfield.value = PORT_DEFAULT;
-
+            return null;
         }
 
+        var mediaList = mediaListJSON["mediaList"];
+        for(var i = 0; i < mediaList.length; i++)
+        {
+            if(displayName == mediaList[i].displayName)
+            {
+                return mediaList[i];
+            }
+        }
+        return null;
+    };
+
+    this.updateInitialTextFields = function()
+    {
         localData.getHostName(thisObject.setIPValue);
         localData.getPort(thisObject.setPortValue);
 
+        localData.getMediaList(thisObject.setDisplayNameList);
     };
 
     var onTextFieldFocus = function(event)
@@ -117,8 +182,7 @@ var Settings = function()
 
     this.getIPValue = function()
     {
-        var value = document.getElementById(SettingsElementID.IP_TEXTFIELD).value;
-        return value;
+        return document.getElementById(SettingsElementID.IP_TEXTFIELD).value;
     };
 
     this.setIPValue = function(value)
@@ -128,12 +192,17 @@ var Settings = function()
 
         var host = document.getElementById(SettingsElementID.IP_TEXTFIELD);
         host.value = value;
+        connectionDetails.host = value;
     };
 
     this.getPortValue = function()
     {
-        var value = document.getElementById(SettingsElementID.PORT_TEXTFIELD).value;
-        return value;
+        return document.getElementById(SettingsElementID.PORT_TEXTFIELD).value || DEFAULT_PORT;
+    };
+
+    this.getDisplayNameValue = function()
+    {
+        return displayNameTextField.value || DEFAULT_DISPLAY_NAME;
     };
 
     this.setPortValue = function(value)
@@ -143,14 +212,58 @@ var Settings = function()
 
         var port = document.getElementById(SettingsElementID.PORT_TEXTFIELD);
         port.value = value;
+
+        connectionDetails.port = value;
+    };
+
+    this.setDisplayNameList = function(value)
+    {
+        if (value == undefined || value == "")
+            return;
+
+        mediaListJSON = JSON.parse(value);
+
+        console.log(mediaListJSON);
+
+        var dataList = document.getElementById("displayNameList");
+        var mediaList = mediaListJSON.mediaList;
+        var options = "";
+
+        var host = thisObject.getIPValue();
+        var port = thisObject.getPortValue();
+        //var displayName = thisObject.getDisplayNameValue();
+        var selectedDisplayName = "";
+
+        for(var i = 0; i < mediaList.length; i++)
+        {
+            options += '<option value="' + mediaList[i].displayName + '" />';
+            if(mediaList[i].host == host && mediaList[i].port == port)
+            {
+                selectedDisplayName = mediaList[i].displayName;
+            }
+        }
+
+        dataList.innerHTML = options;
+        if(selectedDisplayName != "")
+        {
+            displayNameTextField.value = selectedDisplayName;
+        }
     };
 
     this.onConnect = function()
     {
+        var hostname = thisObject.getIPValue();
+        var port = thisObject.getPortValue();
+        var displayName = thisObject.getDisplayNameValue();
+
+        console.log("socket success!");
         messages.showConnectionSuccess();
 
         // store to local data
-        localData.storeData(thisObject.hostname, thisObject.port);
+        localData.storeData(hostname, port);
+        localData.storeMediaList(displayName, hostname, port);
+
+        thisObject.updateInitialTextFields();
 
     };
 
@@ -159,9 +272,14 @@ var Settings = function()
         console.log("settings, onMessage " + data);
     };
 
-    this.onClose = function()
+    this.onClose = function(socketClosedWantedly)
     {
-        messages.showConnectionFail();
+        if(socketClosedWantedly == false)
+        {
+            console.log("socket close!");
+            messages.showConnectionFail();
+        }
+
     };
 };
 

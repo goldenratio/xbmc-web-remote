@@ -500,7 +500,30 @@ var Remote = function()
         $("#power").addClass("power_on");
         $("#power").removeClass("power_off");
 
+        // show media display name
+        localData.getMediaList(thisObject.onMediaListReceived);
+
         window.onbeforeunload = thisObject.closeSocket;
+    };
+
+    this.onMediaListReceived = function(mediaRawData)
+    {
+        if (mediaRawData == undefined || mediaRawData == "")
+            return;
+
+
+        var mediaListJSON = JSON.parse(mediaRawData);
+        var mediaList = mediaListJSON.mediaList;
+        for(var i = 0; i < mediaList.length; i++)
+        {
+            if(connectionDetails.host == mediaList[i].host && connectionDetails.port == mediaList[i].port)
+            {
+                // found
+                console.log("found.. " + mediaList[i].displayName);
+                document.getElementById("media_display_name").innerHTML = mediaList[i].displayName;
+                break;
+            }
+        }
     };
 
     /**
@@ -740,6 +763,9 @@ var Remote = function()
         if (xbmcSocket)
         {
             xbmcSocket.disconnect();
+            connectionDetails.host = host;
+            connectionDetails.port = port;
+
             xbmcSocket.connect(host, port, remote);
         }
         else
@@ -831,6 +857,7 @@ var localData = new LocalData(remote);
 var popout = 0;
 var background;
 
+var connectionDetails = {"host" : null, "port": 9090};
 
 ////////////////
 
@@ -934,6 +961,8 @@ function connect()
                     console.log("port, " + port);
                     if (port)
                     {
+                        connectionDetails.host = hostName;
+                        connectionDetails.port = port;
                         xbmcSocket.connect(hostName, port, remote);
                     }
                     else

@@ -4,6 +4,11 @@
 
 var XBMCSocket = function()
 {
+    /**
+     * @type {XBMCSocket}
+     */
+    var thisObject = this;
+
     this.socket;
     this.path;
     this.isConnected = false;
@@ -11,10 +16,9 @@ var XBMCSocket = function()
     this.context;
     this.callback;
 
-    /**
-     * @type {XBMCSocket}
-     */
-    var thisObject = this;
+    var isSecondConnectionWaiting = false;
+    var socketClosedWantedly = false;
+
 
     /**
      * Create web socket handshake
@@ -25,6 +29,7 @@ var XBMCSocket = function()
     this.connect = function(host, port, context)
     {
         thisObject.path = "ws://" + host + ":" + port + "/jsonrpc";
+        thisObject.context = context;
 
         if(!thisObject.path)
         {
@@ -40,9 +45,21 @@ var XBMCSocket = function()
 
         if(thisObject.socket)
         {
+            console.log("wait for it, socket is closing!");
+            isSecondConnectionWaiting = true;
+            socketClosedWantedly = true;
             thisObject.socket.close();
+            return;
         }
-        thisObject.context = context;
+
+        performSocketConnection();
+
+    };
+
+    var performSocketConnection = function()
+    {
+        isSecondConnectionWaiting = false;
+        socketClosedWantedly = false;
 
         try
         {
@@ -56,7 +73,6 @@ var XBMCSocket = function()
         {
             alert(error.message);
         }
-
 
     };
 
@@ -159,7 +175,12 @@ var XBMCSocket = function()
 
         if(thisObject.context)
         {
-            thisObject.context.onClose();
+            thisObject.context.onClose(socketClosedWantedly);
+        }
+
+        if(isSecondConnectionWaiting)
+        {
+            performSocketConnection();
         }
 
     };

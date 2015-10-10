@@ -2,8 +2,6 @@
  * @author: Karthik VJ
  */
 
-var PORT_DEFAULT = 9090;
-
 // enable / disable console log
 var ENABLE_CONSOLE = false;
 
@@ -61,9 +59,11 @@ var SettingsElementID = new function()
 
     this.IP_TEXTFIELD = "ipValue";
     this.PORT_TEXTFIELD = "portValue";
+    this.DISPLAY_NAME_TEXTFIELD = "displayNameValue";
 
     this.SAVE_BUTTON = "saveButton";
     this.BACK_BUTTON = "backButton";
+    this.DELTE_BUTTON = "deleteButton";
 };
 
 var RequestType = new function()
