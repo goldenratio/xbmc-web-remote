@@ -461,11 +461,27 @@ var Remote = function()
 
         });
 
+        $('#sendTeatArea').keypress(function (event)
+        {
+
+            var sendText = document.getElementById("sendTeatArea").value;
+            var params;
+
+            // enter key
+            if (event.which == Key.ENTER)
+            {
+                params = { text: sendText, done: true };
+                xbmcSocket.send("Input.SendText", params);
+
+                return false;
+            }
+        });
+
         thisObject.bindFastClick($("#backDataButton"), function(event)
         {
             thisObject.hideSendPanel();
 
-            var sendText = document.getElementById("sendTeatArea").value;
+            var sendText = ""; //document.getElementById("sendTeatArea").value;
 
             var params = { text: sendText, done: true };
             xbmcSocket.send("Input.SendText", params);
