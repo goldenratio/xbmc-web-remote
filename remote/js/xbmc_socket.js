@@ -27,7 +27,7 @@ thisObject.callback=callback;var data={jsonrpc:"2.0",method:method,id:"1"};if(pa
 if(thisObject.isPending==true)
 {console.warn("a request is still pending!");return;}
 thisObject.isPending=true;console.log(method+" >> "+JSON.stringify(data));thisObject.socket.send(JSON.stringify(data));};var onClose=function(event)
-{console.log("socket closed!");thisObject.isPending=false;thisObject.isConnected=false;if(thisObject.context)
+{console.log("socket closed!");thisObject.isPending=false;thisObject.isConnected=false;thisObject.socket=null;if(thisObject.context)
 {thisObject.context.onClose(socketClosedWantedly);}
 if(isSecondConnectionWaiting)
 {performSocketConnection();}};};
