@@ -259,6 +259,17 @@ body
     box-shadow: 0px 0px 2px 1px #4f5459, 0px 0px 10px 5px #111111 inset;
 }
 
+#media_display_name
+{
+    color: #bcbcbc;
+    padding-left: 8px;
+    float: left;
+    line-height: 25px;
+    width: 90px;
+    height: 25px;
+    overflow: hidden;
+    cursor: default;
+}
 #settings_new
 {
     width: 30px;

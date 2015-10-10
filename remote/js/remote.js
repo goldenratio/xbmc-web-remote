@@ -80,7 +80,11 @@ callback();event.handled=true;}else{return false;}});};this.offFastClick=functio
 {thisObject.hideSendPanel();var sendText=document.getElementById("sendTeatArea").value;var params={text:sendText,done:true};xbmcSocket.send("Input.SendText",params);});thisObject.bindFastClick($("#backDataButton"),function(event)
 {thisObject.hideSendPanel();var sendText=document.getElementById("sendTeatArea").value;var params={text:sendText,done:true};xbmcSocket.send("Input.SendText",params);});thisObject.bindFastClick($("#sendPasswordDataButton"),function(event)
 {thisObject.hideSendPanel();var sendPassword=document.getElementById("sendPasswordInput").value;var params={text:sendPassword,done:true};xbmcSocket.send("Input.SendText",params);});thisObject.bindFastClick($("#backPasswordDataButton"),function(event)
-{thisObject.hideSendPanel();var sendPassword=document.getElementById("sendPasswordInput").value;var params={text:sendPassword,done:true};xbmcSocket.send("Input.SendText",params);});$("#power").addClass("power_on");$("#power").removeClass("power_off");window.onbeforeunload=thisObject.closeSocket;};this.sendRequest=function(type)
+{thisObject.hideSendPanel();var sendPassword=document.getElementById("sendPasswordInput").value;var params={text:sendPassword,done:true};xbmcSocket.send("Input.SendText",params);});$("#power").addClass("power_on");$("#power").removeClass("power_off");localData.getMediaList(thisObject.onMediaListReceived);window.onbeforeunload=thisObject.closeSocket;};this.onMediaListReceived=function(mediaRawData)
+{if(mediaRawData==undefined||mediaRawData=="")
+return;var mediaListJSON=JSON.parse(mediaRawData);var mediaList=mediaListJSON.mediaList;for(var i=0;i<mediaList.length;i++)
+{if(connectionDetails.host==mediaList[i].host&&connectionDetails.port==mediaList[i].port)
+{console.log("found.. "+mediaList[i].displayName);document.getElementById("media_display_name").innerHTML=mediaList[i].displayName;break;}}};this.sendRequest=function(type)
 {var params;switch(type)
 {case RequestType.PLAY:xbmcSocket.send("Player.GetActivePlayers",null,function(data)
 {var obj=JSON.parse(data);console.log("done");if(obj.result.length>0)
@@ -107,12 +111,12 @@ sendTextArea.focus();keyboard.dispose();});};this.showSendPasswordPanel=function
 passwordInput.focus();keyboard.dispose();});};this.hideSendPanel=function()
 {$("#send_text_panel").hide();$("#send_pwd_panel").hide();$("#main, #footer").fadeTo("fast",1);keyboard.init();};this.localDataChanged=function(host,port)
 {console.log("local data changed, "+host+", "+port);if(xbmcSocket)
-{xbmcSocket.disconnect();xbmcSocket.connect(host,port,remote);}
+{xbmcSocket.disconnect();connectionDetails.host=host;connectionDetails.port=port;xbmcSocket.connect(host,port,remote);}
 else
 {console.log("socket do not exist!");}};this.dispose=function()
 {console.log("dispose");thisObject.offFastClick($("#info"));thisObject.offFastClick($("#osd"));thisObject.offFastClick($("#back"));thisObject.offFastClick($("#menu"));thisObject.offFastClick($("#selectButton"));thisObject.offFastClick($("#upArrow"));thisObject.offFastClick($("#downArrow"));thisObject.offFastClick($("#leftArrow"));thisObject.offFastClick($("#rightArrow"));thisObject.offFastClick($("#pause"));thisObject.offFastClick($("#stop"));thisObject.offFastClick($("#play"));thisObject.offFastClick($("#backward"));thisObject.offFastClick($("#forward"));thisObject.offFastClick($("#prevTrack"));thisObject.offFastClick($("#nextTrack"));thisObject.offFastClick($("#power"));thisObject.offFastClick($("#mute"));thisObject.offFastClick($("#context_menu"));thisObject.offFastClick($("#update_library"));thisObject.offFastClick($("#sendTextButton"));thisObject.offFastClick($("#backDataButton"));thisObject.offFastClick($("#sendTextDataButton"));};this.closeSocket=function()
 {xbmcSocket.disconnect();};this.onClose=function()
-{keyboard.dispose();thisObject.dispose();$("#power").addClass("power_off");$("#power").removeClass("power_on");setTimeout(connect,RECONNECT_TIME_DELAY);};};var remote=new Remote();var keyboard=new Keyboard();var xbmcSocket=new XBMCSocket();var localData=new LocalData(remote);var popout=0;var background;window.addEventListener("load",loadComplete,false);window.addEventListener("contextmenu",onContextMenu,false);function onContextMenu(event)
+{keyboard.dispose();thisObject.dispose();$("#power").addClass("power_off");$("#power").removeClass("power_on");setTimeout(connect,RECONNECT_TIME_DELAY);};};var remote=new Remote();var keyboard=new Keyboard();var xbmcSocket=new XBMCSocket();var localData=new LocalData(remote);var popout=0;var background;var connectionDetails={"host":null,"port":9090};window.addEventListener("load",loadComplete,false);window.addEventListener("contextmenu",onContextMenu,false);function onContextMenu(event)
 {event.preventDefault();}
 function loadComplete()
 {if(window["chrome"]&&window["chrome"].extension)
@@ -136,7 +140,7 @@ function connect()
 {var loc=window.location.toString();var removeCheck=Utils.findPropertyFromString(loc,"removecheck");console.log("hostname, "+hostName);if(hostName)
 {localData.getPort(function(port)
 {console.log("port, "+port);if(port)
-{xbmcSocket.connect(hostName,port,remote);}
+{connectionDetails.host=hostName;connectionDetails.port=port;xbmcSocket.connect(hostName,port,remote);}
 else
 {if(removeCheck!=1)
 {window.location.href="settings.html?popout="+popout;}}});}

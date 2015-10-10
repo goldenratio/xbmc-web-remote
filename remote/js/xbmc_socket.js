@@ -1,13 +1,14 @@
 /* (c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote */
 var XBMCSocket=function()
-{this.socket;this.path;this.isConnected=false;this.isPending=false;this.context;this.callback;var thisObject=this;this.connect=function(host,port,context)
-{thisObject.path="ws://"+host+":"+port+"/jsonrpc";if(!thisObject.path)
+{var thisObject=this;this.socket;this.path;this.isConnected=false;this.isPending=false;this.context;this.callback;var isSecondConnectionWaiting=false;var socketClosedWantedly=false;this.connect=function(host,port,context)
+{thisObject.path="ws://"+host+":"+port+"/jsonrpc";thisObject.context=context;if(!thisObject.path)
 {alert("host is not configured!");return;}
 if(!window.WebSocket)
 {alert("Web socket is not supported in your browser!");return;}
 if(thisObject.socket)
-{thisObject.socket.close();}
-thisObject.context=context;try
+{console.log("wait for it, socket is closing!");isSecondConnectionWaiting=true;socketClosedWantedly=true;thisObject.socket.close();return;}
+performSocketConnection();};var performSocketConnection=function()
+{isSecondConnectionWaiting=false;socketClosedWantedly=false;try
 {thisObject.socket=new WebSocket(thisObject.path);thisObject.socket.onopen=onOpen;thisObject.socket.onerror=onError;thisObject.socket.onmessage=onMessage;thisObject.socket.onclose=onClose;}
 catch(error)
 {alert(error.message);}};this.disconnect=function()
@@ -27,4 +28,6 @@ if(thisObject.isPending==true)
 {console.warn("a request is still pending!");return;}
 thisObject.isPending=true;console.log(method+" >> "+JSON.stringify(data));thisObject.socket.send(JSON.stringify(data));};var onClose=function(event)
 {console.log("socket closed!");thisObject.isPending=false;thisObject.isConnected=false;if(thisObject.context)
-{thisObject.context.onClose();}};};
+{thisObject.context.onClose(socketClosedWantedly);}
+if(isSecondConnectionWaiting)
+{performSocketConnection();}};};
