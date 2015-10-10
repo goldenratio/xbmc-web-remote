@@ -173,6 +173,8 @@ var XBMCSocket = function()
         thisObject.isPending = false;
         thisObject.isConnected = false;
 
+        thisObject.socket = null;
+
         if(thisObject.context)
         {
             thisObject.context.onClose(socketClosedWantedly);
