@@ -200,6 +200,16 @@ var Keyboard = function()
                 thisObject.isDown = false;
                 remote.sendRequest(RequestType.VOLUME_DOWN);
                 break;
+
+            case Key.SKIP_NEXT:
+                isValidKey = true;
+                remote.sendRequest(RequestType.SKIP_NEXT);
+                break;
+
+            case Key.SKIP_PREVIOUS:
+                isValidKey = true;
+                remote.sendRequest(RequestType.SKIP_PREVIOUS);
+                break;
         }
 
         if (isValidKey == true)
@@ -374,16 +384,12 @@ var Remote = function()
 
         thisObject.bindFastClick($("#prevTrack"), function(event)
         {
-            var params = { action: "skipprevious" };
-            xbmcSocket.send("Input.ExecuteAction", params);
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.SKIP_PREVIOUS);
         });
 
         thisObject.bindFastClick($("#nextTrack"), function(event)
         {
-            var params = { action: "skipnext" };
-            xbmcSocket.send("Input.ExecuteAction", params);
-            //event.preventDefault();
+            thisObject.sendRequest(RequestType.SKIP_NEXT);
         });
 
 
@@ -708,6 +714,16 @@ var Remote = function()
 
             case RequestType.UPDATE_LIBRARY:
                 xbmcSocket.send("VideoLibrary.Scan");
+                break;
+
+            case RequestType.SKIP_NEXT:
+                params = { action: "skipnext" };
+                xbmcSocket.send("Input.ExecuteAction", params);
+                break;
+
+            case RequestType.SKIP_PREVIOUS:
+                params = { action: "skipprevious" };
+                xbmcSocket.send("Input.ExecuteAction", params);
                 break;
 
         }

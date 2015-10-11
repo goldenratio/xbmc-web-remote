@@ -27,6 +27,9 @@ var Key = new function()
     this.ESCAPE = 27;
     this.CTRL = 17;
 
+    this.SKIP_NEXT = 221;
+    this.SKIP_PREVIOUS = 219;
+
     this.INFO = 73; // i
     this.STOP = 88; // x
     this.MENU = 72; // h
@@ -85,6 +88,9 @@ var RequestType = new function()
 
     this.SEEK_BACK = "seek_back";
     this.SEEK_FRONT = "seek_front";
+
+    this.SKIP_NEXT = "skip_next";
+    this.SKIP_PREVIOUS = "skip_previous";
 
     this.VOLUME_UP = "volume_up";
     this.VOLUME_DOWN = "volume_down";
