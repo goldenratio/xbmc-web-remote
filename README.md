@@ -3,7 +3,7 @@ Kassi - Kodi/XBMC Remote Control (Unofficial)
 
 XBMC Remote Control using Web Sockets. (Frodo v12 and above)
 
-[![Build Status](https://travis-ci.org/goldenratio/xbmc-web-remote.png?branch=master)](https://travis-ci.org/goldenratio/xbmc-web-remote)
+[![Build Status](https://travis-ci.org/goldenratio/xbmc-web-remote.svg?branch=master)](https://travis-ci.org/goldenratio/xbmc-web-remote)
 
 **Live Web Demo:** http://goldenratio.github.io/xbmc-web-remote/remote/remote.html
 
