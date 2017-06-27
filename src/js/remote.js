@@ -541,8 +541,9 @@ var Remote = function()
             if(connectionDetails.host == mediaList[i].host && connectionDetails.port == mediaList[i].port)
             {
                 // found
-                console.log("found.. " + mediaList[i].displayName);
-                document.getElementById("media_display_name").innerHTML = mediaList[i].displayName;
+                var displayName = mediaList[i].displayName;
+                console.log("found.. " + displayName);
+                document.getElementById("media_display_name").textContent = displayName;
                 break;
             }
         }

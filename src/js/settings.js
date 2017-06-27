@@ -227,23 +227,25 @@ var Settings = function()
 
         var dataList = document.getElementById("displayNameList");
         var mediaList = mediaListJSON.mediaList;
-        var options = "";
 
         var host = thisObject.getIPValue();
         var port = thisObject.getPortValue();
-        //var displayName = thisObject.getDisplayNameValue();
         var selectedDisplayName = "";
 
         for(var i = 0; i < mediaList.length; i++)
         {
-            options += '<option value="' + mediaList[i].displayName + '" />';
+            var displayName = mediaList[i].displayName;
+            var opt = document.createElement("option");
+            opt.setAttribute("value", displayName);
+
+            dataList.appendChild(opt);
+
             if(mediaList[i].host == host && mediaList[i].port == port)
             {
-                selectedDisplayName = mediaList[i].displayName;
+                selectedDisplayName = displayName;
             }
         }
 
-        dataList.innerHTML = options;
         if(selectedDisplayName != "")
         {
             displayNameTextField.value = selectedDisplayName;
