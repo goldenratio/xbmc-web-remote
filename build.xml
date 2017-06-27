@@ -59,39 +59,39 @@
 
     <target name="_js-min_web" if="${js.min}">
         <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
-            <fileset dir="${web.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+            <fileset dir="${web.folder}/${project_name}" includes="**/*.js" excludes="**/*.min.js" />
         </jsmin>
     </target>
 
     <target name="_js-min_chrome" if="${js.min}">
         <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
-            <fileset dir="${chrome_extension.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+            <fileset dir="${chrome_extension.folder}/${project_name}" includes="**/*.js" excludes="**/*.min.js" />
         </jsmin>
     </target>
 
     <target name="_js-min_opera-next" if="${js.min}">
         <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
-            <fileset dir="${opera_next.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+            <fileset dir="${opera_next.folder}/${project_name}" includes="**/*.js" excludes="**/*.min.js" />
         </jsmin>
     </target>
 
 
     <target name="_js-min_firefox_os_app" if="${js.min}">
         <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
-            <fileset dir="${firefox_app.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+            <fileset dir="${firefox_app.folder}/${project_name}" includes="**/*.js" excludes="**/*.min.js" />
         </jsmin>
     </target>
 
     <target name="_js-min_opera_legacy" if="${js.min}">
         <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
-            <fileset dir="${opera_legacy.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+            <fileset dir="${opera_legacy.folder}/${project_name}" includes="**/*.js" excludes="**/*.min.js" />
         </jsmin>
     </target>
 
 
     <target name="_js-min_ubuntu_app" if="${js.min}">
         <jsmin force="true" copyright="(c) 2013 Karthikeyan VJ https://github.com/goldenratio/xbmc-web-remote">
-            <fileset dir="${ubuntu_app.folder}/${project_name}" includes="**/*.js" excludes="**/jquery-1.9.1.min.js" />
+            <fileset dir="${ubuntu_app.folder}/${project_name}" includes="**/*.js" excludes="**/*.min.js" />
         </jsmin>
     </target>
 

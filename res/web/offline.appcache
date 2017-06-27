@@ -39,7 +39,7 @@ css/remote.css
 js/about.js
 js/background.js
 js/enum.js
-js/jquery-1.9.1.min.js
+js/jquery-3.2.1.min.js
 js/local_data.js
 js/remote.js
 js/settings.js
