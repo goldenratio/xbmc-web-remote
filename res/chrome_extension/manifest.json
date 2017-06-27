@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Kassi - Kodi/XBMC Remote",
-  "description": "Kassi is a Kodi/XBMC Remote Control for Chrome",
+  "description": "Kassi is a Kodi/XBMC Remote Control",
   "version": "@build_version",
   "permissions": [ "storage" ],
 
