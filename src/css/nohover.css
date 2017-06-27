@@ -4,36 +4,20 @@
 }
 .sub_circle:hover
 {
-    background: -webkit-linear-gradient(top, #ffffff 0%, #c5c5c5 100%);
-    background: -webkit-gradient(top, #ffffff 0%, #c5c5c5 100%);
-    background: -moz-linear-gradient(top, #ffffff 0%, #c5c5c5 100%);
-    background: -o-linear-gradient(top, #ffffff 0%, #c5c5c5 100%);
-    background: -ms-linear-gradient(top, #ffffff 0%, #c5c5c5 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #c5c5c5 100%);
 }
 
 .select:hover, .right_arrow:hover, .left_arrow:hover, .up_arrow:hover, .down_arrow:hover
 {
-    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
+    background: linear-gradient(to bottom, #505358 0%, #1e1e1e 100%);
 }
 
 #backward:hover, #play:hover, #forward:hover, #prevTrack:hover, #stop:hover, #pause:hover, #nextTrack:hover, #settings_new:hover
 {
-    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
+    background: linear-gradient(to bottom, #505358 0%, #1e1e1e 100%);
 }
 
 .power_on:hover
 {
-    background: -webkit-linear-gradient(top, #15d218 0%, #165216 100%);
-    background: -webkit-gradient(top, #15d218 0%, #165216 100%);
-    background: -moz-linear-gradient(top, #15d218 0%, #165216 100%);
-    background: -o-linear-gradient(top, #15d218 0%, #165216 100%);
-    background: -ms-linear-gradient(top, #15d218 0%, #165216 100%);
+    background: linear-gradient(to bottom, #15d218 0%, #165216 100%);
 }

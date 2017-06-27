@@ -16,11 +16,6 @@ body
     color: #FFFFFF;
     font-size: 12px;
 
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 
@@ -38,7 +33,6 @@ body
 {
     width: 100%;
     height: 100%;
-    display: block;
 
     left: 0;
     top: 0;
@@ -54,7 +48,6 @@ body
 {
     width: 100%;
     height: 100%;
-    display: block;
 
     left: 0;
     top: 0;
@@ -68,11 +61,7 @@ body
 {
     width: 320px;
     border-radius: 15px;
-    background: -webkit-linear-gradient(top, #45484d 0%, #141414 100%);
-    background: -webkit-gradient(top, #45484d 0%, #141414 100%);
-    background: -moz-linear-gradient(top, #45484d 0%, #141414 100%);
-    background: -o-linear-gradient(top, #45484d 0%, #141414 100%);
-    background: -ms-linear-gradient(top, #45484d 0%, #141414 100%);
+    background: linear-gradient(to bottom, #45484d 0%, #141414 100%);
     border: 1px solid #121212;
     box-shadow: 0 1px #747474 inset;
 }
@@ -367,14 +356,9 @@ body
     height: 40px;
     display: block;
     border-radius: 50px 0px 0px 50px;
-    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-
+    background: linear-gradient(to bottom, #505358 0%, #1e1e1e 100%);
     border: 1px solid #000000;
-    box-shadow: 0px 0px 2px 1px #4f5459, 0px 0px 10px 2px #111111 inset;
+    box-shadow: 0 0 2px 1px #4f5459, 0 0 10px 2px #111111 inset;
     cursor: pointer;
     float: left;
 }
@@ -391,16 +375,11 @@ body
     width: 62px;
     height: 40px;
     display: block;
-    border-radius: 0px 0px 0px 0px;
+    border-radius: 0;
 
-    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-
+    background: linear-gradient(to bottom, #505358 0%, #1e1e1e 100%);
     border: 1px solid #000000;
-    box-shadow: 0px 0px 2px 1px #4f5459, 0px 0px 10px 2px #111111 inset;
+    box-shadow: 0 0 2px 1px #4f5459, 0 0 10px 2px #111111 inset;
     cursor: pointer;
     float: left;
 }
@@ -418,16 +397,11 @@ body
     width: 62px;
     height: 40px;
     display: block;
-    border-radius: 0px 0px 0px 0px;
+    border-radius: 0;
 
-    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-
+    background: linear-gradient(to bottom, #505358 0%, #1e1e1e 100%);
     border: 1px solid #000000;
-    box-shadow: 0px 0px 2px 1px #4f5459, 0px 0px 10px 2px #111111 inset;
+    box-shadow: 0 0 2px 1px #4f5459, 0 0 10px 2px #111111 inset;
     cursor: pointer;
     float: left;
 
@@ -446,15 +420,11 @@ body
     height: 40px;
     display: block;
 
-    border-radius: 0px 50px 50px 0px;
-    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
+    border-radius: 0 50px 50px 0;
+    background: linear-gradient(to bottom, #505358 0%, #1e1e1e 100%);
 
     border: 1px solid #000000;
-    box-shadow: 0px 0px 2px 1px #4f5459, 0px 0px 10px 2px #111111 inset;
+    box-shadow: 0 0 2px 1px #4f5459, 0 0 10px 2px #111111 inset;
     cursor: pointer;
     float: left;
 }
@@ -465,7 +435,6 @@ body
     height: 60px;
     float: left;
     display: block;
-    /*background-color: blue;*/
 }
 
 .gap_sub_2
@@ -474,17 +443,15 @@ body
     height: 70px;
     float: left;
     display: block;
-    /*background-color: blue;*/
 }
 
 .sub_title
 {
     height: 20px;
-    /*background-color: blue;*/
     text-align: center;
     text-transform: uppercase;
     color: #FFFFFF;
-    text-shadow: 0px 0px 5px #000000;
+    text-shadow: 0 0 5px #000000;
     font-size: 10px;
     cursor: default;
     display: block;
@@ -493,7 +460,6 @@ body
 .sub_title_2
 {
     height: 20px;
-    /*background-color: blue;*/
     text-align: center;
     text-transform: uppercase;
     color: #6a6a6a;
@@ -507,7 +473,6 @@ body
 .sub_top_gap
 {
     height: 10px;
-    /*background-color: blue;*/
     text-align: center;
     display: block;
 }
@@ -524,34 +489,21 @@ body
     display: block;
     border-radius: 20px 20px 20px 20px;
 
-    background: -webkit-linear-gradient(top, #ffffff 0%, #c5c5c5 100%);
-    background: -webkit-gradient(top, #ffffff 0%, #c5c5c5 100%);
-    background: -moz-linear-gradient(top, #ffffff 0%, #c5c5c5 100%);
-    background: -o-linear-gradient(top, #ffffff 0%, #c5c5c5 100%);
-    background: -ms-linear-gradient(top, #ffffff 0%, #c5c5c5 100%);
-
+    background: linear-gradient(to bottom, #ffffff 0%, #c5c5c5 100%);
     border: 1px solid #1d1d1d;
-    box-shadow: 0px 0px 15px 0.5px #000000;
+    box-shadow: 0 0 15px 1px #000000;
     cursor: pointer;
     margin: auto;
 }
 
 .sub_circle:hover
 {
-    background: -webkit-linear-gradient(top, #ff833c 0%, #8f4824 100%);
-    background: -webkit-gradient(top, #ff833c 0%, #8f4824 100%);
-    background: -moz-linear-gradient(top, #ff833c 0%, #8f4824 100%);
-    background: -o-linear-gradient(top, #ff833c 0%, #8f4824 100%);
-    background: -ms-linear-gradient(top, #ff833c 0%, #8f4824 100%);
+    background: linear-gradient(to bottom, #ff833c 0%, #8f4824 100%);
 }
 
 .sub_circle:active
 {
-    background: -webkit-linear-gradient(top, #ff4d26 0%, #8f4824 100%);
-    background: -webkit-gradient(top, #ff4d26 0%, #8f4824 100%);
-    background: -moz-linear-gradient(top, #ff4d26 0%, #8f4824 100%);
-    background: -o-linear-gradient(top, #ff4d26 0%, #8f4824 100%);
-    background: -ms-linear-gradient(top, #ff4d26 0%, #8f4824 100%);
+    background: linear-gradient(to bottom, #ff4d26 0%, #8f4824 100%);
 }
 
 .sub_whole
@@ -576,15 +528,10 @@ body
     height: 60px;
 
     border-radius: 40px 40px 6px 6px;
-    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-
+    background: linear-gradient(to bottom, #505358 0%, #1e1e1e 100%);
     border: 1px solid #000000;
 
-    box-shadow: 0px 0px 2px 1px #24262b, 0px 0px 10px 2px #111111 inset;
+    box-shadow: 0 0 2px 1px #24262b, 0 0 10px 2px #111111 inset;
     cursor: pointer;
 
     float: left;
@@ -605,15 +552,10 @@ body
     height: 60px;
 
     border-radius: 6px 6px 40px 40px;
-    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-
+    background: linear-gradient(to bottom, #505358 0%, #1e1e1e 100%);
     border: 1px solid #000000;
 
-    box-shadow: 0px 0px 2px 1px #1b1c21, 0px 0px 10px 2px #111111 inset;
+    box-shadow: 0 0 2px 1px #1b1c21, 0 0 10px 2px #111111 inset;
     cursor: pointer;
 
     float: left;
@@ -634,14 +576,9 @@ body
     height: 70px;
 
     border-radius: 50px 6px 6px 50px;
-    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-
+    background: linear-gradient(to bottom, #505358 0%, #1e1e1e 100%);
     border: 1px solid #000000;
-    box-shadow: 0px 0px 2px 1px #24262b, 0px 0px 10px 2px #111111 inset;
+    box-shadow: 0 0 2px 1px #24262b, 0 0 10px 2px #111111 inset;
     cursor: pointer;
 
     float: left;
@@ -662,14 +599,10 @@ body
     height: 70px;
 
     border-radius: 6px 50px 50px 6px;
-    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
+    background: linear-gradient(to bottom, #505358 0%, #1e1e1e 100%);
 
     border: 1px solid #000000;
-    box-shadow: 0px 0px 2px 1px #24262b, 0px 0px 10px 2px #111111 inset;
+    box-shadow: 0 0 2px 1px #24262b, 0 0 10px 2px #111111 inset;
     cursor: pointer;
 
     float: left;
@@ -689,14 +622,10 @@ body
     height: 70px;
 
     border-radius: 70px 70px 70px 70px;
-    background: -webkit-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #505358 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #505358 0%, #1e1e1e 100%);
+    background: linear-gradient(to bottom, #505358 0%, #1e1e1e 100%);
 
     border: 1px solid #000000;
-    box-shadow: 0px 0px 2px 1px #24262b, 0px 0px 10px 2px #111111 inset;
+    box-shadow: 0 0 2px 1px #24262b, 0 0 10px 2px #111111 inset;
     cursor: pointer;
 
     float: left;
@@ -708,22 +637,13 @@ body
 
 .select:hover, .right_arrow:hover, .left_arrow:hover, .up_arrow:hover, .down_arrow:hover
 {
-    background: -webkit-linear-gradient(top, #5d6065 0%, #2b2b2b 100%);
-    background: -webkit-gradient(top, #5d6065 0%, #2b2b2b 100%);
-    background: -moz-linear-gradient(top, #5d6065 0%, #2b2b2b 100%);
-    background: -o-linear-gradient(top, #5d6065 0%, #2b2b2b 100%);
-    background: -ms-linear-gradient(top, #5d6065 0%, #2b2b2b 100%);
+    background: linear-gradient(to bottom, #5d6065 0%, #2b2b2b 100%);
 }
 
 .select_active, .select:active, .right_arrow_active, .right_arrow:active, .left_arrow_active, .left_arrow:active, .up_arrow_active, .up_arrow:active, .down_arrow_active, .down_arrow:active
 {
-    background: -webkit-linear-gradient(top, #414449 0%, #1e1e1e 100%);
-    background: -webkit-gradient(top, #414449 0%, #1e1e1e 100%);
-    background: -moz-linear-gradient(top, #414449 0%, #1e1e1e 100%);
-    background: -o-linear-gradient(top, #414449 0%, #1e1e1e 100%);
-    background: -ms-linear-gradient(top, #414449 0%, #1e1e1e 100%);
-
-    box-shadow: 0px 0px 2px 1px #24262b, 0px 0px 10px 5px #111111 inset;
+    background: linear-gradient(to bottom, #414449 0%, #1e1e1e 100%);
+    box-shadow: 0 0 2px 1px #24262b, 0 0 10px 5px #111111 inset;
 }
 
 .power_icon
@@ -739,14 +659,10 @@ body
     width:25px;
     height: 25px;
     border-radius: 13px 13px 13px 13px;
-    background: -webkit-linear-gradient(top, #272727 0%, #101010 100%);
-    background: -webkit-gradient(top, #272727 0%, #101010 100%);
-    background: -moz-linear-gradient(top, #272727 0%, #101010 100%);
-    background: -o-linear-gradient(top, #272727 0%, #101010 100%);
-    background: -ms-linear-gradient(top, #272727 0%, #101010 100%);
+    background: linear-gradient(to bottom, #272727 0%, #101010 100%);
 
     border: 1px solid #000000;
-    box-shadow: 0px 0px 1px 1px #585b60, 0px 0px 1px 1px #171717 inset;
+    box-shadow: 0 0 1px 1px #585b60, 0 0 1px 1px #171717 inset;
     float: left;
     display: block;
 }
@@ -756,14 +672,9 @@ body
     width:25px;
     height: 25px;
     border-radius: 13px 13px 13px 13px;
-    background: -webkit-linear-gradient(top, #15d218 0%, #165216 100%);
-    background: -webkit-gradient(top, #15d218 0%, #165216 100%);
-    background: -moz-linear-gradient(top, #15d218 0%, #165216 100%);
-    background: -o-linear-gradient(top, #15d218 0%, #165216 100%);
-    background: -ms-linear-gradient(top, #15d218 0%, #165216 100%);
-
+    background: linear-gradient(to bottom, #15d218 0%, #165216 100%);
     border: 1px solid #000000;
-    box-shadow: 0px 0px 1px 1px #585b60, 0px 0px 1px 1px #041104 inset;
+    box-shadow: 0 0 1px 1px #585b60, 0 0 1px 1px #041104 inset;
     float: left;
     cursor: pointer;
     display: block;
@@ -771,24 +682,13 @@ body
 
 .power_on:hover
 {
-
-    background: -webkit-linear-gradient(top, #15ff18 0%, #165216 100%);
-    background: -webkit-gradient(top, #15ff18 0%, #165216 100%);
-    background: -moz-linear-gradient(top, #15ff18 0%, #165216 100%);
-    background: -o-linear-gradient(top, #15ff18 0%, #165216 100%);
-    background: -ms-linear-gradient(top, #15ff18 0%, #165216 100%);
-
+    background: linear-gradient(to bottom, #15ff18 0%, #165216 100%);
 }
 .power_on:active
 {
 
-    background: -webkit-linear-gradient(top, #15d218 0%, #165216 100%);
-    background: -webkit-gradient(top, #15d218 0%, #165216 100%);
-    background: -moz-linear-gradient(top, #15d218 0%, #165216 100%);
-    background: -o-linear-gradient(top, #15d218 0%, #165216 100%);
-    background: -ms-linear-gradient(top, #15d218 0%, #165216 100%);
-
-    box-shadow: 0px 0px 1px 1px #585b60, 0px 0px 4px 3px #020502 inset;
+    background: linear-gradient(to bottom, #15d218 0%, #165216 100%);
+    box-shadow: 0 0 1px 1px #585b60, 0 0 4px 3px #020502 inset;
 }
 
 
@@ -881,7 +781,7 @@ body
     text-shadow: 1px 1px #1c6882;
 
     border-radius: 5px;
-    box-shadow: 0px 0px 10px 0px #616161;
+    box-shadow: 0 0 10px 0px #616161;
 
     cursor: default;
     padding: 20px;
@@ -898,7 +798,7 @@ body
     text-shadow: 1px 1px #510008;
 
     border-radius: 5px;
-    box-shadow: 0px 0px 10px 0px #616161;
+    box-shadow: 0 0 10px 0 #616161;
 
     cursor: default;
     padding: 20px;
@@ -924,7 +824,7 @@ body
     text-shadow: 1px 1px #524f4e;
 
     border-radius: 5px;
-    box-shadow: 0px 0px 10px 0px #616161;
+    box-shadow: 0 0 10px 0 #616161;
 
     cursor: default;
     padding: 20px;
@@ -1010,7 +910,7 @@ body
 {
     height: 8px;
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     width: 100%;
     background: #444;
 }
