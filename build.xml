@@ -137,24 +137,26 @@
         </copy>
 
 
-        <copy todir="${firefox_addon.folder}/${project_name}/data/">
+        <copy todir="${firefox_addon.folder}/${project_name}/">
             <fileset dir="${src.folder}/"/>
         </copy>
 
-        <replace file="${firefox_addon.folder}/${project_name}/data/js/enum.js" token="@allow_popout" value="false"/>
-        <replace file="${firefox_addon.folder}/${project_name}/data/about.html" token="@build_version" value="${build.version}"/>
-        <replace file="${firefox_addon.folder}/${project_name}/data/settings.html" token="@build_version" value="${build.version}"/>
-        <replace file="${firefox_addon.folder}/${project_name}/package.json" token="@build_version" value="${build.version}"/>
+        <replace file="${firefox_addon.folder}/${project_name}/js/enum.js" token="@allow_popout" value="false"/>
+        <replace file="${firefox_addon.folder}/${project_name}/about.html" token="@build_version" value="${build.version}"/>
+        <replace file="${firefox_addon.folder}/${project_name}/settings.html" token="@build_version" value="${build.version}"/>
+        <replace file="${firefox_addon.folder}/${project_name}/manifest.json" token="@build_version" value="${build.version}"/>
 
-        <replace file="${firefox_addon.folder}/${project_name}/data/remote.html" token="@manifest" value=''/>
-        <replace file="${firefox_addon.folder}/${project_name}/data/settings.html" token="@manifest" value=''/>
+        <replace file="${firefox_addon.folder}/${project_name}/remote.html" token="@manifest" value=''/>
+        <replace file="${firefox_addon.folder}/${project_name}/settings.html" token="@manifest" value=''/>
 
-        <replace file="${firefox_addon.folder}/${project_name}/data/remote.html" token="@webapp_manifest" value='!-- //--'/>
-        <replace file="${firefox_addon.folder}/${project_name}/data/settings.html" token="@webapp_manifest" value='!-- //--'/>
+        <replace file="${firefox_addon.folder}/${project_name}/remote.html" token="@webapp_manifest" value='!-- //--'/>
+        <replace file="${firefox_addon.folder}/${project_name}/settings.html" token="@webapp_manifest" value='!-- //--'/>
 
-        <exec dir="${firefox_addon.folder}" executable="${cfx.tool.path}" failonerror="true">
-            <arg line="--pkgdir=${project_name} xpi" />
-        </exec>
+
+        <zip destfile="${firefox_addon.folder}/${project_name}.zip"
+             basedir="${firefox_addon.folder}/${project_name}/"
+                />
+
     </target>
 
     <target name="package_firefox-OS_app" depends="clean" description="Package App for Firefox OS Marketplace">
